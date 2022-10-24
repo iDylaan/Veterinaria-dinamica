@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Agenda de Citas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../../controllers/css/agenda-citas.css" />
+
+    <script src="https://kit.fontawesome.com/4ad7b82c7d.js" crossorigin="anonymous" defer></script>
+    <script src="../../../controllers/js/layout/ageda-citas.js" defer></script> 
+    <!-- Conexión -->
+    <script src="../../../controllers/js/agenda_citas.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <div class="header__container">
+            <div class="header__nav-container">
+                <div class="header__nav">
+                    <div class="header__logo">
+                        <img id="logo" src="../../../imgs/logo.png" alt="Logo veterinaria">
+                        <h1><span>v</span>eterinaria</h1>
+                    </div>
+
+                    <div class="header__nav-mobile">
+                        <div class="bars__menu">
+                            <span class="line1__bars-menu"></span>
+                            <span class="line2__bars-menu"></span>
+                            <span class="line3__bars-menu"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="header__nav-desktop">
+                        <div class="header__navegador-central">
+                            <p class="header__nav-link" id="nav-home"><i class="fa-solid fa-house"></i> Home</p>
+                            <p class="header__nav-link" id="nav-pedidos">Pedidos</p>
+                        </div>
+    
+                        <div class="navegeador-lateral">
+                            <p class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</p>
+                            <p class="header__nav-link" id="nav-login"><i class="fa-solid fa-user"></i> Iniciar Sesión</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="header-nav-mobil">
+                <div id="back-menu"></div>
+
+                <div class="header-nav-mobil__container">
+
+                    <div class="nav-mobil__opciones" id="menu-responsive-lateral">
+
+                        <div class="nav-mobile__logo">
+                            <img id="logo" src="../../../imgs/logo.png" alt="Logo veterinaria">
+                        </div>
+
+
+                        <div class="nav-mobile__main-options">
+                            <p class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i> Iniciar Sesión</p>
+                            <p class="header__nav-link" id="nav-carrito-mobile"><i class="fa-solid fa-cart-shopping"></i> Carrito</p>
+                        </div>
+
+                        <div class="nav-mobile__secondary-options">
+                            <p class="header__nav-link" id="nav-home-mobile"><i class="fa-solid fa-house"></i> Home</p>
+                            <p class="header__nav-link" id="nav-pedidos-mobile">Pedidos</p>   
+                        </div>
+
+                       </div>
+                </div>
+            </section>
+        </div>
+
+    </header> <!-- header -->
+
+    <!-- AGENDA DE CITAS PROGRAMADAS -->
+    <main>
+        <div class="agenda__container">
+            <div class="titulo-agenda">
+                <h1>Mis citas</h1>
+            </div>
+
+            <div class="citas__container">
+
+                <div class="cita__container">
+                    <div class="cita__detalles">
+
+                        <div class="cita__fecha">
+                            <p>Cita programada para el <span>13-Septiembre-2022</span></p>
+                        </div>
+                        
+                        <div class="cita__tipo-hora">
+                            <div class="tipo-de-servicio">
+                                <p>Tipo de servicio <span>Estética</span></p>
+                            </div>
+                            
+                            <div class="cita-hora">
+                                <p>Hora <span>14:20</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cita__descripcion">
+                        <label for="decripcion">Descripción</label>
+                        <div class="descripcion">
+                            <p name="Descripcion" id="cita__descripcion" cols="30" rows="10" maxlength="100">
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum, exercitationem aspernatur! Molestias tempora consequuntur molestiae eum, expedita magni possimus distinctio, dicta aperiam obcaecati illo rem, error vel alias atque doloribus nihil iste repellat voluptate aliquam laborum saepe sed. Neque et nihil nulla fugit, ea ipsa praesentium libero ab illo rerum inventore tempore repellendus unde fugiat blanditiis dolor, consectetur, voluptatem molestiae aliquam accusantium! Eveniet tempore optio, nihil id magni enim ipsa accusantium corporis quae fuga amet nesciunt esse, quos sit illum distinctio explicabo vero. Accusantium placeat nulla rerum voluptatem ipsa accusamus voluptates nihil. Praesentium doloribus ducimus sequi debitis sed ea optio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cita__container">
+                    <div class="cita__detalles">
+
+                        <div class="cita__fecha">
+                            <p>Cita programada para el <span>13-Septiembre-2022</span></p>
+                        </div>
+                        
+                        <div class="cita__tipo-hora">
+                            <div class="tipo-de-servicio">
+                                <p>Tipo de servicio <span>Estética</span></p>
+                            </div>
+                            
+                            <div class="cita-hora">
+                                <p>Hora <span>14:20</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cita__descripcion">
+                        <label for="decripcion">Descripción</label>
+                        <div class="descripcion">
+                            <p name="Descripcion" id="cita__descripcion" cols="30" rows="10" maxlength="100">
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum, exercitationem aspernatur! Molestias tempora consequuntur molestiae eum, expedita magni possimus distinctio, dicta aperiam obcaecati illo rem, error vel alias atque doloribus nihil iste repellat voluptate aliquam laborum saepe sed. Neque et nihil nulla fugit, ea ipsa praesentium libero ab illo rerum inventore tempore repellendus unde fugiat blanditiis dolor, consectetur, voluptatem molestiae aliquam accusantium! Eveniet tempore optio, nihil id magni enim ipsa accusantium corporis quae fuga amet nesciunt esse, quos sit illum distinctio explicabo vero. Accusantium placeat nulla rerum voluptatem ipsa accusamus voluptates nihil. Praesentium doloribus ducimus sequi debitis sed ea optio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cita__container">
+                    <div class="cita__detalles">
+
+                        <div class="cita__fecha">
+                            <p>Cita programada para el <span>13-Septiembre-2022</span></p>
+                        </div>
+                        
+                        <div class="cita__tipo-hora">
+                            <div class="tipo-de-servicio">
+                                <p>Tipo de servicio <span>Estética</span></p>
+                            </div>
+                            
+                            <div class="cita-hora">
+                                <p>Hora <span>14:20</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cita__descripcion">
+                        <label for="decripcion">Descripción</label>
+                        <div class="descripcion">
+                            <p name="Descripcion" id="cita__descripcion" cols="30" rows="10" maxlength="100">
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum, exercitationem aspernatur! Molestias tempora consequuntur molestiae eum, expedita magni possimus distinctio, dicta aperiam obcaecati illo rem, error vel alias atque doloribus nihil iste repellat voluptate aliquam laborum saepe sed. Neque et nihil nulla fugit, ea ipsa praesentium libero ab illo rerum inventore tempore repellendus unde fugiat blanditiis dolor, consectetur, voluptatem molestiae aliquam accusantium! Eveniet tempore optio, nihil id magni enim ipsa accusantium corporis quae fuga amet nesciunt esse, quos sit illum distinctio explicabo vero. Accusantium placeat nulla rerum voluptatem ipsa accusamus voluptates nihil. Praesentium doloribus ducimus sequi debitis sed ea optio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>
