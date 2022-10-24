@@ -17,7 +17,7 @@ descripcion VARCHAR(100) NOT NULL,
 id_servicio TINYINT NOT NULL,
 CONSTRAINT id_cita_pk PRIMARY KEY (id_cita),
 CONSTRAINT id_servi_fk FOREIGN KEY (id_servicio)
-REFERENCES servicios (id_servi)); 
+REFERENCES servicios (id_servi));
 
 -- EJEMPLOS DE CITAS --
 INSERT INTO citas (mascota, fecha, hora, descripcion, id_servicio) VALUES
