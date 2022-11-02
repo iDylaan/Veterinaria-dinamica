@@ -1,0 +1,169 @@
+@media (max-width: 700px) {
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    margin: 0%;
+    padding: 0;
+    height: 100vh;
+    /* background: rgb(255,134,134); */
+    background: linear-gradient(156deg, rgba(255, 134, 134, 1) 0%, rgba(45, 205, 255, 1) 100%);
+    position: relative;
+    font-family: 'Rubik', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../imgs/petsbg.png');
+    background-repeat: repeat;
+}
+
+.formulario {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+}
+
+.formulario h1 {
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.formulario form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .username {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+form input {
+    border: none;
+    outline: none;
+}
+
+form {
+    margin: 40px 0px;
+}
+
+.username input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.username label {
+    position: absolute;
+    top: 11px;
+    left: 0px;
+    color: hsl(0, 0%, 70%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.label-activo {
+    top: -20px;
+}
+
+.username-date {
+    color: #adadad;
+}
+
+.username-date input {
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: #adadad;
+    margin-top: 10px;
+}
+
+.recordar {
+    margin: -5px 0 20px 5px;
+    color: hsl(192, 30%, 70%);
+    cursor: pointer;
+}
+
+.recordar:hover {
+    text-decoration: underline;
+}
+
+.formulario input[type=submit] {
+    width: 100%;
+    border: none;
+    background: hsl(192, 100%, 40%);
+    border-radius: 25px;
+    font-size: 1.3rem;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    /* margin: 10px auto 10px auto; */
+    opacity: 75%;
+}
+
+.formulario input[type=submit]:hover {
+    opacity: 100%;
+}
+
+.politicas-privacidad {
+    margin-bottom: 30px;
+}
+
+.politicas-privacidad a {
+    text-decoration: none;
+    color: hsl(192, 30%, 40%);
+}
+
+.politicas-privacidad a:hover {
+    text-decoration: underline;
+}
+
+.registrarse {
+    margin: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    color: black;
+}
+
+.registrarse a {
+    color: hsl(0, 100%, 80%);
+    text-decoration: none;
+}
+
+.registrarse a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    background-color: hsl(0, 100%, 70%);
+    color: white;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
+    border: none;
+}
+
+.input-error input {
+    border-bottom: 1px solid hsl(0, 100%, 70%);
+}
+
+.label-error {
+    color: hsl(0, 100%, 25%);
+}
