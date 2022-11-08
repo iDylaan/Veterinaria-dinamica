@@ -195,3 +195,9 @@ CREATE TABLE expedientes (
     CONSTRAINT idrz_xpd_fk FOREIGN KEY (id_raza)
     REFERENCES razas (id)
 ) ENGINE = InnoDB CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+-- CUENTA ADMINISTRADOR Y VETERINARIO
+INSERT INTO usuarios(nombre, apellido_pa, apellido_ma, correo, contrasena, fecha_nac, id_rol) VALUES
+("Veterinario", "Hector", "Salamanca", "hectorveterinario01@veterinario.vet.mx", "Veterinario01", "1975-08-08", "2"),
+("Admin", "Todo", "Poderoso", "omnipotente9000@admin.god.mx", "todopoderoso12345", "1900-01-01", "3");
