@@ -58,7 +58,7 @@
             <section class="categorias-desktop">
                 <div class="categorias__container">
 
-                    <div class="categorias__productos"><i class="fa-solid fa-ring"></i>
+                    <div class="categorias__productos"><i class="fa-solid fa-store"></i>
                         <p>Productos</p>
                     </div>
                     <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
