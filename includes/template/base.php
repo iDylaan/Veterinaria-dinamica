@@ -1,4 +1,4 @@
-<?php include './header.php'; ?>
-    
+<?php include './header_admin.php'; ?>
+
 </body>
 </html>
