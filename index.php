@@ -58,16 +58,12 @@
             <section class="categorias-desktop">
                 <div class="categorias__container">
 
-                    <div class="categorias__productos"><i class="fa-solid fa-carrot"></i>
+                    <div class="categorias__productos"><i class="fa-solid fa-ring"></i>
                         <p>Productos</p>
                     </div>
-                    <div class="categorias__estetica"><i class="fa-solid fa-dog"></i>
-                        <p>Estética</p>
+                    <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
+                        <p>Servicios</p>
                     </div>
-                    <div class="categorias__atencion-medica"><i class="fa-solid fa-paw"></i>
-                        <p>Atención Médica</p>
-                    </div>
-
                 </div>
             </section>
 
