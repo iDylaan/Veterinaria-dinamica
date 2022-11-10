@@ -22,6 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <link rel="stylesheet" href="../src/styles/header_admin.css" />
+        <link rel="stylesheet" href="../src/styles/index_admin.css" />
 
         <script src="../src/js/header.js" defer></script>
         <script src="https://kit.fontawesome.com/4ad7b82c7d.js" crossorigin="anonymous" defer></script>
@@ -53,7 +54,7 @@
                                     <i class="fa-solid fa-house"></i> Home
                                 </a>
                                 <a href="" class="header__nav-link" id="nav-pedidos">
-                                    Empleados
+                                    Operadores
                                 </a>
                                 <a href="" class="header__nav-link" id="nav-pedidos">
                                     Productos
