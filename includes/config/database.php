@@ -2,16 +2,16 @@
 require_once dirname(__FILE__, 4) . "/.private/base.php";
 
 function conectarDB() : mysqli {
-    if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
-        throw new Exception("NO without SSL at line b." . rand(100, 200));
-        devolverError('-98001', 'NO sin certificado SSL:<br />'. 'Asegurece estar usando https://');
-        exit;
-    }
+    // ! Producción ONLY
+    // if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
+    //     throw new Exception("NO without SSL at line b." . rand(100, 200));
+    //     devolverError('-98001', 'NO sin certificado SSL:<br />'. 'Asegurece estar usando https://');
+    //     exit;
+    // }
     // Ok, traemos los datos de conexion de la base:
 
     // Intentar la conexion:
     $conexion = new mysqli(DB_SERVIDOR, DB_USUARIO, DB_CONTRASENA, DB_BASE);
-    //$conexion = mysqli_connect('localhost', 'root', '', 'veterinariadb');
 
     // Validar la conexion:
     if ( mysqli_connect_error() ) {

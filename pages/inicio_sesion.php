@@ -22,15 +22,12 @@
         $correo = mysqli_real_escape_string( $db, filter_var( $_POST['correo'], FILTER_VALIDATE_EMAIL ) );
         $contrasena = mysqli_real_escape_string( $db, $_POST['contrasena'] );
 
-        if(!$correo && !$contrasena) {
+        // Validar campos vacios
+        if(!$correo || !$contrasena) {
             $error = 'Todos los campos son obligatorios';
-        } else if(!$correo) {
-            $error = 'El correo es obligatorio o no es válido';
-        } else if(!$contrasena) {
-            $error = 'La contraseña es obligatoria';
         }
 
-        // Validacion para comprobar que el usuario exista
+        // TODO Ok, ahora a comprobar que el usuario exista
         if( $error === '' ) {
             // Revisar si el usuario existe.
             $query = "SELECT * FROM usuarios WHERE correo = '${correo}'";
