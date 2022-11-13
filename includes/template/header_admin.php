@@ -23,6 +23,7 @@
 
         <link rel="stylesheet" href="../src/styles/header_admin.css" />
         <link rel="stylesheet" href="../src/styles/index_admin.css" />
+        <link rel="stylesheet" href="../src/styles/productos_admin.css" />
 
         <script src="../src/js/header.js" defer></script>
         <script src="https://kit.fontawesome.com/4ad7b82c7d.js" crossorigin="anonymous" defer></script>

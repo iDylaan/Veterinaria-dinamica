@@ -2,7 +2,7 @@
     
     <div class="main__container">
         <div class="card">
-            <a href="">
+            <a href="./productos.php">
                 <div class="card__option">
                     <h2>Productos</h2>
                 </div>

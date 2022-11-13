@@ -121,7 +121,7 @@ INSERT INTO razas (nombre_raza, id_especie) VALUES
 CREATE TABLE productos (
     id INT(11) NOT NULL AUTO_INCREMENT ,
     nombre_prod VARCHAR(60) NOT NULL ,
-    descripcion VARCHAR(150) NOT NULL ,
+    descripcion VARCHAR(255) NOT NULL ,
     precio DECIMAL(10,2) NOT NULL ,
     imagen VARCHAR(200) NOT NULL ,
     id_cate TINYINT NOT NULL,

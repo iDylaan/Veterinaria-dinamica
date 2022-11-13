@@ -173,7 +173,6 @@ header {
 }
 
 .header__nav-container {
-    transition: all 0.3s;
     width: 100%;
     display: flex;
     justify-content: center;
