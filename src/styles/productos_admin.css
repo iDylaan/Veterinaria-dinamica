@@ -1,6 +1,6 @@
 .productos__container {
     width: 80%;
-    margin: 0px auto 0 auto;
+    margin: 0px auto 40px auto;
     background-color: rgb(246, 246, 246);
     border: 1px solid rgb(227, 227, 227);
     border-radius: 20px;
@@ -20,20 +20,41 @@
     margin-bottom: 20px;
 }
 
-.producto__container {
+.producto__first-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid rgb(212, 212, 212);
     margin: 10px 0px;
     padding-top: 10px;
+}
+
+.producto__container {
+    border-top: 1px solid rgb(212, 212, 212);
 }
 
 .producto__container:first-child {
     border-top: none;
 }
 
+.producto__descripcion {
+    padding: 40px;
+    /* border: 1px solid red; */
+}
+
+.producto__descripcion label {
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+.producto__descripcion p {
+    border: 1px solid rgb(201, 201, 201);
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
 .producto__imagen,
-.producto__description,
+.producto__detalles,
 .producto__options {
     /* border: 1px solid red; */
     margin: auto;
@@ -41,20 +62,33 @@
 
 .producto__imagen {
     outline: 1px solid rgb(206, 206, 206);
-}
-.producto__imagen img {
+    border-radius: 10px;
+    overflow: hidden;
     width: 120px;
     height: 120px;
+    position: relative;
+}
+.producto__imagen img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .producto__options {
     display: flex;
     text-align: center;
     gap: 10px;
-
 }
 .producto__options a {
     text-decoration: none;
+    font-size: 1rem;
+}
+.producto__options button {
+    font-size: 1rem;
+    padding: 10px;
 }
 
 .btn {
@@ -82,7 +116,7 @@
 .crear__container {
     width: 78%;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 15px;
 }
 
@@ -102,4 +136,8 @@
 #form-crear:hover {
     transition: all 0.2s ease;
     filter: brightness(1);
+}
+
+.description__price p {
+    font-size: 1.5rem;
 }

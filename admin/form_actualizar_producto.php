@@ -1,9 +1,17 @@
-<?php 
-     // * Autentificar al usuario
+<?php
+    // * Autentificar al usuario
     session_start();
     $auth = $_SESSION['login'] && $_SESSION['id_rol'] === "3" ?? false;
     if( !$auth ) {
         header('Location: ../index.php');
+    }
+
+    // Sanitizacion de los parametros recibidos por URL
+    $id = $_GET['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if (!$id) {
+        header('Location: ../index_admin.php');
     }
 
     // * Importar la conexion
@@ -11,13 +19,18 @@
     require '../includes/config/database.php';
     $db = conectarDB();
 
+    // Obtener los datos del producto
+    $query = "SELECT * FROM productos WHERE id = ${id}";
+    $resultado = mysqli_query($db, $query);
+    $producto = mysqli_fetch_assoc($resultado);
+
     $error = '';
 
-    $nombre_prod = '';
-    $precio = '';
-    $descripcion = '';
-    $id_cate = '';
-    $imagen = '';
+    $nombre_prod = $producto['nombre_prod'];
+    $precio = $producto['precio'];
+    $descripcion = $producto['descripcion'];
+    $id_cate = $producto['id_cate'];
+    $imagenPropiedad = $producto['imagen'];
     
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         // * Sanitizacion del formulario
@@ -30,7 +43,7 @@
         $imagen = $_FILES['imagen'];
         
        // * Validaciones...
-        if(!$nombre_prod || !$precio || !$descripcion || !$id_cate || !$imagen['name']) {  // Validar campos vacios
+        if(!$nombre_prod || !$precio || !$descripcion || !$id_cate) {  // Validar campos vacios
             $error = 'Todos los campos son obligatorios';
         } else if (strlen( $descripcion ) < 50) { // Validar descripciones muy cortas
             $error = 'La descripción debe tener mínimo 50 caracteres';
@@ -54,29 +67,46 @@
 
         // TODO el formulario está Ok, vamos a guardarlo en el servidor
         if( !$error ) {
+
+            
             // * Subida de Datos
             // Crear carpeta
             $carpetaImagenes = '../src/imgs/productos/';
-
+            
             if( !is_dir($carpetaImagenes) ) {
                 mkdir( $carpetaImagenes );
             }
 
-            // Generar nombre unico para la imagen
-            $nombreImagen = md5( uniqid( rand(), true ) ); // rand ya fue hackeado NO UTILIZAR PARA SEGURIDAD
+            $nombreImagen = '';
+            
+            // SUBIDA DE ARCHIVOS
+            if ($imagen['name']) {
+                // Eliminar la imagen previa
+                unlink($carpetaImagenes . $producto['imagen'] . ".jpg");
 
-            // Subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg");
-
+                // Generar nombre unico para la imagen
+                $nombreImagen = md5( uniqid( rand(), true ) ); // rand ya fue hackeado NO UTILIZAR PARA SEGURIDAD
+                
+                // Subir la imagen
+                move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg");
+            } else {
+                $nombreImagen = $producto['imagen'];
+            }
+            
             // * Insertar a la base de datos
-            $query = "INSERT INTO productos (nombre_prod, descripcion, precio, imagen, id_cate) VALUES 
-            ('${nombre_prod}', '${descripcion}', ${precio}, '${nombreImagen}', ${id_cate});";
+            $query = "UPDATE productos SET 
+            nombre_prod = '${nombre_prod}', 
+            descripcion = '${descripcion}', 
+            precio = ${precio},
+            imagen = '${nombreImagen}',
+            id_cate = ${id_cate}
+            WHERE id = ${id};";
 
             $resultado = mysqli_query( $db, $query );
 
             if ( $resultado ) {
                 // TODO Ok en el registro
-                header('Location: ./productos.php?resultado=1');
+                header('Location: ./productos.php?resultado=2');
             }
         }
     }
@@ -94,7 +124,7 @@
 </head>
 <body>
 
-    <h1 style="text-align: center;margin-top:20px;">Crear</h1>
+    <h1 style="text-align: center;margin-top:20px;">Actualizar</h1>
 
     <div class="formulario__container">
         <form class="formulario__producto" method="POST" enctype="multipart/form-data">
@@ -121,7 +151,9 @@
                 <input type="number" id="precio" name="precio" min="0" max="9999" placeholder="Precio del producto" value="<?php echo $precio; ?>" required>
 
                 <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" name="imagen" accept="image/jpg, image/jpeg, image/png, image/webp" required>
+                <input type="file" id="imagen" name="imagen" accept="image/jpg, image/jpeg, image/png, image/webp">
+
+                <img src="../src/imgs/productos/<?php echo $producto['imagen']; ?>.jpg" style="width:200px;" alt="Product Image">
 
                 <label for="descripcion">Descripcion:</label>
                 <textarea name="descripcion" id="descripcion" cols="30" rows="10" maxlength="1500" minlength="50" placeholder="Escribe una descripcion para tu producto" required><?php echo $descripcion; ?></textarea>
@@ -139,7 +171,7 @@
                     <?php endwhile; ?>
                 </select>
 
-                <input type="submit" id="btn-crear-producto" value="Crear producto">
+                <input type="submit" id="btn-crear-producto" value="Editar producto">
             </fieldset>
         </form>
     </div> <!-- Contenedor Formulario -->
