@@ -1,6 +1,8 @@
 <?php
     // * Autentificar al usuario
-    session_start();
+    if( !isset( $_SESSION ) ) {
+        session_start();
+    }
     $auth = $_SESSION['login'] && $_SESSION['id_rol'] === "3" ?? false;
     if( !$auth ) {
         header('Location: ../index.php');

@@ -1,7 +1,9 @@
 <?php include '../includes/template/header_admin.php';
 
     // * Autentificar al usuario
-    session_start();
+    if( !isset( $_SESSION ) ) {
+        session_start();
+    }
     $auth = $_SESSION['login'] && $_SESSION['id_rol'] === "3" ?? false;
     if( !$auth ) {
         header('Location: ../index.php');
@@ -45,8 +47,14 @@
     }
 ?>
 
-    <div class="crear__container">
-        <a id="form-crear" href="./form_producto.php">Crear</a>
+    <div class="main-options__container">
+        <div class="crear__container">
+            <a id="form-crear" href="./form_producto.php">Crear</a>
+        </div>
+
+        <div class="serch__container">
+            for
+        </div>
     </div>
 
     <div class="productos__container">
