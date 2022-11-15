@@ -22,15 +22,12 @@
         $correo = mysqli_real_escape_string( $db, filter_var( $_POST['correo'], FILTER_VALIDATE_EMAIL ) );
         $contrasena = mysqli_real_escape_string( $db, $_POST['contrasena'] );
 
-        if(!$correo && !$contrasena) {
+        // Validar campos vacios
+        if(!$correo || !$contrasena) {
             $error = 'Todos los campos son obligatorios';
-        } else if(!$correo) {
-            $error = 'El correo es obligatorio o no es válido';
-        } else if(!$contrasena) {
-            $error = 'La contraseña es obligatoria';
         }
 
-        // Validacion para comprobar que el usuario exista
+        // TODO Ok, ahora a comprobar que el usuario exista
         if( $error === '' ) {
             // Revisar si el usuario existe.
             $query = "SELECT * FROM usuarios WHERE correo = '${correo}'";
@@ -60,8 +57,7 @@
                     switch($_SESSION['id_rol']) {
                         case "1": header('Location: ./index_sesion.php'); break;
                         case "2": header('Location: ./index_sesion.php'); break;
-                        case "3":
-                            break;
+                        case "3": header('Location: ../admin/index_admin.php'); break;
                         default: break;
                     }
                 } else {
@@ -108,7 +104,7 @@
                 
 
                 <div class="username">
-                    <input id="input-email" name="correo" type="email" required>
+                    <input id="input-email" name="correo" type="email" value="<?php echo $correo ?>" required>
                     <label id="label-email" for="">Correo Electrónico</label>
                 </div>
 
