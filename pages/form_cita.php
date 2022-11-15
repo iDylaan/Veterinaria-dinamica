@@ -27,11 +27,11 @@
     
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $mascota = mysqli_real_escape_string( $db, $_POST['mascota'].trim() );
-        $servicio = mysqli_real_escape_string( $db, $_POST['tipo_servicio'].trim() );
-        $fecha = mysqli_real_escape_string( $db, $_POST['fecha'].trim() );
-        $hora = mysqli_real_escape_string( $db, $_POST['hora'].trim() );
-        $descripcion = mysqli_real_escape_string( $db, $_POST['descripcion'].trim() );
+        $mascota = mysqli_real_escape_string( $db, $_POST['mascota'] );
+        $servicio = mysqli_real_escape_string( $db, $_POST['tipo_servicio'] );
+        $fecha = mysqli_real_escape_string( $db, $_POST['fecha'] );
+        $hora = mysqli_real_escape_string( $db, $_POST['hora'] );
+        $descripcion = mysqli_real_escape_string( $db, $_POST['descripcion'] );
 
         // Validar el formulario
         if(!$mascota || !$servicio || !$fecha || !$hora || !$descripcion) {
@@ -55,7 +55,7 @@
             if($fecha_disponible) {
                 // * Insertar en la base de datos
                 $query = "INSERT INTO citas (mascota, fecha, hora, descripcion, id_servi, id_usr) VALUES 
-                ( '${mascota}', '${fecha}', '${hora}', '${descripcion}', '${servicio}', '${id_usr}' ); ";
+                ( '${mascota}', '${fecha}', '${hora}', '${descripcion}', '${servicio}', '${id_usr}' );";
 
                 $resultado = mysqli_query($db, $query);
                 $fecha_disponible = true;
@@ -110,7 +110,7 @@
                     
                     <div class="header__nav-desktop">
                         <div class="header__navegador-central">
-                            <a href="./index_sesion.php" class="header__nav-link" id="nav-home"><i class="fa-solid fa-house"></i> Home</a>
+                            <a href="./index.php" class="header__nav-link" id="nav-home"><i class="fa-solid fa-house"></i> Home</a>
                         </div>
 
                         <div class="navegeador-lateral">
@@ -126,7 +126,7 @@
                 <div class="header-nav-mobil__container">
                     <div class="nav-mobil__opciones" id="menu-responsive-lateral">
                         <div class="nav-mobile__logo">
-                            <a href="./index_sesion.php"><img id="logo" src="../src/imgs/logo.png" alt="Logo veterinaria"></a>
+                            <a href="./index.php"><img id="logo" src="../src/imgs/logo.png" alt="Logo veterinaria"></a>
                         </div>
 
                         <div class="nav-mobile__main-options">
@@ -135,7 +135,7 @@
                         </div>
 
                         <div class="nav-mobile__secondary-options">
-                            <a href="./index_sesion.php" class="header__nav-link" id="nav-home-mobile" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a> 
+                            <a href="./index.php" class="header__nav-link" id="nav-home-mobile" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a> 
                         </div>
                     </div>
                 </div>
