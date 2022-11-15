@@ -1,5 +1,5 @@
 <?php
-include_once '#'
+include_once '../carrito/veterinariabd.php'
 
 class Productos extends veterinariadb{
 function_constructor(){
@@ -42,7 +42,9 @@ function_constructor(){
             'imagen' => $row['imagen'],
             'id_cate' => $row['categoria'],
             ];
+            array_push($items, $item);
     }
+    return $items;
 
 }
 
