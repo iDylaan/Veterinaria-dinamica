@@ -121,7 +121,7 @@ INSERT INTO razas (nombre_raza, id_especie) VALUES
 CREATE TABLE productos (
     id INT(11) NOT NULL AUTO_INCREMENT ,
     nombre_prod VARCHAR(60) NOT NULL ,
-    descripcion VARCHAR(150) NOT NULL ,
+    descripcion VARCHAR(255) NOT NULL ,
     precio DECIMAL(10,2) NOT NULL ,
     imagen VARCHAR(200) NOT NULL ,
     id_cate TINYINT NOT NULL,
@@ -200,4 +200,4 @@ CREATE TABLE expedientes (
 -- CUENTA ADMINISTRADOR Y VETERINARIO
 INSERT INTO usuarios(nombre, apellido_pa, apellido_ma, correo, contrasena, fecha_nac, id_rol) VALUES
 ("Veterinario", "Hector", "Salamanca", "hectorveterinario01@veterinario.vet.mx", "$2y$10$5TdcH6WWcOtb03KozfDViO7.gpEjcrv9saMM7hc2./sSLb7qoWrHa ", "1975-08-08", "2"), -- psswrd "hector_veterinario01" 
-("Admin", "Todo", "Poderoso", "omnipotente9000@admin.god.mx", "$2y$10$xIF1W0eRYTs4oRHBOo.P/.o2uqBI1BTVDU7dNwwQ7dDA7KbOJSR7q ", "1900-01-01", "3");                    -- psswrd "todopoderoso12345 "
+("Admin", "Todo", "Poderoso", "omnipotente9000@admin.god.mx", "$2y$10$xIF1W0eRYTs4oRHBOo.P/.o2uqBI1BTVDU7dNwwQ7dDA7KbOJSR7q ", "1900-01-01", "3");                    -- psswrd "todopoderoso12345"

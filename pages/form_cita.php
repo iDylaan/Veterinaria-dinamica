@@ -27,11 +27,11 @@
     
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $mascota = mysqli_real_escape_string( $db, $_POST['mascota'] );
-        $servicio = mysqli_real_escape_string( $db, $_POST['tipo_servicio'] );
-        $fecha = mysqli_real_escape_string( $db, $_POST['fecha'] );
-        $hora = mysqli_real_escape_string( $db, $_POST['hora'] );
-        $descripcion = mysqli_real_escape_string( $db, $_POST['descripcion'] );
+        $mascota = mysqli_real_escape_string( $db, $_POST['mascota'].trim() );
+        $servicio = mysqli_real_escape_string( $db, $_POST['tipo_servicio'].trim() );
+        $fecha = mysqli_real_escape_string( $db, $_POST['fecha'].trim() );
+        $hora = mysqli_real_escape_string( $db, $_POST['hora'].trim() );
+        $descripcion = mysqli_real_escape_string( $db, $_POST['descripcion'].trim() );
 
         // Validar el formulario
         if(!$mascota || !$servicio || !$fecha || !$hora || !$descripcion) {
