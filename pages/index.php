@@ -33,7 +33,7 @@
             <div class="header__nav-container">
                 <div class="header__nav">
                     <div class="header__logo">
-                        <a href="./index_sesion.php">
+                        <a href="./index.php">
                             <img id="logo" src="../src/imgs/logo.png" alt="Logo veterinaria">
                             <h1><span>v</span>eterinaria</h1>
                         </a>
@@ -67,13 +67,19 @@
 
             <section class="categorias-desktop">
                 <div class="categorias__container">
-
-                    <div class="categorias__productos"><i class="fa-solid fa-store"></i>
-                        <p>Productos</p>
-                    </div>
-                    <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
-                        <p>Servicios</p>
-                    </div>
+                    <a class="cate__nav-link" href="">
+                        <div class="categorias__productos">
+                            <i class="fa-solid fa-store"></i>
+                            <p>Productos</p>
+                        </div>
+                    </a>
+                    
+                    <a class="cate__nav-link" href="./servicios.php">
+                        <div class="categorias__estetica">
+                            <i class="fa-solid fa-shield-dog"></i>
+                            <p>Servicios</p>
+                        </div>
+                    </a>
 
                 </div>
             </section>
