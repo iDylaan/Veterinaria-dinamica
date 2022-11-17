@@ -109,7 +109,7 @@
                             <a href="" class="header__nav-link" id="nav-carrito-mobile"><i
                                     class="fa-solid fa-cart-shopping"></i> Carrito</a>
                         </div>
-    
+
                         <div class="nav-mobile__secondary-options">
                             <a href="#" class="header__nav-link" id="nav-home-mobile"><i class="fa-solid fa-house"></i>
                                 Home</a>
@@ -127,13 +127,55 @@
             <div class="header__title">
                 <h1 id="header__title-h1">Servicios de estética <br /> y atención médica😽</h1>
             </div>
+
+            <div class="btn-agendar__container">
+                <a href="<?php echo $auth ? "./form_cita.php" : "./inicio_sesion.php"; ?>" class="header__btn-agendar">Agendar cita</a>
+            </div>
         </div>
     
     </header> <!-- header -->
     
 
-    <div class="main_container">
-        
+    <div class="servicios__container">
+        <div class="servicios__title-container">
+            <h1> <span class="servicios__title-nuestros">Nuestros</span> <br />Servicios</h1>
+        </div>
+
+        <div class="servicios__list-container">
+            <div class="servicios__list-col1">
+                <div class="servicio__card">
+                    <h1>EXÁMENES DE CONTROL</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                </div>
+
+                <div class="servicio__card">
+                    <h1>MICRO CHIPS</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                </div>
+
+                <div class="servicio__card">
+                    <h1>SERVICIO DE EMERGENCIA</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                </div>
+            </div> <!-- Columna 1 Servicios -->
+
+            <div class="servicios__list-col2">
+                <div class="servicio__card">
+                    <h1>CIRUJÍA</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                </div>
+
+                <div class="servicio__card">
+                    <h1>ASEO</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                </div>
+
+                <div class="servicio__card">
+                    <h1>ASISTENCIA DENTAL</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                </div> 
+            </div> <!-- Columna 2 Servicios -->
+        </div> <!-- Lista de servicios -->
     </div>
 
 
