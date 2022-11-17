@@ -4,4 +4,4 @@ session_start();
 
 $_SESSION = [];
 
-header('Location: /veterinaria-cp/Veterinaria-dinamica/');
+header('Location: /Veterinaria-dinamica/');
