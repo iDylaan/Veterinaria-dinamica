@@ -58,12 +58,19 @@
             <section class="categorias-desktop">
                 <div class="categorias__container">
 
-                    <div class="categorias__productos"><i class="fa-solid fa-store"></i>
-                        <p>Productos</p>
-                    </div>
-                    <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
-                        <p>Servicios</p>
-                    </div>
+                    <a class="cate__nav-link" href="">
+                        <div class="categorias__productos">
+                            <i class="fa-solid fa-store"></i>
+                            <p>Productos</p>
+                        </div>
+                    </a>
+                    
+                    <a class="cate__nav-link" href="./pages/servicios.php">
+                        <div class="categorias__estetica">
+                            <i class="fa-solid fa-shield-dog"></i>
+                            <p>Servicios</p>
+                        </div>
+                    </a>
                 </div>
             </section>
 

@@ -2,9 +2,6 @@
     // Autentificar al usuario
     session_start();
     $auth = $_SESSION['login'] ?? false;
-    if(!$auth) {
-        header('Location: ../index.php');
-    }
 ?>
 
 <!DOCTYPE html>
@@ -54,11 +51,24 @@
                         <div class="navegeador-lateral">
                             <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>
                                 Carrito</a>
-                            <a href="" class="header__nav-link" id="nav-login"><i class="fa-solid fa-user"></i>
-                                <?php echo $_SESSION['nombre']; ?>
+                                <?php 
+                                if ($auth): ?>
+                                    <a href="" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i>
+                                    <?php echo $_SESSION['nombre']; 
+                                endif;
+                                ?>
                             </a>
-                            <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login"><i
-                                    class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                            <?php
+                            if($auth):
+                                ?>
+                                <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                                <?php
+                            else:
+                                ?>
+                                <a href="./inicio_sesion.php" class="header__nav-link" id="nav-login"><i class="fa-solid fa-user"></i> Iniciar Sesión</a>
+                                <?php
+                            endif;
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -76,11 +86,26 @@
     
     
                         <div class="nav-mobile__main-options">
-                            <a href="" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i>
-                                <?php echo $_SESSION['nombre']; ?>
+                            <?php 
+                                if ($auth): ?>
+                                    <a href="" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i>
+                                    <?php echo $_SESSION['nombre']; 
+                                endif;
+                                ?>
                             </a>
-                            <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login-mobile"><i
+
+                            <?php
+                            if($auth):
+                                ?>
+                                <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login-mobile"><i
                                     class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                                <?php
+                            else:
+                                ?>
+                                <a href="./inicio_sesion.php" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i> Iniciar Sesión</a>
+                                <?php
+                            endif;
+                            ?>
                             <a href="" class="header__nav-link" id="nav-carrito-mobile"><i
                                     class="fa-solid fa-cart-shopping"></i> Carrito</a>
                         </div>
