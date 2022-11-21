@@ -89,19 +89,19 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Gestionar Producto</title>
+    <title>Gestionar Empleados</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
     <link rel="stylesheet" href="../src/styles/form_productos.css">
 </head>
 <body>
 
-    <h1 style="text-align: center;margin-top:20px;">Crear</h1>
+    <h1 style="text-align: center;margin-top:20px;">Agregar</h1>
 
     <div class="formulario__container">
         <form class="formulario__producto" method="POST" enctype="multipart/form-data">
             <fieldset>
-                <legend>Información del Producto</legend>
+                <legend>Datos del Empleado</legend>
                 <?php
                     if ( $error !== '' ) {
                         ?>
@@ -117,31 +117,30 @@
                 ?>
 
                 <label for="nombre_prod">Nombre:</label>
-                <input type="text" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="Nombre del producto" value="<?php echo $nombre_prod; ?>" required>
+                <input type="text" id="nombre_emp" name="nombre_emp" maxlength="100" minlength="8"  id="nombre_emp" placeholder="" value="<?php echo $nombre_emp; ?>" required>
 
-                <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" min="0" max="9999" placeholder="Precio del producto" value="<?php echo $precio; ?>" required>
-
-                <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" name="imagen" accept="image/jpg, image/jpeg, image/png, image/webp" required>
-
-                <label for="descripcion">Descripcion:</label>
-                <textarea name="descripcion" id="descripcion" cols="30" rows="10" maxlength="1500" minlength="50" placeholder="Escribe una descripcion para tu producto" required><?php echo $descripcion; ?></textarea>
+                <label for="nombre_prod">Apellido Paterno:</label>
+                <input type="text" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $apellido_pa; ?>" required>
                 
-                <label for="categoria">Categoría:</label>
-                <select name="id_cate" id="id_cate" required>
-                    <option value="" disabled>-- Selecciona una categoria --</option>
-                    <?php 
-                    $query_categorias = "SELECT * FROM categorias";
-                    $categorias = mysqli_query($db, $query_categorias);
-                    while($categoria = mysqli_fetch_assoc($categorias)):?>
-                    <option value="<?php echo $categoria['id_cate'] ?>" <?php echo $id_cate === $categoria['id_cate'] ? "selected" : "";?> >
-                        <?php echo $categoria['nom_cate']; ?>
-                    </option>
-                    <?php endwhile; ?>
-                </select>
+                <label for="nombre_prod">Apellido Materno:</label>
+                <input type="text" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $apellido_ma; ?>" required>
 
-                <input type="submit" id="btn-crear-producto" value="Crear producto">
+                
+                <label for="nombre_prod">Fecha de Nacimiento</label>
+                <input type="date" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $fecha_nac; ?>" required>
+                
+                <label for="nombre_prod">Correo Electronico</label>
+                <input type="email" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $correo_elec; ?>" required>
+
+                
+                <label for="nombre_prod">Cree una contraseña</label>
+                <input type="password" id="nombre_prod" name="nombre_prod" maxlength="8" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $contrasena; ?>" required>
+
+                <label for="nombre_prod">Confirmar contraseña</label>
+                <input type="password" id="nombre_prod" name="nombre_prod" maxlength="8" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $confirmar_contrasena; ?>" required>
+
+                
+                <input type="submit" id="btn-crear-producto" value="Agregar">
             </fieldset>
         </form>
     </div> <!-- Contenedor Formulario -->
