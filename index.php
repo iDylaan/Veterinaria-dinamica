@@ -254,7 +254,7 @@
                 <div class="servicio__imagen-1">
                     <img src="./src/imgs/ServicioMedicoMP.jpg" alt="Imagen servicio de atencion medica">
                 </div>
-                <a href="#">Servicio de Atención Médica -></a>
+                <a href="./pages/servicios.php">Servicio de Atención Médica -></a>
             </div>
             <div class="servicios_estetica-1">
                 <div class="servicio__imagen-2">
@@ -265,7 +265,7 @@
                 <div class="servicio__imagen-3">
                     <img src="./src/imgs/ServicioEsteticaMP.jpg" alt="Imagen servicio de estetica">
                 </div>
-                <a href="#">Servicio de Estética -></a>
+                <a href="./pages/servicios.php">Servicio de Estética -></a>
             </div>
         </div>
 

@@ -86,7 +86,7 @@
     <div class="container">
         <div class="formulario">
             <h1>Inicio de Sesión</h1>
-            <form action="" method="POST" novalidate>
+            <form method="POST">
                 
                 <?php
                     if ( $error !== '' ) {

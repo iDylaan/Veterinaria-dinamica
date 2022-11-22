@@ -169,14 +169,13 @@
                 <?php
                 }
             ?>
-            <form method="POST"> 
-                <!-- ../admin/propiedades/crear.php -->
+            <form method="POST">
                 <section class="form__section-container">
                     <div class="form__section">
                         <label for="">Mascota (nombre)</label>
                         <input type="text" id="mascota" name="mascota" placeholder="Ej.- " value="<?php echo $mascota ?>" required>
                     </div>
-                    
+
                     <div class="form__section">
                         <label for="">Tipo de servicio</label>
                         <select name="tipo_servicio" id="tipo_servicio" value="<?php echo $servicio ?>" required>
@@ -191,20 +190,20 @@
                 <section class="form__section-container">
                     <div class="form__section">
                         <label for="">Fecha</label>
-                        <input type="date" name="fecha" id="fecha" value="<?php echo $fecha ?>" required>
+                        <input type="date" name="fecha" id="fecha" value="<?php echo $fecha; ?>" required>
                     </div>
-                    
+
                     <div class="form__section">
                         <label for="">Hora</label>
-                        <input type="time" min="10:00:00" max="18:00:00" name="hora" id="hora" value="<?php echo $hora ?>" required>
+                        <input type="time" min="10:00:00" max="18:00:00" name="hora" id="hora" value="<?php echo $hora; ?>" required>
                     </div>
                 </section>
-                
+
                 <div class="form__section">
                     <label for="">Descripcion</label>
-                    <textarea rows="10" maxlength="100" name="descripcion" id="descripcion" required><?php echo $descripcion ?></textarea>
+                    <textarea rows="10" maxlength="100" name="descripcion" id="descripcion" required><?php echo $descripcion; ?></textarea>
                 </div>
-                
+
                 <div class="boton-submit">
                     <input type="submit" value="Agendar Cita"></input>
                 </div>

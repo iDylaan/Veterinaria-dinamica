@@ -44,19 +44,25 @@
                             <a href="./index.php#quienes-somos__container" class="header__nav-link" id="nav-quienes-somos">¿Quiénes
                                 somos?</a>
                             <a href="" class="header__nav-link" id="nav-pedidos">Pedidos</a>
-                            <a href="./agenda_citas.php" class="header__nav-link" id="nav-citas">Mis citas</a>
                             <a href="./index.php#ubicacion__container" class="header__nav-link" id="nav-ubicacion">Ubicación</a>
                         </div>
     
                         <div class="navegeador-lateral">
-                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>
-                                Carrito</a>
-                                <?php 
-                                if ($auth): ?>
-                                    <a href="" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i>
-                                    <?php echo $_SESSION['nombre']; 
-                                endif;
-                                ?>
+                            <a href="./agenda_citas.php" class="header__nav-link" id="nav-citas"><i class="fa-regular fa-calendar"></i> Mis citas</a>
+
+                            <?php
+                            if($auth && $_SESSION['id_rol'] === '2'): ?>
+                            <a href="expedientes.php" class="header__nav-link"><i class="fa-solid fa-book-open"></i> Expedientes</a>
+                            <?php 
+                            else: ?>
+                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            <?php endif; ?>
+                            <?php 
+                            if ($auth): ?>
+                                <a href="" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i>
+                                <?php echo $_SESSION['nombre']; 
+                            endif;
+                            ?>
                             </a>
                             <?php
                             if($auth):
@@ -93,7 +99,15 @@
                                 endif;
                                 ?>
                             </a>
-
+                            <?php
+                            if($auth && $_SESSION['id_rol'] === '2'): ?>
+                            <a href="expedientes.php" class="header__nav-link"><i class="fa-solid fa-book-open"></i> Expedientes</a>
+                            <?php 
+                            else: ?>
+                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            <?php endif; ?>
+                            <a href="./agenda_citas.php" class="header__nav-link" id="nav-citas-mobile"><i class="fa-regular fa-calendar"></i> Mis Citas</a>
+                            
                             <?php
                             if($auth):
                                 ?>
@@ -106,8 +120,6 @@
                                 <?php
                             endif;
                             ?>
-                            <a href="" class="header__nav-link" id="nav-carrito-mobile"><i
-                                    class="fa-solid fa-cart-shopping"></i> Carrito</a>
                         </div>
 
                         <div class="nav-mobile__secondary-options">
@@ -116,7 +128,6 @@
                             <a href="./index.php#quienes-somos__container" class="header__nav-link"
                                 id="nav-quienes-somos-mobile">¿Quiénes somos?</a>
                             <a href="" class="header__nav-link" id="nav-pedidos-mobile">Pedidos</a>
-                            <a href="./agenda_citas.php" class="header__nav-link" id="nav-citas-mobile">Mis Citas</a>
                             <a href="./index.php#ubicacion__container" class="header__nav-link" id="nav-ubicacion-mobile">Ubicación</a>
                         </div>
     
@@ -151,6 +162,11 @@
                 <div class="servicio__card">
                     <h1>MICRO CHIPS</h1>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                    <?php
+                    if($auth && $_SESSION['id_rol'] === '2'):
+                    ?>
+                    <a href="./form_expediente.php" id="btn__generar-expediente">Generar Expediente</a>
+                    <?php endif; ?>
                 </div>
 
                 <div class="servicio__card">

@@ -777,6 +777,24 @@ footer {
 .servicio__card p {
   font-weight: 400;
   font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+#btn__generar-expediente {
+  text-decoration: none;
+  color: #121212;
+  padding: 10px 15px;
+  outline: 1px solid #121212;
+  border-radius: 0px;
+  transition: all 0.2s ease;
+}
+#btn__generar-expediente:hover {
+  color: white;
+  padding: 10px 15px;
+  outline: 1px solid transparent;
+  background-color: #121212;
+  border-radius: 0px;
+  transition: all 0.2s ease;
 }
 
 @media (max-width: 1900px) {
