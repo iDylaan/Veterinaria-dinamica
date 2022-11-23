@@ -22,7 +22,7 @@ function_constructor(){
     }   
 
 
-    public function getItemsid_cate($cateroria){
+    public function getItemsid_cate($categoria){
         public function ged($id){
             $query = $this->connect()->prepare('SELECT * FROM items WHERE  ct categorias');
             $query->execuse(['cat' => $cateroria]);
