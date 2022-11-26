@@ -15,7 +15,7 @@
     $db = conectarDB();
 
     // Query
-    $query = "SELECT * FROM productos;";
+    $query = "SELECT * FROM usuarios;";
 
     // Consultar a la DB
     $resultado_productos = mysqli_query($db , $query);
