@@ -149,4 +149,74 @@ body {
   overflow-x: hidden;
 }
 
+body h1{
+  text-align: center;
+  margin-top: 40px;
+}
+
 /* DETALLES EXPEDIENTE */
+
+main {
+  width: 90%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 40px;
+}
+
+.mascota__container {
+  background-color: hsl(197, 47%, 97%);
+}
+.mascota__container legend {
+  background-color: hsl(197, 47%, 90%);
+}
+
+.contacto__container {
+  background-color: hsl(34, 47%, 97%);
+}
+.contacto__container legend {
+  background-color: hsl(34, 47%, 90%);
+}
+
+.pipe {
+  color: rgb(142, 142, 142);
+}
+
+.mascota__container, 
+.contacto__container {
+  border: 1px solid grey;
+  width: 100%;
+  padding: 0px 30px 50px 30px;
+  border-radius: 5px;
+}
+
+.mascota__container legend, 
+.contacto__container legend {
+  border: 1px solid grey;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.info__container:first-child {
+  margin-top: 0px;
+}
+.info__container {
+  padding: 7px 0px;
+  margin-top: 30px;
+  border-bottom: 1px solid rgb(142, 142, 142);
+}
+
+.info__container label {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.info__container p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 5px;
+}

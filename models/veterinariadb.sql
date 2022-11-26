@@ -183,7 +183,7 @@ CREATE TABLE expedientes (
     telefono VARCHAR(10) NOT NULL ,
     direccion VARCHAR(30) NOT NULL ,
     cp INT(5) NOT NULL ,
-    colores VARCHAR(25) NOT NULL ,
+    colores VARCHAR(255) NOT NULL ,
     id_sexo_mascota TINYINT NOT NULL,
     id_usr INT(11) NOT NULL ,
     id_raza TINYINT NOT NULL ,
