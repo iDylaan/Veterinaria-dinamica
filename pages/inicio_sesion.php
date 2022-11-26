@@ -1,7 +1,7 @@
 <?php 
     // * Importar la conexion
     // BASE DE DATOS
-    require'../includes/config/database.php';
+    require '../includes/config/database.php';
     $db = conectarDB();
 
     // * Escribir el Query
@@ -55,8 +55,8 @@
 
                     // Filtrar a los usuarios por su rol
                     switch($_SESSION['id_rol']) {
-                        case "1": header('Location: ./index_sesion.php'); break;
-                        case "2": header('Location: ./index_sesion.php'); break;
+                        case "1": header('Location: ./index.php'); break;
+                        case "2": header('Location: ./index.php'); break;
                         case "3": header('Location: ../admin/index_admin.php'); break;
                         default: break;
                     }
@@ -86,7 +86,7 @@
     <div class="container">
         <div class="formulario">
             <h1>Inicio de Sesión</h1>
-            <form action="" method="POST" novalidate>
+            <form method="POST">
                 
                 <?php
                     if ( $error !== '' ) {

@@ -83,7 +83,7 @@
     <div class="container">
         <div class="formulario">
             <h1>Registro</h1>
-            <form action="" method="POST">
+            <form method="POST" autocomplete="off">
                 <div class="username">
                     <input id="input-nombre" name="nombre" type="text" value="<?php echo $nombre; ?>" required>
                     <label id="label-nombre" for="">Nombre</label>

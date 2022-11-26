@@ -33,7 +33,7 @@
             <div class="header__nav-container">
                 <div class="header__nav">
                     <div class="header__logo">
-                        <a href="./index_sesion.php">
+                        <a href="./index.php">
                             <img id="logo" src="../src/imgs/logo.png" alt="Logo veterinaria">
                             <h1><span>v</span>eterinaria</h1>
                         </a>
@@ -52,12 +52,18 @@
                             <a href="#" class="header__nav-link" id="nav-home"><i class="fa-solid fa-house"></i> Home</a>
                             <a href="#quienes-somos__container" class="header__nav-link" id="nav-quienes-somos">¿Quiénes somos?</a>
                             <a href="" class="header__nav-link" id="nav-pedidos">Pedidos</a>
-                            <a href="./agenda_citas.php" class="header__nav-link" id="nav-citas">Mis citas</a>
                             <a href="#ubicacion__container" class="header__nav-link" id="nav-ubicacion">Ubicación</a>
                         </div>
     
                         <div class="navegeador-lateral">
-                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+                            <a href="./agenda_citas.php" class="header__nav-link" id="nav-citas"><i class="fa-regular fa-calendar"></i> Mis citas</a>
+                            <?php
+                            if($auth && $_SESSION['id_rol'] === '2'): ?>
+                            <a href="./expedientes.php" class="header__nav-link"><i class="fa-solid fa-book-open"></i> Expedientes</a>
+                            <?php 
+                            else: ?>
+                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            <?php endif; ?>
                             <a href="" class="header__nav-link" id="nav-login"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['nombre']; ?></a>
                             <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
                         </div>
@@ -67,13 +73,19 @@
 
             <section class="categorias-desktop">
                 <div class="categorias__container">
-
-                    <div class="categorias__productos"><i class="fa-solid fa-store"></i>
-                        <p>Productos</p>
-                    </div>
-                    <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
-                        <p>Servicios</p>
-                    </div>
+                    <a class="cate__nav-link" href="">
+                        <div class="categorias__productos">
+                            <i class="fa-solid fa-store"></i>
+                            <p>Productos</p>
+                        </div>
+                    </a>
+                    
+                    <a class="cate__nav-link" href="./servicios.php">
+                        <div class="categorias__estetica">
+                            <i class="fa-solid fa-shield-dog"></i>
+                            <p>Servicios</p>
+                        </div>
+                    </a>
 
                 </div>
             </section>
@@ -91,15 +103,21 @@
 
                         <div class="nav-mobile__main-options">
                             <a href="" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['nombre']; ?> </a>
+                            <a href="./agenda_citas.php" class="header__nav-link" id="nav-citas"><i class="fa-regular fa-calendar"></i> Mis citas</a>
+                            <?php
+                            if($_SESSION['id_rol'] === '2'): ?>
+                            <a href="expedientes.php" class="header__nav-link"><i class="fa-solid fa-book-open"></i> Expedientes</a>
+                            <?php 
+                            else: ?>
+                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            <?php endif; ?>
                             <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
-                            <a href="" class="header__nav-link" id="nav-carrito-mobile"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
                         </div>
 
                         <div class="nav-mobile__secondary-options">
                             <a href="#" class="header__nav-link" id="nav-home-mobile"><i class="fa-solid fa-house"></i> Home</a>
                             <a href="#quienes-somos__container" class="header__nav-link" id="nav-quienes-somos-mobile">¿Quiénes somos?</a>
                             <a href="" class="header__nav-link" id="nav-pedidos-mobile">Pedidos</a>
-                            <a href="./agenda_citas.php" class="header__nav-link" id="nav-citas-mobile">Mis Citas</a>
                             <a href="#ubicacion__container" class="header__nav-link" id="nav-ubicacion-mobile">Ubicación</a>    
                         </div>
 
@@ -259,7 +277,7 @@
                 <div class="servicio__imagen-1">
                     <img src="../src/imgs/ServicioMedicoMP.jpg" alt="Imagen servicio de atencion medica">
                 </div>
-                <a href="#">Servicio de Atención Médica -></a>
+                <a href="./servicios.php">Servicio de Atención Médica -></a>
             </div>
             <div class="servicios_estetica-1">
                 <div class="servicio__imagen-2">
@@ -270,7 +288,7 @@
                 <div class="servicio__imagen-3">
                     <img src="../src/imgs/ServicioEsteticaMP.jpg" alt="Imagen servicio de estetica">
                 </div>
-                <a href="#">Servicio de Estética -></a>
+                <a href="./servicios.php">Servicio de Estética -></a>
             </div>
         </div>
 
