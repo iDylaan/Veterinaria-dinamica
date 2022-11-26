@@ -57,20 +57,17 @@
         </div>
     </div>
 
-    <div class="usuarios__container">
-
+    
+    <div class="productos__container">
         <div class="title-container">
             <h1>Empleados</h1>
         </div>
-
-        <div class="lista-usuarios__container">
+        <div class="lista-productos__container">
 
             <?php while($usuarios = mysqli_fetch_assoc( $resultado_usuarios )): ?>
             <div class="usuarios__container">
                 <div class="usuarios__first-content">
-                    <!-- <div class="producto__imagen">
-                        <img src="../src/imgs/productos/<?php echo $producto['imagen']; ?>.jpg" alt="Product Image">
-                    </div> -->
+                    
                     <div class="usuarios__detalles">
                         <div class="description__title">
                             <h1> <?php echo $usuarios['nombre']; ?> </h1>
@@ -87,11 +84,9 @@
                         <div class="description__title">
                             <h1> <?php echo $usuarios['correo']; ?> </h1>
                         </div>
-                        <!-- <div class="description__title">
-                            <h1> <?php echo $roles['nom_rol']; ?> </h1>
-                        </div> -->
+                        
                     </div>
-                    <div class="usuarios__options">
+                    <div class="producto__options">
                         <a href="./form_actualizar_empleados.php?id=<?php echo $usuarios['id']; ?>" class="btn btn-azul"><i class="fa-solid fa-pen"></i> Editar</a>
                         <form method="POST" id="form-eliminar">
                             <input type="hidden" name="id" value="<?php echo $usuarios['id']; ?>">
@@ -101,12 +96,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="usuarios__descripcion">
-                    <label for="descripcion">Descripción</label>
-                    <p>
-                        <?php echo $usuarios['descripcion']; ?>
-                    </p>
-                </div> -->
+                
             </div> <!-- Producto -->
             <?php endwhile; ?>
             
@@ -118,6 +108,6 @@
         // Cerrar la conexion
         mysqli_close($db);
     ?>
-
+ 
 </body>
 </html>

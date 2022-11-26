@@ -77,42 +77,42 @@
     <link rel="stylesheet" href="../src/styles/form_productos.css">
 </head>
 <body>
-<h1 style="text-align: center;margin-top:20px;">Crear</h1>
+<h1 style="text-align: center;margin-top:20px;">Ingrese los datos del operador</h1>
 
 <div class="formulario__container">
     <form class="formulario__producto" method="POST" enctype="multipart/form-data">
         <fieldset>
-            <legend>Información del Producto</legend>
+            <legend>Registrar Cuenta</legend>
             
             <form action="" method="POST">
                 <div class="username">
                     <label id="label-nombre" for="">Nombre</label>
                     <input id="input-nombre" name="nombre" type="text" value="<?php echo $nombre; ?>" required>
                     
-                </div>
+                </div><br>
                 
                 <div class="username">
                     <label id="label-apepa" for="">Apellido paterno</label>
                     <input id="input-apepa" name="apellido_pa" type="text" value="<?php echo $apellido_pa; ?>" required>
                     
-                </div>
+                </div><br>
                 
                 <div class="username">
                     <label id="label-apema" for="">Apellido Materno</label>
                     <input id="input-apema" name="apellido_ma" type="text" value="<?php echo $apellido_ma; ?>" required>
                     
-                </div>
+                </div><br>
 
                 <div class="username-date">
                     <label for="">Fecha de Nacimiento</label> <br>
                     <input type="date" name="fecha_nac" value="<?php echo $fecha_nac; ?>" required>
-                </div>
+                </div><br>
 
                 <div class="username">
                 <label id="label-email" class="" for="">Correo Electrónico</label> 
                     <input id="input-email" class="<?php echo $correo_existente ? "input-error" : "" ; ?>" name="correo" type="email" value="<?php echo $correo; ?>" required>
                     
-                </div>
+                </div><br>
 
                 <div>
                 <?php 
@@ -128,22 +128,20 @@
                     <label id="label-password" for="">Crear Contraseña</label>
                     <input id="input-password" name="contrasena" type="password" required>
                    
-                </div>
+                </div><br>
 
                 <div class="username" id="password-clon-container">
                 <label id="label-password_clon" for="">Repetir Contraseña</label>
                     <input id="input-password_clon" name="contrasena_clon" type="password" required>
                     
-                </div>
+                </div><br>
                 <?php if( !$contrasenas_iguales ): ?>
                     <div>
                         <p class="label-error">Las contraseñas no coinciden</p>
                     </div>
                 <?php endif ?>
 
-                <div class="politicas-privacidad">
-                    <input type="checkbox" name="terminos" required><a href="#"> Acepta Terminos & Condiciones </a></input>
-                </div>
+              <br><br>
                 
                 <input type="submit" id="btn-crear-producto" value="Crear producto">
             </fieldset>
