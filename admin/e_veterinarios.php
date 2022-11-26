@@ -78,6 +78,18 @@
                         <div class="description__title">
                             <h1> <?php echo $usuarios['apellido_pa']; ?> </h1>
                         </div>
+                        <div class="description__title">
+                            <h1> <?php echo $usuarios['apellido_ma']; ?> </h1>
+                        </div>
+                        <div class="description__title">
+                            <h1> <?php echo $usuarios['fecha_nac']; ?> </h1>
+                        </div>
+                        <div class="description__title">
+                            <h1> <?php echo $usuarios['correo']; ?> </h1>
+                        </div>
+                        <!-- <div class="description__title">
+                            <h1> <?php echo $roles['nom_rol']; ?> </h1>
+                        </div> -->
                     </div>
                     <div class="usuarios__options">
                         <a href="./form_actualizar_empleados.php?id=<?php echo $usuarios['id']; ?>" class="btn btn-azul"><i class="fa-solid fa-pen"></i> Editar</a>
