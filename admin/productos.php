@@ -53,7 +53,7 @@
         </div>
 
         <div class="serch__container">
-            for
+            
         </div>
     </div>
 

@@ -1,84 +1,66 @@
-<?php 
-     // * Autentificar al usuario
-     if( !isset( $_SESSION ) ) {
-        session_start();
-    }
-    $auth = $_SESSION['login'] && $_SESSION['id_rol'] === "3" ?? false;
-    if( !$auth ) {
-        header('Location: ../index.php');
-    }
-
+<?php
     // * Importar la conexion
     // BASE DE DATOS
-    require '../includes/config/database.php';
+    require'../includes/config/database.php';
     $db = conectarDB();
 
-    $error = '';
+    // * Escribir el Query
+    $query = "SELECT correo FROM usuarios";
 
-    $nombre_prod = '';
-    $precio = '';
-    $descripcion = '';
-    $id_cate = '';
-    $imagen = '';
+    // * Consultar la Base de Datos
+    $resultado_correos = mysqli_query($db, $query);
+
+
+    // Ejecucion del codigo despues de que el usuario envia el formulario
+    $nombre = '';
+    $apellido_pa = '';
+    $apellido_ma = '';
+    $fecha_nac = '';
+    $correo = '';
+    $contrasena = '';
+    $id_rol = 2;
+    $contrasena_clon = '';
     
-    if($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // * Sanitizacion del formulario
-        $nombre_prod = mysqli_real_escape_string( $db, $_POST['nombre_prod'] );
-        $precio = mysqli_real_escape_string( $db, $_POST['precio'] );
-        $descripcion = mysqli_real_escape_string( $db, $_POST['descripcion'] );
-        $id_cate = mysqli_real_escape_string( $db, $_POST['id_cate'] );
+    // Variable para validar si un correo ya esta registrado
+    $correo_existente = false;
+    $contrasenas_iguales = true;
 
-        // * Files hacia una imagen
-        $imagen = $_FILES['imagen'];
-        
-       // * Validaciones...
-        if(!$nombre_prod || !$precio || !$descripcion || !$id_cate || !$imagen['name']) {  // Validar campos vacios
-            $error = 'Todos los campos son obligatorios';
-        } else if (strlen( $descripcion ) < 50) { // Validar descripciones muy cortas
-            $error = 'La descripción debe tener mínimo 50 caracteres';
-        } else if (strlen( $descripcion ) > 1500) { // Validar por capacidad de la DB
-            $error = 'Sobrepasaste el límite de caracteres en la descripción (1500)';
-        } else if (strlen( $nombre_prod ) < 8) { // Validar nombres muy chicos
-            $error = 'El nombre no puede ser menor a 8 caracteres';
-        } else if (strlen( $nombre_prod ) > 100) { // Validar por capacidad de la DB
-            $error = 'Sobrepasaste el límite de caracteres del nombre (100)';
-        } else if ($precio < 0 || $precio > 99999) { // Validar rango de precios
-            $error = 'Precio no válido...';
-        }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Sanitización del formulario
+        $nombre = mysqli_real_escape_string( $db, $_POST['nombre'] );
+        $apellido_pa = mysqli_real_escape_string( $db, $_POST['apellido_pa'] );
+        $apellido_ma = mysqli_real_escape_string( $db, $_POST['apellido_ma'] );
+        $fecha_nac = mysqli_real_escape_string( $db, $_POST['fecha_nac'] );
+        $correo = mysqli_real_escape_string( $db, $_POST['correo'] );
+        $contrasena = mysqli_real_escape_string( $db, $_POST['contrasena'] );
+        $contrasena_clon = mysqli_real_escape_string( $db, $_POST['contrasena_clon'] );
 
-        // Validar por tamaño (10 MB máximo)
-                // KB   / MB / Cantidad 
-        $medida = 1024 * 1024 * 10;
-
-        if ($imagen['size'] > $medida) {
-            $error = 'La imagen es muy grande (límite 10MB)';
-        }
-
-        // TODO el formulario está Ok, vamos a guardarlo en el servidor
-        if( !$error ) {
-            // * Subida de Datos
-            // Crear carpeta
-            $carpetaImagenes = '../src/imgs/productos/';
-
-            if( !is_dir($carpetaImagenes) ) {
-                mkdir( $carpetaImagenes );
+        // Consulta de correos para comprobar que no se repita
+        while( $correos = mysqli_fetch_assoc($resultado_correos) ):
+            // Chequeo del correo en cada correo registrado en el sistema
+            if( $correos['correo'] === $correo ) {
+                $correo_existente = true;
             }
+        endwhile;
 
-            // Generar nombre unico para la imagen
-            $nombreImagen = md5( uniqid( rand(), true ) ); // rand ya fue hackeado NO UTILIZAR PARA SEGURIDAD
+        // Validar contrasenas iguales
+        if ($contrasena !== $contrasena_clon) {
+            $contrasenas_iguales = false;
+        }
+        
+        if( !$correo_existente && $contrasenas_iguales ) {
+            // Hasheo de la contraseña
+            $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
+            
+            // * Insertar en la base de datos
+            $query = "INSERT INTO usuarios (nombre, apellido_pa, apellido_ma, fecha_nac, correo, contrasena, id_rol) 
+            VALUES ( '${nombre}', '${apellido_pa}', '${apellido_ma}', '${fecha_nac}', '${correo}', '${passwordHash}', '${id_rol}' ); ";
+            $resultado = mysqli_query($db, $query);
 
-            // Subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg");
-
-            // * Insertar a la base de datos
-            $query = "INSERT INTO productos (nombre_prod, descripcion, precio, imagen, id_cate) VALUES 
-            ('${nombre_prod}', '${descripcion}', ${precio}, '${nombreImagen}', ${id_cate});";
-
-            $resultado = mysqli_query( $db, $query );
-
-            if ( $resultado ) {
-                // TODO Ok en el registro
-                header('Location: ./productos.php?resultado=1');
+            // TODO Ok, redirigimos al que inicie sesion
+            if( $resultado ) {
+                // Redireccionar al usuario
+                header('Location: ./e_veterinarios.php');
             }
         }
     }
@@ -95,52 +77,75 @@
     <link rel="stylesheet" href="../src/styles/form_productos.css">
 </head>
 <body>
+<h1 style="text-align: center;margin-top:20px;">Crear</h1>
 
-    <h1 style="text-align: center;margin-top:20px;">Agregar</h1>
+<div class="formulario__container">
+    <form class="formulario__producto" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Información del Producto</legend>
+            
+            <form action="" method="POST">
+                <div class="username">
+                    <label id="label-nombre" for="">Nombre</label>
+                    <input id="input-nombre" name="nombre" type="text" value="<?php echo $nombre; ?>" required>
+                    
+                </div>
+                
+                <div class="username">
+                    <label id="label-apepa" for="">Apellido paterno</label>
+                    <input id="input-apepa" name="apellido_pa" type="text" value="<?php echo $apellido_pa; ?>" required>
+                    
+                </div>
+                
+                <div class="username">
+                    <label id="label-apema" for="">Apellido Materno</label>
+                    <input id="input-apema" name="apellido_ma" type="text" value="<?php echo $apellido_ma; ?>" required>
+                    
+                </div>
 
-    <div class="formulario__container">
-        <form class="formulario__producto" method="POST" enctype="multipart/form-data">
-            <fieldset>
-                <legend>Datos del Empleado</legend>
-                <?php
-                    if ( $error !== '' ) {
+                <div class="username-date">
+                    <label for="">Fecha de Nacimiento</label> <br>
+                    <input type="date" name="fecha_nac" value="<?php echo $fecha_nac; ?>" required>
+                </div>
+
+                <div class="username">
+                <label id="label-email" class="" for="">Correo Electrónico</label> 
+                    <input id="input-email" class="<?php echo $correo_existente ? "input-error" : "" ; ?>" name="correo" type="email" value="<?php echo $correo; ?>" required>
+                    
+                </div>
+
+                <div>
+                <?php 
+                    if($correo_existente) {
                         ?>
-                        <hr>
-                            <p class="error">
-                                <?php
-                                    echo $error;
-                                ?>
-                            </p>
-                        <hr>
-                    <?php
-                    }
+                        <p class="label-error">Ese correo no está disponible.. 🙀</p>
+                        <?php
+                    } 
                 ?>
+                </div>
 
-                <label for="nombre_prod">Nombre:</label>
-                <input type="text" id="nombre_emp" name="nombre_emp" maxlength="100" minlength="8"  id="nombre_emp" placeholder="" value="<?php echo $nombre_emp; ?>" required>
+                <div class="username">
+                    <label id="label-password" for="">Crear Contraseña</label>
+                    <input id="input-password" name="contrasena" type="password" required>
+                   
+                </div>
 
-                <label for="nombre_prod">Apellido Paterno:</label>
-                <input type="text" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $apellido_pa; ?>" required>
+                <div class="username" id="password-clon-container">
+                <label id="label-password_clon" for="">Repetir Contraseña</label>
+                    <input id="input-password_clon" name="contrasena_clon" type="password" required>
+                    
+                </div>
+                <?php if( !$contrasenas_iguales ): ?>
+                    <div>
+                        <p class="label-error">Las contraseñas no coinciden</p>
+                    </div>
+                <?php endif ?>
+
+                <div class="politicas-privacidad">
+                    <input type="checkbox" name="terminos" required><a href="#"> Acepta Terminos & Condiciones </a></input>
+                </div>
                 
-                <label for="nombre_prod">Apellido Materno:</label>
-                <input type="text" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $apellido_ma; ?>" required>
-
-                
-                <label for="nombre_prod">Fecha de Nacimiento</label>
-                <input type="date" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $fecha_nac; ?>" required>
-                
-                <label for="nombre_prod">Correo Electronico</label>
-                <input type="email" id="nombre_prod" name="nombre_prod" maxlength="100" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $correo_elec; ?>" required>
-
-                
-                <label for="nombre_prod">Cree una contraseña</label>
-                <input type="password" id="nombre_prod" name="nombre_prod" maxlength="8" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $contrasena; ?>" required>
-
-                <label for="nombre_prod">Confirmar contraseña</label>
-                <input type="password" id="nombre_prod" name="nombre_prod" maxlength="8" minlength="8"  id="nombre_prod" placeholder="" value="<?php echo $confirmar_contrasena; ?>" required>
-
-                
-                <input type="submit" id="btn-crear-producto" value="Agregar">
+                <input type="submit" id="btn-crear-producto" value="Crear producto">
             </fieldset>
         </form>
     </div> <!-- Contenedor Formulario -->
