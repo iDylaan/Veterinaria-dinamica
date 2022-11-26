@@ -18,7 +18,7 @@
     $query = "SELECT * FROM usuarios;";
 
     // Consultar a la DB
-    $resultado_productos = mysqli_query($db , $query);
+    $resultado_usuarios = mysqli_query($db , $query);
 
     // Mensaje condicional
     $mensaje = $_GET['resultado'] ?? null;
@@ -30,7 +30,7 @@
 
         if( $id ) {
             // Eliminar el archivo
-            $query = "SELECT imagen FROM productos WHERE id = ${id}";
+            $query = "SELECT imagen FROM usuarios WHERE id = ${id}";
             $resultado = mysqli_query($db, $query);
             $producto = mysqli_fetch_assoc($resultado);
 
@@ -41,7 +41,7 @@
 
             $resultado = mysqli_query($db, $query);
             if($resultado) {
-                header('Location: ./productos/php?resultado=3');
+                header('Location: ./usuarios/php?resultado=3');
             }
         }
     }
@@ -57,44 +57,44 @@
         </div>
     </div>
 
-    <div class="productos__container">
+    <div class="usuarios__container">
 
         <div class="title-container">
             <h1>Empleados</h1>
         </div>
 
-        <div class="lista-productos__container">
+        <div class="lista-usuarios__container">
 
-            <?php while($producto = mysqli_fetch_assoc( $resultado_productos )): ?>
-            <div class="producto__container">
-                <div class="producto__first-content">
-                    <div class="producto__imagen">
+            <?php while($usuarios = mysqli_fetch_assoc( $resultado_usuarios )): ?>
+            <div class="usuarios__container">
+                <div class="usuarios__first-content">
+                    <!-- <div class="producto__imagen">
                         <img src="../src/imgs/productos/<?php echo $producto['imagen']; ?>.jpg" alt="Product Image">
-                    </div>
-                    <div class="producto__detalles">
+                    </div> -->
+                    <div class="usuarios__detalles">
                         <div class="description__title">
-                            <h1> <?php echo $producto['nombre_prod']; ?> </h1>
+                            <h1> <?php echo $usuarios['nombre']; ?> </h1>
                         </div>
-                        <div class="description__price">
-                            <p>$ <?php echo $producto['precio'] ?></p>
+                        <div class="description__title">
+                            <h1> <?php echo $usuarios['apellido_pa']; ?> </h1>
                         </div>
                     </div>
-                    <div class="producto__options">
-                        <a href="./form_actualizar_producto.php?id=<?php echo $producto['id']; ?>" class="btn btn-azul"><i class="fa-solid fa-pen"></i> Editar</a>
+                    <div class="usuarios__options">
+                        <a href="./form_actualizar_empleados.php?id=<?php echo $usuarios['id']; ?>" class="btn btn-azul"><i class="fa-solid fa-pen"></i> Editar</a>
                         <form method="POST" id="form-eliminar">
-                            <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $usuarios['id']; ?>">
 
                             <button type="submit" form="form-eliminar" class="btn btn-rojo"><i class="fa-solid fa-trash"></i> Eliminar</button>
                         </form>
                     </div>
                 </div>
 
-                <div class="producto__descripcion">
+                <!-- <div class="usuarios__descripcion">
                     <label for="descripcion">Descripción</label>
                     <p>
-                        <?php echo $producto['descripcion']; ?>
+                        <?php echo $usuarios['descripcion']; ?>
                     </p>
-                </div>
+                </div> -->
             </div> <!-- Producto -->
             <?php endwhile; ?>
             
