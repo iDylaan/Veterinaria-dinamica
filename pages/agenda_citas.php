@@ -57,7 +57,7 @@
             <div class="header__nav-container">
                 <div class="header__nav">
                     <div class="header__logo">
-                        <a href="./index_sesion.php">
+                        <a href="./index.php">
                             <img id="logo" src="../src/imgs/logo.png" alt="Logo veterinaria">
                             <h1><span>v</span>eterinaria</h1>
                         </a>
@@ -73,7 +73,7 @@
                     
                     <div class="header__nav-desktop">
                         <div class="header__navegador-central">
-                            <a href="./index_sesion.php" class="header__nav-link" id="nav-home" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a>
+                            <a href="./index.php" class="header__nav-link" id="nav-home" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a>
                             <a href="" class="header__nav-link" id="nav-pedidos" style="text-decoration: none;">Pedidos</a>
                         </div>
     
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="nav-mobile__secondary-options">
-                            <a href="./index_sesion.php" class="header__nav-link" id="nav-home-mobile" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a>
+                            <a href="./index.php" class="header__nav-link" id="nav-home-mobile" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a>
                             <a href="" class="header__nav-link" id="nav-pedidos-mobile" style="text-decoration: none;">Pedidos</a>   
                         </div>
 

@@ -58,12 +58,19 @@
             <section class="categorias-desktop">
                 <div class="categorias__container">
 
-                    <div class="categorias__productos"><i class="fa-solid fa-store"></i>
-                        <p>Productos</p>
-                    </div>
-                    <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
-                        <p>Servicios</p>
-                    </div>
+                    <a class="cate__nav-link" href="">
+                        <div class="categorias__productos">
+                            <i class="fa-solid fa-store"></i>
+                            <p>Productos</p>
+                        </div>
+                    </a>
+                    
+                    <a class="cate__nav-link" href="./pages/servicios.php">
+                        <div class="categorias__estetica">
+                            <i class="fa-solid fa-shield-dog"></i>
+                            <p>Servicios</p>
+                        </div>
+                    </a>
                 </div>
             </section>
 
@@ -247,7 +254,7 @@
                 <div class="servicio__imagen-1">
                     <img src="./src/imgs/ServicioMedicoMP.jpg" alt="Imagen servicio de atencion medica">
                 </div>
-                <a href="#">Servicio de Atención Médica -></a>
+                <a href="./pages/servicios.php">Servicio de Atención Médica -></a>
             </div>
             <div class="servicios_estetica-1">
                 <div class="servicio__imagen-2">
@@ -258,7 +265,7 @@
                 <div class="servicio__imagen-3">
                     <img src="./src/imgs/ServicioEsteticaMP.jpg" alt="Imagen servicio de estetica">
                 </div>
-                <a href="#">Servicio de Estética -></a>
+                <a href="./pages/servicios.php">Servicio de Estética -></a>
             </div>
         </div>
 
