@@ -30,14 +30,14 @@
 
         if( $id ) {
             // Eliminar el archivo
-            $query = "SELECT imagen FROM usuarios WHERE id = ${id}";
-            $resultado = mysqli_query($db, $query);
-            $producto = mysqli_fetch_assoc($resultado);
+           $query = "SELECT id FROM usuarios WHERE id = ${id}";
+           $resultado = mysqli_query($db, $query);
+           $usuarios = mysqli_fetch_assoc($resultado);
 
-            unlink('../src/imgs/productos/' . $producto['imagen'] . ".jpg");
+            
 
             // Eliminar la propiedad de la base de datos
-            $query = "DELETE FROM productos WHERE id = ${id}";
+            $query = "DELETE FROM usuarios WHERE id = ${id}";
 
             $resultado = mysqli_query($db, $query);
             if($resultado) {
@@ -65,10 +65,10 @@
         <div class="lista-productos__container">
 
             <?php while($usuarios = mysqli_fetch_assoc( $resultado_usuarios )): ?>
-            <div class="usuarios__container">
-                <div class="usuarios__first-content">
+            <div class="producto__container">
+                <div class="producto__first-content">
                     
-                    <div class="usuarios__detalles">
+                   
                         <div class="description__title">
                             <h1> <?php echo $usuarios['nombre']; ?> </h1>
                         </div>
@@ -78,14 +78,15 @@
                         <div class="description__title">
                             <h1> <?php echo $usuarios['apellido_ma']; ?> </h1>
                         </div>
-                        <div class="description__title">
-                            <h1> <?php echo $usuarios['fecha_nac']; ?> </h1>
+                        <div class="description__price">
+                            <h3> <?php echo $usuarios['fecha_nac']; ?> </h3>
                         </div>
                         <div class="description__title">
-                            <h1> <?php echo $usuarios['correo']; ?> </h1>
+                            <h3> <?php echo $usuarios['correo']; ?> </h3>
                         </div>
                         
                     </div>
+
                     <div class="producto__options">
                         <a href="./form_actualizar_empleados.php?id=<?php echo $usuarios['id']; ?>" class="btn btn-azul"><i class="fa-solid fa-pen"></i> Editar</a>
                         <form method="POST" id="form-eliminar">
