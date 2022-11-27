@@ -31,9 +31,6 @@
     $id_raza = '';
     $colores = '';
     $id_usr = '';
-    $telefono = '';
-    $direccion = '';
-    $cp = '';
 
     // ? Fecha actual local
     $today = date("Y-m-d");
@@ -46,10 +43,6 @@
         $colores = mysqli_real_escape_string($db, $_POST['colores']);
         $id_raza = mysqli_real_escape_string($db, $_POST['raza']);
         $id_usr = mysqli_real_escape_string($db, $_POST['usuario']);
-        $telefono = mysqli_real_escape_string($db, $_POST['telefono']);
-        $direccion = mysqli_real_escape_string($db, $_POST['direccion']);
-        $cp = mysqli_real_escape_string($db, $_POST['cp']);
-
 
         if (
            !$cla_chip 
@@ -59,9 +52,6 @@
         || !$colores
         || !$id_raza
         || !$id_usr
-        || !$telefono
-        || !$direccion
-        || !$cp
         ) { $error = 'Todos los campos son obligatorios.'; } 
         else if ( strlen($cla_chip) !== 20) 
         { $error = 'El NS del Chip debe contener 20 caracteres'; }
@@ -69,11 +59,6 @@
         { $error = 'El nombre mínimo de una mascota puede ser de dos caracteres'; }
         else if ( $fecha_nac_mascota >  $today ) 
         { $error = 'Esa fecha no es válida'; }
-        else if ( strlen($telefono) !== 10 )
-        { $error = 'El teléfono debe ser de 10 dígitos'; }
-        else if ( strlen($cp) !== 5)
-        { $error = 'El código postal debe ser de 5 dígitos'; }
-
 
         while($chip = mysqli_fetch_assoc($expedientes)):
             if($chip['cla_chip'] === $cla_chip) {
@@ -84,14 +69,33 @@
 
         if( !$error ) {
             // * Insertar a la base de datos
-            $query = "INSERT INTO expedientes (cla_chip, mascota, fecha_nac_mascota, id_sexo_mascota, colores, id_raza, id_usr, telefono, direccion, cp) VALUES 
-            ('${cla_chip}', '${mascota}', '${fecha_nac_mascota}', ${id_sexo_mascota}, '${colores}', ${id_raza}, ${id_usr}, '${telefono}', '${direccion}', ${cp})";
+            $query = "INSERT INTO expedientes (cla_chip, mascota, fecha_nac_mascota, id_sexo_mascota, colores, id_raza, id_usr) VALUES 
+            ('${cla_chip}', '${mascota}', '${fecha_nac_mascota}', ${id_sexo_mascota}, '${colores}', ${id_raza}, ${id_usr})";
 
             $resultado = mysqli_query( $db, $query );
 
             if ( $resultado ) {
-                // TODO Ok en el registro
-                header('Location: ./expedientes.php');
+                $query_usuario = "SELECT * FROM usuarios WHERE id = ${id_usr}";
+                $resultado_usuario = mysqli_query( $db, $query_usuario );
+                $existe_contacto = true;
+                $id = "";
+                while($usuario = mysqli_fetch_assoc($resultado_usuario)) {
+                    if(
+                        $usuario['direccion'] === NULL 
+                        || $usuario['telefono'] === NULL 
+                        || $usuario['cp'] === NULL ) {
+
+                        $existe_contacto = false;
+                        $id = $usuario['id'];
+                    }
+                }
+                if($existe_contacto) {
+                    // TODO Ok en el registro y existen datos de contacto
+                    header('Location: ./expedientes.php');
+                } else {
+                    // TODO Ok en el registro pero no hay datos del contacto
+                    header('Location: ./form_contacto_datos.php?id=' . $id);
+                }
             }
         }
     }
@@ -246,34 +250,6 @@
                             </option>
                             <?php endwhile; ?>
                         </select>
-                    </div>
-
-                    <div class="input__text">
-                        <label for="telefono">Teléfono:</label>
-                        <input 
-                        type="text" 
-                        name="telefono"
-                        placeholder="XX-XXXX-XXXX (10 dígitos)"
-                        value="<?php echo $telefono; ?>" 
-                        required>
-                    </div>
-
-                    <div class="input__text">
-                        <label for="direccion">Dirección:</label>
-                        <input 
-                        type="text" 
-                        name="direccion" 
-                        value="<?php echo $direccion; ?>"
-                        required>
-                    </div>
-
-                    <div class="input__text">
-                        <label for="cp">Código Postal:</label>
-                        <input 
-                        type="text" 
-                        name="cp"
-                        value="<?php echo $cp; ?>"
-                        required>
                     </div>
                 </fieldset>
             </div>

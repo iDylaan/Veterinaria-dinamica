@@ -23,9 +23,9 @@
         ex.cla_chip as ns,
         ex.mascota,
         ex.fecha_nac_mascota as fecha,
-        ex.telefono,
-        ex.direccion,
-        ex.cp,
+        us.telefono,
+        us.direccion,
+        us.cp,
         ex.colores,
         se.sexo,
         ra.nombre_raza as raza,
@@ -135,7 +135,7 @@
         
             <div class="info__container">
                 <label>Dirección</label>
-                <p><span class="content"><?php echo $row['direccion']; ?></span> CP <span class="content"><?php echo $row['cp']; ?></span></p>
+                <p><span class="content"><?php echo $row['direccion']; ?></span> ,CP <span class="content"><?php echo $row['cp']; ?></span></p>
             </div>
         </fieldset>
     </main>
