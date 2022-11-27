@@ -73,7 +73,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
             </li>
 
         </ul>
-        <a href="checkout.php" class="btn btn-primary">Carrito <span id="num_cart" class="badge bg-secondary" ><?php  echo $num_cart; ?></span> <i class="fa-solid fa-cart-shopping"></i> </a>
+        <a href="checkout.php" class="btn btn-primary">Carrito <span id="num_cart" class="badge bg-secondary" > ?></span> <i class="fa-solid fa-cart-shopping"></i> </a>
         
 
       </div>
