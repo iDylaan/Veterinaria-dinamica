@@ -14,7 +14,6 @@ const labelApellidoMa = document.querySelector("#label-apema");
 
 // Event Listeners
 eventListeners();
-validarContrasenas();
 
 function eventListeners() {
   inputEmail.addEventListener("focusin", () => {
@@ -59,12 +58,18 @@ function eventListeners() {
     });
   });
 
+  inputNombre.addEventListener("keyup", e => {
+    let target = e.target;
+    if (containsNumbers(target.value)) {
+      target.value = target.value.slice(0, -1);
+    }
+  });
   inputNombre.addEventListener("focusin", () => {
     labelNombre.style.top = "-20px";
     labelNombre.style.transition = "0.2s";
     labelNombre.style.color = "hsl(192, 30%, 50%)";
 
-    inputNombre.addEventListener("focusout", (e) => {
+    inputNombre.addEventListener("focusout", e => {
       if (e.target.value === "") {
         labelNombre.style.color = "#adadad";
         labelNombre.style.top = "10px";
@@ -73,6 +78,12 @@ function eventListeners() {
     });
   });
 
+  inputApellidoPa.addEventListener("keyup", e => {
+    let target = e.target;
+    if (containsNumbers(target.value)) {
+      target.value = target.value.slice(0, -1);
+    }
+  });
   inputApellidoPa.addEventListener("focusin", () => {
     labelApellidoPa.style.top = "-20px";
     labelApellidoPa.style.transition = "0.2s";
@@ -87,6 +98,12 @@ function eventListeners() {
     });
   });
 
+  inputApellidoMa.addEventListener("keyup", e => {
+    let target = e.target;
+    if (containsNumbers(target.value)) {
+      target.value = target.value.slice(0, -1);
+    }
+  });
   inputApellidoMa.addEventListener("focusin", () => {
     labelApellidoMa.style.top = "-20px";
     labelApellidoMa.style.transition = "0.2s";
@@ -100,4 +117,8 @@ function eventListeners() {
       }
     });
   });
+}
+
+function containsNumbers(str) {
+  return /[0-9]/.test(str);
 }

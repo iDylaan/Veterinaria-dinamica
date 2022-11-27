@@ -22,6 +22,10 @@
         $correo = mysqli_real_escape_string( $db, filter_var( $_POST['correo'], FILTER_VALIDATE_EMAIL ) );
         $contrasena = mysqli_real_escape_string( $db, $_POST['contrasena'] );
 
+        if(!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+            $error = "Correo no valido";
+        }
+
         // Validar campos vacios
         if(!$correo || !$contrasena) {
             $error = 'Todos los campos son obligatorios';
@@ -107,6 +111,13 @@
                     <input id="input-email" name="correo" type="email" value="<?php echo $correo ?>" required>
                     <label id="label-email" for="">Correo Electrónico</label>
                 </div>
+                <?php 
+                    if(!filter_var($correo, FILTER_VALIDATE_EMAIL) && $correo !== "") {
+                        ?>
+                        <p class="label-error">Porfavor registra un correo valido 😐</p>
+                        <?php
+                    } 
+                ?>
 
                 <div class="username">
                     <input id="input-password" name="contrasena" type="password" required>
