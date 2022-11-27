@@ -43,18 +43,18 @@
         $correo = mysqli_real_escape_string( $db, $_POST['correo'] );
         $fecha_nac = mysqli_real_escape_string( $db, $_POST['fecha_nac'] );
 
-       // * Validaciones...
-    //    if(!$nombre || !$apellido_pa || !$apellido_ma || !$correo || !$fecha_nac) {  // Validar campos vacios
-    //     $error = 'Todos los campos son obligatorios';
-    // } else if (strlen( $nombre ) < 20) { // Validar descripciones muy cortas
-    //     $error = 'La descripción debe tener mínimo 50 caracteres';
-    // } else if (strlen( $apellido_pa ) > 20) { // Validar por capacidad de la DB
-    //     $error = 'Sobrepasaste el límite de caracteres en la descripción (1500)';
-    // } else if (strlen( $apellido_ma ) < 20) { // Validar nombres muy chicos
-    //     $error = 'El nombre no puede ser menor a 8 caracteres';
-    // } else if (strlen( $correo ) > 30) { // Validar por capacidad de la DB
-    //     $error = 'Sobrepasaste el límite de caracteres del nombre (100)';
-    // } 
+    //    * Validaciones...
+       if(!$nombre || !$apellido_pa || !$apellido_ma || !$correo || !$fecha_nac) {  // Validar campos vacios
+        $error = 'Todos los campos son obligatorios';
+    } else if (strlen( $nombre ) < 20) { // Validar descripciones muy cortas
+        $error = 'El nombre debe contener solo 20 caracteres';
+    } else if (strlen( $apellido_pa ) < 20) { // Validar por capacidad de la DB
+        $error = 'El apellido paterno debe contener solo 20 caracteres';
+    } else if (strlen( $apellido_ma ) < 20) { // Validar nombres muy chicos
+        $error = 'El apellido materno solo debe contener 20 caracteres';
+    } else if (strlen( $correo ) > 30) { // Validar por capacidad de la DB
+        $error = 'tu correo sobrepaso el limite de caracteres)';
+    } 
 
         // TODO el formulario está Ok, vamos a guardarlo en el servidor
         if( !$error ) {
@@ -87,7 +87,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Actualizar Empleado</title>
+    <title>Actualizar Empleado </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
     <link rel="stylesheet" href="../src/styles/form_empleados.css">
@@ -129,16 +129,8 @@
                     <input id="input-email" class="<?php echo $correo_existente ? "input-error" : "" ; ?>" name="correo" type="email" value="<?php echo $correo; ?>" required>
                     
                 </div><br>
-
-                <div>
-               
-
-               
                 
-
-              <br><br>
-                
-              <input type="submit" id="btn-crear-usuarios" value="Editar ">
+              <input type="submit" id="btn-crear-producto" value="Editar">
             </fieldset>
         </form>
     </div> <!-- Contenedor Formulario -->

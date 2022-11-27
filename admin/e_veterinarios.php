@@ -62,13 +62,14 @@
         <div class="title-container">
             <h1>Empleados</h1>
         </div>
+
         <div class="lista-productos__container">
 
             <?php while($usuarios = mysqli_fetch_assoc( $resultado_usuarios )): ?>
             <div class="producto__container">
                 <div class="producto__first-content">
                     
-                   
+                    <div class="producto__detalles">
                         <div class="description__title">
                             <h1> <?php echo $usuarios['nombre']; ?> </h1>
                         </div>
@@ -98,11 +99,10 @@
                 </div>
 
                 
-            </div> <!-- Producto -->
+            </div> 
             <?php endwhile; ?>
             
-        </div> <!-- Lista de productos -->
-
+        </div> 
     </div>
 
     <?php 

@@ -143,7 +143,7 @@
 
               <br><br>
                 
-                <input type="submit" id="btn-crear-producto" value="Crear producto">
+                <input type="submit" id="btn-crear-producto" value="Añadir Empleado">
             </fieldset>
         </form>
     </div> <!-- Contenedor Formulario -->
