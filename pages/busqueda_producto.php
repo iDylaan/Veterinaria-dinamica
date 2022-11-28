@@ -15,23 +15,32 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
             pro.imagen,
             cate.id_cate,
             pro.activo,
-            pro.descuento,
+            pro.descuento
             FROM 
             productos pro, 
-            caregorias cate, 
+            categorias cate
             WHERE pro.id = cate.id_cate
             LIKE '%${busqueda1}%'
             OR nombre_prod LIKE '%${busqueda1}%'
-            OR nom_cate LIKE '%${busqueda1}%')";
+            OR nom_cate LIKE '%${busqueda1}%'";
         
         $res_busqueda1 = mysqli_query( $db, $query_busqeuda1 );
     
         while($productos = mysqli_fetch_assoc($res_busqueda1)):
             ?>
             <tr>
-                <td><?php echo $productos['nom_prod']; ?></td>
+           
+                <td><?php   echo $productos['id']; ?></td>
+                <td><?php   echo $productos['nombre_prod']; ?></td>
                 <td><?php echo $productos['precio']; ?></td>
+                <td><?php   echo  $productos['imagen']; ?></td>
+                <td><?php   echo $productos['id_cate']; ?></td>
+                <td><?php   echo $productos['activo']; ?></td>
+                <td><?php   echo $productos['descuento']; ?></td>
             </tr>
+            <td>
+                <img src="<?php   echo $productos['id']$imagen="../src/imgs/productos/". $id . "/pd-1.webp";; ?>" alt="">
+            </td>
             <?php 
         endwhile; 
         if( mysqli_num_rows($res_busqueda1) === 0) {
