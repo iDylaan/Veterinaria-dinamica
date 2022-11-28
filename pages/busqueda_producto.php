@@ -7,7 +7,7 @@ $db = conectarDB();
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
     if(isset($_GET['busqueda1'])) {
-        $busqueda = $_GET['busqueda1'];
+        $busqueda1 = $_GET['busqueda1'];
         $query_busqeuda1 = "SELECT
             pro.id,
             pro.nombre_prod,
@@ -31,10 +31,6 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
             <tr>
                 <td><?php echo $productos['nom_prod']; ?></td>
                 <td><?php echo $productos['precio']; ?></td>
-                <td><?php echo $productos['imagen']; ?></td>
-                <td><?php echo $productos['activo']; ?></td>
-                <td><?php echo $expediente['descuento']; ?></td>
-                <td><?php echo $productos['nom_cate']; ?></td>
             </tr>
             <?php 
         endwhile; 
