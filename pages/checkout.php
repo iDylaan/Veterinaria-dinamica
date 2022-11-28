@@ -16,7 +16,7 @@ $db = new Database();
 $con = $db->conectar();
 
 $productos = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
-print_r($_SESSION);
+
 
 $lista_carrito= array();
     
@@ -114,12 +114,12 @@ if($productos!= null){
                 } else {
                     $total=0;
                     foreach($lista_carrito as $producto){
-                        $id= $producto[0]['id'];
+                        $_id= $producto[0]['id'];
                         $nombre_prod= $producto[0]['nombre_prod'];
                         $precio= $producto[0]['precio'];
                         $descuento= $producto[0]['descuento'];
                         $cantidad= $producto[0]['cantidad'];
-                        $precio_desc= $precio (($precio  * $descuento) / 100);
+                        $precio_desc= $precio -$precio/ 100;
                         $subtotal=$cantidad * $precio_desc;
                         $total+= $subtotal;
 
@@ -137,7 +137,7 @@ if($productos!= null){
                          <div id="subtotal_<?php echo $_id;  ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal,2,'.','.') ?></div> 
                   </td>
                     <td> <a href="" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-tootle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
-                    <td> <?php echo $nombre_prod ?></td>
+                    <td></td>
                 </tr>
                 <?php }?>
                 <tr>

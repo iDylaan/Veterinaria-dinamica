@@ -73,7 +73,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
             </li>
 
         </ul>
-        <a href="checkout.php" class="btn btn-primary">Carrito <span id="num_cart" class="badge bg-secondary" > ?></span> <i class="fa-solid fa-cart-shopping"></i> </a>
+        <a href="checkout.php" class="btn btn-primary">Carrito <span id="num_cart" class="badge bg-secondary" > <?php  echo $num_cart; ?> </span> <i class="fa-solid fa-cart-shopping"></i> </a>
         
 
       </div>
@@ -103,7 +103,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
           <div class="card shadow-sm">
             <?php
             $id= $row['id'];
-            $imagen="../src/imgs/productos/". $id . "productos/pd-1.webp";
+            $imagen=".../src/imgs/productos/". $id . "productos/pd-1.webp";
             if(!file_exists($imagen)){
                 $imagen="../src/imgs/no-photo.jpg";
             }
