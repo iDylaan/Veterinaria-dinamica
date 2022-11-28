@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --atencion-medica-bg-categoria: hsl(0, 96%, 82%);
+  --atencion-medica-letras-categoria: hsl(0, 21%, 32%);
+  /* --productos-bg-categoria: hsl(120, 100%, 84%); */
+  --productos-bg-categoria: var(--green-200);
+  /* --productos-letras-categoria: hsl(120, 25%, 27%); */
+  --productos-letras-categoria: var(--pastel-green-800);
+  /* --estetica-bg-categoria: hsl(192, 100%, 86%); */
+  --estetica-bg-categoria: var(--blue-200);
+  /* --estetica-letras-categoria: hsl(193, 37%, 27%); */
+  --estetica-letras-categoria: var(--pastel-blue-800);
+  --bg-oscuro: hsl(192, 100%, 10%); /* --blue-900 */
+
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  --grey-100: hsl(0, 0%, 90%);
+  --grey-150: hsl(0, 0%, 85%);
+  --grey-200: hsl(0, 0%, 80%);
+  --grey-250: hsl(0, 0%, 75%);
+  --grey-300: hsl(0, 0%, 70%);
+  --grey-350: hsl(0, 0%, 65%);
+  --grey-400: hsl(0, 0%, 60%);
+  --grey-450: hsl(0, 0%, 55%);
+  --grey-500: hsl(0, 0%, 50%);
+  --grey-550: hsl(0, 0%, 45%);
+  --grey-600: hsl(0, 0%, 40%);
+  --grey-650: hsl(0, 0%, 35%);
+  --grey-700: hsl(0, 0%, 30%);
+  --grey-750: hsl(0, 0%, 25%);
+  --grey-800: hsl(0, 0%, 20%);
+  --grey-850: hsl(0, 0%, 15%);
+  --grey-900: hsl(0, 0%, 10%);
+  --green-100: hsl(120, 100%, 90%);
+  --green-150: hsl(120, 100%, 85%);
+  --green-200: hsl(120, 100%, 80%);
+  --green-250: hsl(120, 100%, 75%);
+  --green-300: hsl(120, 100%, 70%);
+  --green-350: hsl(120, 100%, 65%);
+  --green-400: hsl(120, 100%, 60%);
+  --green-450: hsl(120, 100%, 55%);
+  --green-500: hsl(120, 100%, 50%);
+  --green-550: hsl(120, 100%, 45%);
+  --green-600: hsl(120, 100%, 40%);
+  --green-650: hsl(120, 100%, 35%);
+  --green-700: hsl(120, 100%, 30%);
+  --green-750: hsl(120, 100%, 25%);
+  --green-800: hsl(120, 100%, 20%);
+  --green-850: hsl(120, 100%, 15%);
+  --green-900: hsl(120, 100%, 10%);
+  --pastel-green-100: hsl(120, 30%, 90%);
+  --pastel-green-150: hsl(120, 30%, 85%);
+  --pastel-green-200: hsl(120, 30%, 80%);
+  --pastel-green-250: hsl(120, 30%, 75%);
+  --pastel-green-300: hsl(120, 30%, 70%);
+  --pastel-green-350: hsl(120, 30%, 65%);
+  --pastel-green-400: hsl(120, 30%, 60%);
+  --pastel-green-450: hsl(120, 30%, 55%);
+  --pastel-green-500: hsl(120, 30%, 50%);
+  --pastel-green-550: hsl(120, 30%, 45%);
+  --pastel-green-600: hsl(120, 30%, 40%);
+  --pastel-green-650: hsl(120, 30%, 35%);
+  --pastel-green-700: hsl(120, 30%, 30%);
+  --pastel-green-750: hsl(120, 30%, 25%);
+  --pastel-green-800: hsl(120, 30%, 20%);
+  --pastel-green-850: hsl(120, 30%, 15%);
+  --pastel-green-900: hsl(120, 30%, 10%);
+  --blue-100: hsl(192, 100%, 90%);
+  --blue-150: hsl(192, 100%, 85%);
+  --blue-200: hsl(192, 100%, 80%);
+  --blue-250: hsl(192, 100%, 75%);
+  --blue-300: hsl(192, 100%, 70%);
+  --blue-350: hsl(192, 100%, 65%);
+  --blue-400: hsl(192, 100%, 60%);
+  --blue-450: hsl(192, 100%, 55%);
+  --blue-500: hsl(192, 100%, 50%);
+  --blue-550: hsl(192, 100%, 45%);
+  --blue-600: hsl(192, 100%, 40%);
+  --blue-650: hsl(192, 100%, 35%);
+  --blue-700: hsl(192, 100%, 30%);
+  --blue-750: hsl(192, 100%, 25%);
+  --blue-800: hsl(192, 100%, 20%);
+  --blue-850: hsl(192, 100%, 15%);
+  --blue-900: hsl(192, 100%, 10%);
+  --pastel-blue-100: hsl(192, 30%, 90%);
+  --pastel-blue-150: hsl(192, 30%, 85%);
+  --pastel-blue-200: hsl(192, 30%, 80%);
+  --pastel-blue-250: hsl(192, 30%, 75%);
+  --pastel-blue-300: hsl(192, 30%, 70%);
+  --pastel-blue-350: hsl(192, 30%, 65%);
+  --pastel-blue-400: hsl(192, 30%, 60%);
+  --pastel-blue-450: hsl(192, 30%, 55%);
+  --pastel-blue-500: hsl(192, 30%, 50%);
+  --pastel-blue-550: hsl(192, 30%, 45%);
+  --pastel-blue-600: hsl(192, 30%, 40%);
+  --pastel-blue-650: hsl(192, 30%, 35%);
+  --pastel-blue-700: hsl(192, 30%, 30%);
+  --pastel-blue-750: hsl(192, 30%, 25%);
+  --pastel-blue-800: hsl(192, 30%, 20%);
+  --pastel-blue-850: hsl(192, 30%, 15%);
+  --pastel-blue-900: hsl(192, 30%, 10%);
+  --red-100: hsl(0, 100%, 90%);
+  --red-150: hsl(0, 100%, 85%);
+  --red-200: hsl(0, 100%, 80%);
+  --red-250: hsl(0, 100%, 75%);
+  --red-300: hsl(0, 100%, 70%);
+  --red-350: hsl(0, 100%, 65%);
+  --red-400: hsl(0, 100%, 60%);
+  --red-450: hsl(0, 100%, 55%);
+  --red-500: hsl(0, 100%, 50%);
+  --red-550: hsl(0, 100%, 45%);
+  --red-600: hsl(0, 100%, 40%);
+  --red-650: hsl(0, 100%, 35%);
+  --red-700: hsl(0, 100%, 30%);
+  --red-750: hsl(0, 100%, 25%);
+  --red-800: hsl(0, 100%, 20%);
+  --red-850: hsl(0, 100%, 15%);
+  --red-900: hsl(0, 100%, 10%);
+  --pastel-red-100: hsl(0, 30%, 90%);
+  --pastel-red-150: hsl(0, 30%, 85%);
+  --pastel-red-200: hsl(0, 30%, 80%);
+  --pastel-red-250: hsl(0, 30%, 75%);
+  --pastel-red-300: hsl(0, 30%, 70%);
+  --pastel-red-350: hsl(0, 30%, 65%);
+  --pastel-red-400: hsl(0, 30%, 60%);
+  --pastel-red-450: hsl(0, 30%, 55%);
+  --pastel-red-500: hsl(0, 30%, 50%);
+  --pastel-red-550: hsl(0, 30%, 45%);
+  --pastel-red-600: hsl(0, 30%, 40%);
+  --pastel-red-650: hsl(0, 30%, 35%);
+  --pastel-red-700: hsl(0, 30%, 30%);
+  --pastel-red-750: hsl(0, 30%, 25%);
+  --pastel-red-800: hsl(0, 30%, 20%);
+  --pastel-red-850: hsl(0, 30%, 15%);
+  --pastel-red-900: hsl(0, 30%, 10%);
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-image: url("../imgs/petsbg.png");
+  background-repeat: repeat;
+  overflow-x: hidden;
+}
+
+/* DETALLES EXPEDIENTE */

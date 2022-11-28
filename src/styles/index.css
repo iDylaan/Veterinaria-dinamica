@@ -91,7 +91,7 @@
     --pastel-blue-650: hsl(192, 30%, 35%);
     --pastel-blue-700: hsl(192, 30%, 30%);
     --pastel-blue-750: hsl(192, 30%, 25%);
-    --pastel-blue-800: hsl(192, 30%, 20%);
+    --pastel-blue-800: hsl(192, 29%, 20%);
     --pastel-blue-850: hsl(192, 30%, 15%);
     --pastel-blue-900: hsl(192, 30%, 10%);  
     --red-100: hsl(0, 100%, 90%);
@@ -278,7 +278,7 @@ header {
 .header__nav-link {
     cursor: pointer;
     color: white;
-    font-size: 1.1em;
+    font-size: 1rem;
     font-weight: 400;
     margin: 5px 20px;
     display: inline-block;
@@ -290,6 +290,11 @@ header {
 .header__nav-link:hover {
     color: white;
     opacity: 100%;
+}
+
+.cate__nav-link {
+    text-decoration: none;
+    color: white;
 }
 
 .categorias__container {
@@ -413,20 +418,22 @@ header {
     .categorias__estetica i,
     .categorias__productos i,
     .categorias__atencion-medica i{
-        margin-right: 50px;
-        margin-left: 30px;
+        margin-right: 10px;
+        margin-left: 0px;
     }
 
     .categorias__container {
-        margin: 80px 0 0 0;
-        width: 100%;
+        margin-left: 80px 0 0 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         color: white;
         justify-content: center;
         gap: 20px;
+    }
 
+    .categorias__container a {
+        width: 100%;
     }
 
     #carouselExampleControls {
@@ -527,14 +534,13 @@ header {
 @media (max-width: 1080px) {   
 
     .categorias__container {
-        margin: 100px 0 0 0;
-        width: 100%;
+        width: 70%;
         display: flex;
         flex-direction: column;
         align-items: center;
         color: white;
         justify-content: center;
-
+        margin-left: 80px;
     }
 }
 
@@ -557,7 +563,6 @@ header {
     }
 
     .categorias__container {
-        width: 100%;
         padding: 10px 10px;
         display: flex;
         flex-direction: column;
@@ -602,7 +607,7 @@ header {
 
 @media (max-width: 550px) {
     .categorias__container {
-        width: 42%;
+        width: 320px;
         margin: 100px auto 0 auto;
     }
 
@@ -619,11 +624,12 @@ header {
         margin: auto;
     }
 
-    .categorias__estetica p,
-    .categorias__productos p,
-    .categorias__atencion-medica p {
-        visibility: hidden;
-        position: absolute;
+}
+
+@media (max-width: 400px) {
+    .categorias__container {
+        width: 350px;
+        margin: 100px auto 0 auto;
     }
 }
 
