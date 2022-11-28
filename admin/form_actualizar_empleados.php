@@ -10,6 +10,7 @@
 
     // Sanitizacion de los parametros recibidos por URL
     $id = $_GET['id'];
+    $id = intval ($id);
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
     if (!$id) {
@@ -21,7 +22,7 @@
     require '../includes/config/database.php';
     $db = conectarDB();
 
-    // Obtener los datos del producto
+    // Obtener los datos del usuario
     $query = "SELECT * FROM usuarios WHERE id = ${id}";
     $resultado = mysqli_query($db, $query);
     $usuarios = mysqli_fetch_assoc($resultado);
@@ -46,13 +47,13 @@
     //    * Validaciones...
        if(!$nombre || !$apellido_pa || !$apellido_ma || !$correo || !$fecha_nac) {  // Validar campos vacios
         $error = 'Todos los campos son obligatorios';
-    } else if (strlen( $nombre ) < 20) { // Validar descripciones muy cortas
+    } else if (strlen( $nombre ) > 20) { // Validar descripciones muy cortas
         $error = 'El nombre debe contener solo 20 caracteres';
-    } else if (strlen( $apellido_pa ) < 20) { // Validar por capacidad de la DB
+    } else if (strlen( $apellido_pa ) > 20) { // Validar por capacidad de la DB
         $error = 'El apellido paterno debe contener solo 20 caracteres';
-    } else if (strlen( $apellido_ma ) < 20) { // Validar nombres muy chicos
+    } else if (strlen( $apellido_ma ) > 20) { // Validar nombres muy chicos
         $error = 'El apellido materno solo debe contener 20 caracteres';
-    } else if (strlen( $correo ) > 30) { // Validar por capacidad de la DB
+    } else if (strlen( $correo ) > 65) { // Validar por capacidad de la DB
         $error = 'tu correo sobrepaso el limite de caracteres)';
     } 
 
@@ -65,15 +66,15 @@
             apellido_pa = '${apellido_pa}',
             apellido_ma = '${apellido_ma}',
             correo = '${correo}',
-            fecha_nac = '${fecha_nac}',
-            WHERE id = ${id};";
-
+            fecha_nac = '${fecha_nac}'
+            WHERE id = ${id}";
+            
 
             $resultado = mysqli_query( $db, $query );
 
             if ( $resultado ) {
                 // TODO Ok en el registro
-                header('Location: ./e_veterinarios.php?resultado=2');
+                header('Location: ./e_veterinarios.php');
             }
         }
     }
@@ -96,10 +97,26 @@
 <h1 style="text-align: center;margin-top:20px;">Actualizar</h1>
 
 <div class="formulario__container">
-    <form class="formulario__usuarios" method="POST" enctype="multipart/form-data">
+    <form class="formulario__usuarios" method="POST" >
         <fieldset>
             <legend>Actualizar Cuenta</legend>
             
+            <?php
+                    if ( $error !== '' ) {
+                        ?>
+                        <hr>
+                            <p class="error">
+                                <?php
+                                    echo $error;
+                                ?>
+                            </p>
+                        <hr>
+                    <?php
+                    }
+                ?>
+
+
+
             <form action="" method="POST">
                 <div class="username">
                     <label id="label-nombre" for="">Nombre</label>

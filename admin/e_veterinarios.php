@@ -15,7 +15,7 @@
     $db = conectarDB();
 
     // Query
-    $query = "SELECT * FROM usuarios;";
+    $query = "SELECT * FROM usuarios WHERE id_rol = 2;";
 
     // Consultar a la DB
     $resultado_usuarios = mysqli_query($db , $query);
