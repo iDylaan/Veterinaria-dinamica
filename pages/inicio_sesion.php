@@ -1,7 +1,7 @@
 <?php 
     // * Importar la conexion
     // BASE DE DATOS
-    require'../includes/config/database.php';
+    require '../includes/config/database.php';
     $db = conectarDB();
 
     // * Escribir el Query
@@ -21,6 +21,10 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $correo = mysqli_real_escape_string( $db, filter_var( $_POST['correo'], FILTER_VALIDATE_EMAIL ) );
         $contrasena = mysqli_real_escape_string( $db, $_POST['contrasena'] );
+
+        if(!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+            $error = "Correo no valido";
+        }
 
         // Validar campos vacios
         if(!$correo || !$contrasena) {
@@ -55,8 +59,8 @@
 
                     // Filtrar a los usuarios por su rol
                     switch($_SESSION['id_rol']) {
-                        case "1": header('Location: ./index_sesion.php'); break;
-                        case "2": header('Location: ./index_sesion.php'); break;
+                        case "1": header('Location: ./index.php'); break;
+                        case "2": header('Location: ./index.php'); break;
                         case "3": header('Location: ../admin/index_admin.php'); break;
                         default: break;
                     }
@@ -86,7 +90,7 @@
     <div class="container">
         <div class="formulario">
             <h1>Inicio de Sesión</h1>
-            <form action="" method="POST" novalidate>
+            <form method="POST">
                 
                 <?php
                     if ( $error !== '' ) {
@@ -107,6 +111,13 @@
                     <input id="input-email" name="correo" type="email" value="<?php echo $correo ?>" required>
                     <label id="label-email" for="">Correo Electrónico</label>
                 </div>
+                <?php 
+                    if(!filter_var($correo, FILTER_VALIDATE_EMAIL) && $correo !== "") {
+                        ?>
+                        <p class="label-error">Porfavor registra un correo valido 😐</p>
+                        <?php
+                    } 
+                ?>
 
                 <div class="username">
                     <input id="input-password" name="contrasena" type="password" required>

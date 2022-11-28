@@ -6,7 +6,7 @@
 
     // Validar que la sesion sea del administrador
     if( $_SESSION['id_rol'] !== "3" ) {
-        header('Location: /veterinaria-cp/Veterinaria-dinamica/pages/index_sesion.php');
+        header('Location: /Veterinaria-dinamica/pages/index.php');
     }
 
 

@@ -1,7 +1,8 @@
 <?php
+    require '../includes/funciones.php';
     // * Importar la conexion
+    require '../includes/config/database.php';
     // BASE DE DATOS
-    require'../includes/config/database.php';
     $db = conectarDB();
 
     // * Escribir el Query
@@ -9,6 +10,22 @@
 
     // * Consultar la Base de Datos
     $resultado_correos = mysqli_query($db, $query);
+
+
+    /*
+    d - dia del mes (1-31)
+    m - mes del año (1-12)
+    Y - año (4 digitos)
+    l - dia de la semana
+    
+    h - hora del formato (1-12)
+    i - minutos (0-59)
+    s - segundos (0-59)
+    a - am-pm 
+    */
+    $today = date('Y-m-d');
+    $fecha_max = date('Y-m-d', strtotime($today . ' -18 year')); 
+    $mayor_de_edad = true;
 
 
     // Ejecucion del codigo despues de que el usuario envia el formulario
@@ -35,6 +52,15 @@
         $contrasena = mysqli_real_escape_string( $db, $_POST['contrasena'] );
         $contrasena_clon = mysqli_real_escape_string( $db, $_POST['contrasena_clon'] );
 
+        // Validar que sea mayor de edad
+        $date_diff = calcularDiferenciaFechaHastaHoy($fecha_nac, $today);
+        // [0] = años
+        // [1] = meses
+        // [2] = dias
+        if($date_diff[0] < 18) {
+            $mayor_de_edad = false;
+        }
+
         // Consulta de correos para comprobar que no se repita
         while( $correos = mysqli_fetch_assoc($resultado_correos) ):
             // Chequeo del correo en cada correo registrado en el sistema
@@ -47,8 +73,9 @@
         if ($contrasena !== $contrasena_clon) {
             $contrasenas_iguales = false;
         }
+
         
-        if( !$correo_existente && $contrasenas_iguales ) {
+        if( filter_var($correo, FILTER_VALIDATE_EMAIL) && !$correo_existente && $contrasenas_iguales && $mayor_de_edad ) {
             // Hasheo de la contraseña
             $passwordHash = password_hash($contrasena, PASSWORD_BCRYPT);
             
@@ -83,7 +110,7 @@
     <div class="container">
         <div class="formulario">
             <h1>Registro</h1>
-            <form action="" method="POST">
+            <form method="POST" autocomplete="off">
                 <div class="username">
                     <input id="input-nombre" name="nombre" type="text" value="<?php echo $nombre; ?>" required>
                     <label id="label-nombre" for="">Nombre</label>
@@ -99,9 +126,19 @@
                     <label id="label-apema" for="">Apellido Materno</label>
                 </div>
 
+                <div>
+                    <?php
+                    if(!$mayor_de_edad) {
+                        ?>
+                        <p class="label-error">Necesitas ser mayor de edad... 🥺</p>
+                        <?php
+                    }
+                    ?>
+                </div>
+
                 <div class="username-date">
                     <label for="">Fecha de Nacimiento</label> <br>
-                    <input type="date" name="fecha_nac" value="<?php echo $fecha_nac; ?>" required>
+                    <input type="date" name="fecha_nac" max="<?php echo $fecha_max ?>" value="<?php echo $fecha_nac; ?>" required>
                 </div>
 
                 <div class="username">
@@ -111,9 +148,18 @@
 
                 <div>
                 <?php 
+                    if(!filter_var($correo, FILTER_VALIDATE_EMAIL) && $correo !== "") {
+                        ?>
+                        <p class="label-error">Porfavor registra un correo valido 😐</p>
+                        <?php
+                    } 
+                ?>
+                </div>
+                <div>
+                <?php 
                     if($correo_existente) {
                         ?>
-                        <p class="label-error">Ese correo no está disponible.. 🙀</p>
+                        <p class="label-error">Ese correo no está disponible... 😿</p>
                         <?php
                     } 
                 ?>
