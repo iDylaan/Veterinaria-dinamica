@@ -88,8 +88,19 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
     <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
+     
         <h1 class="fw-light">Nuestros Productos</h1>
       
+        <div class="buscador__container">
+
+<form class="d-flex" method="GET">
+    <input name="busqueda1" class="form-control me-2" type="text" placeholder="Buscar producto" aria-label="Search">
+
+    <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+<!-- <input type="text" placeholder="Buscar producto"> -->
+</div>
+
         <p>
           
         </p>
