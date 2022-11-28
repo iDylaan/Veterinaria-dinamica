@@ -1,11 +1,7 @@
 <?php
     // Autentificar al usuario
    
-    session_start();
-    $auth = $_SESSION['login'] ?? false;
-    if(!$auth) {
-        header('Location: ../index.php');
-    }
+   session_start();
 
 
 require '../includes/config/config.php';
@@ -14,6 +10,7 @@ $db = new Database();
 $con = $db->conectar();
 $sql= $con->prepare("SELECT id, nombre_prod, descripcion, precio FROM productos where  activo=1");
 
+print_r($_SESSION);
 $sql->execute();
 $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -60,7 +57,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
             </li>
             <li class="nav-item">
                 
-                <a href="/" class="nav-link active"><?php echo $_SESSION['nombre'];?> <i  class="fa-solid fa-user"></i></a>
+                <a href="/" class="nav-link active"> <i  class="fa-solid fa-user"></i></a>
             </li>
             <li class="nav-item">
                 <a href="/" class="nav-link active">Cerrar sesion <i  class="fa-solid fa-right-from-bracket"></i></a>
@@ -103,7 +100,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
           <div class="card shadow-sm">
             <?php
             $id= $row['id'];
-            $imagen=".../src/imgs/productos/". $id . "productos/pd-1.webp";
+            $imagen="../src/imgs/productos/". $id . "/pd-1.webp";
             if(!file_exists($imagen)){
                 $imagen="../src/imgs/no-photo.jpg";
             }
@@ -117,7 +114,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
                 <div class="btn-group">
                 <a href="detalles.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>" class="btn btn-primary"> Detalles </a>
                 </div>
-                <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $row['id']; ?>,'<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
+                <button class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>,'<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
               </div>
             </div>
           </div>

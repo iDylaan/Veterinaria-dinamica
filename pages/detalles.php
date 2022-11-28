@@ -1,11 +1,7 @@
 <?php
     // Autentificar al usuario
     session_start();
-    $auth = $_SESSION['login'] ?? false;
-    if(!$auth) {
-        header('Location: ../index.php');
-        
-    }
+    
 
 
 
