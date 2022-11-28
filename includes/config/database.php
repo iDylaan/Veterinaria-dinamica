@@ -1,5 +1,5 @@
 <?php
-
+require_once dirname(__FILE__, 4) . "/.private/base.php";
 
 function conectarDB() : mysqli {
     // ! Producción ONLY
