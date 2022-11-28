@@ -58,6 +58,7 @@
             <section class="categorias-desktop">
                 <div class="categorias__container">
 
+
                     <a class="cate__nav-link" href="">
                         <div class="categorias__productos">
                             <i class="fa-solid fa-store"></i>
@@ -71,6 +72,18 @@
                             <p>Servicios</p>
                         </div>
                     </a>
+
+                    <div class="categorias__productos"><i class="fa-solid fa-store"></i>
+
+                      <a href="./pages/productos.php">Productos</a>
+
+                        <p>Productos</p>
+ 
+                    </div>
+                    <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
+                        <p>Servicios</p>
+                    </div>
+
                 </div>
             </section>
 
@@ -226,7 +239,7 @@
         </section>
 
         <div class="productos-favoritos__boton-ver-todo">
-            <button id="btn-ver-todo">Ver todo</button>
+            <button link="" id="btn-ver-todo">  Ver todo</button>
         </div>
     </div>
 
