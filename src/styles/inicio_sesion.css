@@ -12,6 +12,9 @@ body {
     height: 100vh;
     /* background: rgb(255,134,134); */
     background: linear-gradient(156deg, rgba(255, 134, 134, 1) 0%, rgba(45, 205, 255, 1) 100%);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
     position: relative;
     font-family: 'Rubik', sans-serif;
 }

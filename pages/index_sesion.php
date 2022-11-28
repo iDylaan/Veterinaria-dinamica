@@ -68,14 +68,11 @@
             <section class="categorias-desktop">
                 <div class="categorias__container">
 
-                    <div class="categorias__productos"><i class="fa-solid fa-carrot"></i>
+                    <div class="categorias__productos"><i class="fa-solid fa-store"></i>
                         <p>Productos</p>
                     </div>
-                    <div class="categorias__estetica"><i class="fa-solid fa-dog"></i>
-                        <p>Estética</p>
-                    </div>
-                    <div class="categorias__atencion-medica"><i class="fa-solid fa-paw"></i>
-                        <p>Atención Médica</p>
+                    <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
+                        <p>Servicios</p>
                     </div>
 
                 </div>
@@ -95,7 +92,7 @@
                         <div class="nav-mobile__main-options">
                             <a href="" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['nombre']; ?> </a>
                             <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
-                            <a href="" class="header__nav-link" id="nav-carrito-mobile"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+                            <a href="./carrito.php" class="header__nav-link" id="nav-carrito-mobile"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
                         </div>
 
                         <div class="nav-mobile__secondary-options">
