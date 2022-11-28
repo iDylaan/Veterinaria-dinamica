@@ -1,7 +1,7 @@
 <?php 
     // * Importar la conexion
     // BASE DE DATOS
-    require'../includes/config/database.php';
+    require '../includes/config/database.php';
     $db = conectarDB();
 
     // * Escribir el Query
@@ -22,15 +22,16 @@
         $correo = mysqli_real_escape_string( $db, filter_var( $_POST['correo'], FILTER_VALIDATE_EMAIL ) );
         $contrasena = mysqli_real_escape_string( $db, $_POST['contrasena'] );
 
-        if(!$correo && !$contrasena) {
-            $error = 'Todos los campos son obligatorios';
-        } else if(!$correo) {
-            $error = 'El correo es obligatorio o no es válido';
-        } else if(!$contrasena) {
-            $error = 'La contraseña es obligatoria';
+        if(!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+            $error = "Correo no valido";
         }
 
-        // Validacion para comprobar que el usuario exista
+        // Validar campos vacios
+        if(!$correo || !$contrasena) {
+            $error = 'Todos los campos son obligatorios';
+        }
+
+        // TODO Ok, ahora a comprobar que el usuario exista
         if( $error === '' ) {
             // Revisar si el usuario existe.
             $query = "SELECT * FROM usuarios WHERE correo = '${correo}'";
@@ -58,10 +59,9 @@
 
                     // Filtrar a los usuarios por su rol
                     switch($_SESSION['id_rol']) {
-                        case "1": header('Location: ./index_sesion.php'); break;
-                        case "2": header('Location: ./index_sesion.php'); break;
-                        case "3":
-                            break;
+                        case "1": header('Location: ./index.php'); break;
+                        case "2": header('Location: ./index.php'); break;
+                        case "3": header('Location: ../admin/index_admin.php'); break;
                         default: break;
                     }
                 } else {
@@ -90,7 +90,7 @@
     <div class="container">
         <div class="formulario">
             <h1>Inicio de Sesión</h1>
-            <form action="" method="POST" novalidate>
+            <form method="POST">
                 
                 <?php
                     if ( $error !== '' ) {
@@ -108,9 +108,16 @@
                 
 
                 <div class="username">
-                    <input id="input-email" name="correo" type="email" required>
+                    <input id="input-email" name="correo" type="email" value="<?php echo $correo ?>" required>
                     <label id="label-email" for="">Correo Electrónico</label>
                 </div>
+                <?php 
+                    if(!filter_var($correo, FILTER_VALIDATE_EMAIL) && $correo !== "") {
+                        ?>
+                        <p class="label-error">Porfavor registra un correo valido 😐</p>
+                        <?php
+                    } 
+                ?>
 
                 <div class="username">
                     <input id="input-password" name="contrasena" type="password" required>

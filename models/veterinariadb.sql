@@ -116,12 +116,13 @@ INSERT INTO razas (nombre_raza, id_especie) VALUES
 ("Chinchilla", 5),
 ("Erizo", 5),
 ("Liebre", 5),
+("Conejo", 5),
 ("Cuyo", 5);
 
 CREATE TABLE productos (
     id INT(11) NOT NULL AUTO_INCREMENT ,
     nombre_prod VARCHAR(60) NOT NULL ,
-    descripcion VARCHAR(150) NOT NULL ,
+    descripcion TEXT NOT NULL ,
     precio DECIMAL(10,2) NOT NULL ,
     imagen VARCHAR(200) NOT NULL ,
     id_cate TINYINT NOT NULL,
@@ -138,11 +139,14 @@ CREATE TABLE usuarios (
     correo VARCHAR(65) NOT NULL ,
     contrasena CHAR(60) NOT NULL ,
     fecha_nac DATE NOT NULL , 
+    telefono VARCHAR(10) ,
+    direccion VARCHAR(255) ,
+    cp VARCHAR(5) ,
     id_rol TINYINT NOT NULL ,
     CONSTRAINT idusr_usrs_pk PRIMARY KEY (id),
     CONSTRAINT id_rol_fk FOREIGN KEY(id_rol)
     REFERENCES roles (id_rol)
-) ENGINE = InnoDB CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci; 
+) ENGINE = InnoDB CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE citas (
     id_cita INT(11) NOT NULL AUTO_INCREMENT ,
@@ -180,10 +184,7 @@ CREATE TABLE expedientes (
     cla_chip VARCHAR(20) NOT NULL,
     mascota VARCHAR(30) NOT NULL ,
     fecha_nac_mascota DATE NOT NULL ,
-    telefono VARCHAR(10) NOT NULL ,
-    direccion VARCHAR(30) NOT NULL ,
-    cp INT(5) NOT NULL ,
-    colores VARCHAR(25) NOT NULL ,
+    colores VARCHAR(255) NOT NULL ,
     id_sexo_mascota TINYINT NOT NULL,
     id_usr INT(11) NOT NULL ,
     id_raza TINYINT NOT NULL ,
@@ -199,5 +200,5 @@ CREATE TABLE expedientes (
 
 -- CUENTA ADMINISTRADOR Y VETERINARIO
 INSERT INTO usuarios(nombre, apellido_pa, apellido_ma, correo, contrasena, fecha_nac, id_rol) VALUES
-("Veterinario", "Hector", "Salamanca", "hectorveterinario01@veterinario.vet.mx", "Veterinario01", "1975-08-08", "2"),
-("Admin", "Todo", "Poderoso", "omnipotente9000@admin.god.mx", "todopoderoso12345", "1900-01-01", "3");
+("Veterinario", "Hector", "Salamanca", "hectorveterinario01@veterinario.vet.mx", "$2y$10$5TdcH6WWcOtb03KozfDViO7.gpEjcrv9saMM7hc2./sSLb7qoWrHa ", "1975-08-08", "2"), -- psswrd "hector_veterinario01" 
+("Admin", "Todo", "Poderoso", "omnipotente9000@admin.god.mx", "$2y$10$xIF1W0eRYTs4oRHBOo.P/.o2uqBI1BTVDU7dNwwQ7dDA7KbOJSR7q ", "1900-01-01", "3");                    -- psswrd "todopoderoso12345"

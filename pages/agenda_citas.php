@@ -19,14 +19,35 @@
     $query = "";
     if($_SESSION['id_rol'] === "1") { // En caso del cliente solo traer sus consultas
         // * Escribir el Query
-        $query = "SELECT * FROM citas LEFT JOIN servicios ON citas.id_servi = servicios.id_servi WHERE citas.id_usr = '${_SESSION['id']}' AND fecha >= '${today}' ORDER BY fecha";
+        $query = "SELECT * 
+        FROM citas 
+        LEFT JOIN servicios ON citas.id_servi = servicios.id_servi 
+        WHERE citas.id_usr = '${_SESSION['id']}' AND fecha >= '${today}' 
+        ORDER BY fecha";
     } else {
         // * Escribir el Query
-        $query = "SELECT * FROM citas LEFT JOIN servicios ON citas.id_servi = servicios.id_servi WHERE fecha >= '${today}' ORDER BY fecha";
+        $query = "SELECT 
+        ci.mascota,
+        ci.fecha,
+        ci.hora,
+        ci.descripcion,
+        ci.id_servi,
+        se.nom_servi as servicio,
+        CONCAT(us.nombre, ' ', us.apellido_pa, ' ',us.apellido_ma) as cliente,
+        ci.id_usr,
+        us.id_rol
+        FROM 
+        citas ci,
+        usuarios us,
+        servicios se
+        WHERE ci.id_servi = se.id_servi
+        AND ci.id_usr = us.id
+        AND (ci.fecha >= '${today}')
+        ORDER BY ci.fecha";
     }
 
     if($query === "") {
-        echo "Se producto un error en la consulta";
+        echo "Se produjo un error en la consulta";
         exit;
     }
 
@@ -57,7 +78,7 @@
             <div class="header__nav-container">
                 <div class="header__nav">
                     <div class="header__logo">
-                        <a href="./index_sesion.php">
+                        <a href="./index.php">
                             <img id="logo" src="../src/imgs/logo.png" alt="Logo veterinaria">
                             <h1><span>v</span>eterinaria</h1>
                         </a>
@@ -73,7 +94,7 @@
                     
                     <div class="header__nav-desktop">
                         <div class="header__navegador-central">
-                            <a href="./index_sesion.php" class="header__nav-link" id="nav-home" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a>
+                            <a href="./index.php" class="header__nav-link" id="nav-home" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a>
                             <a href="" class="header__nav-link" id="nav-pedidos" style="text-decoration: none;">Pedidos</a>
                         </div>
     
@@ -103,7 +124,7 @@
                         </div>
 
                         <div class="nav-mobile__secondary-options">
-                            <a href="./index_sesion.php" class="header__nav-link" id="nav-home-mobile" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a>
+                            <a href="./index.php" class="header__nav-link" id="nav-home-mobile" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a>
                             <a href="" class="header__nav-link" id="nav-pedidos-mobile" style="text-decoration: none;">Pedidos</a>   
                         </div>
 
@@ -134,15 +155,15 @@
                 <?php 
                 $diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
                 $meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-                while( $propiedad = mysqli_fetch_assoc($resultado_citas) ): 
-                $date = date_create($propiedad['fecha']);
+                while( $cita = mysqli_fetch_assoc($resultado_citas) ): 
+                $date = date_create($cita['fecha']);
                 ?>
                 <div class="cita__container">
                     <div class="cita__detalles">
 
                         <div class="cita__fecha">
                             <p>Cita programada para el 
-                                <span class="<?php echo $propiedad['id_servi'] === "1" ? "servicio-medico" : "servicio-estetico"; ?>">
+                                <span class="<?php echo $cita['id_servi'] === "1" ? "servicio-medico" : "servicio-estetico"; ?>">
                                     <?php echo $diasSemana[(date_format($date, "N") - 1)] . " " . date_format($date, "j") . " de " . $meses[(date_format($date, "n") - 1)] . " del " . date_format($date, "Y"); ?>
                                 </span>
                             </p>
@@ -151,35 +172,46 @@
                         <div class="cita__tipo-hora">
                             <div class="tipo-de-servicio">
                                 <p>Tipo de servicio 
-                                    <span class="<?php echo $propiedad['id_servi'] === "1" ? "servicio-medico" : "servicio-estetico"; ?>">
-                                        <?php echo $propiedad['nom_servi'] ?>
+                                    <span class="<?php echo $cita['id_servi'] === "1" ? "servicio-medico" : "servicio-estetico"; ?>">
+                                        <?php 
+                                        if(isset($cita['id_rol'])) { echo $cita['servicio']; } 
+                                        else { echo $cita['id_servi'] === "1" ? "A. Médica" : "Estética"; }
+                                        ?>
                                     </span>
                                 </p>
                             </div>
                             
                             <div class="cita-hora">
                                 <p>Hora 
-                                    <span class="<?php echo $propiedad['id_servi'] === "1" ? "servicio-medico" : "servicio-estetico"; ?>">
-                                        <?php echo $propiedad['hora']?>
+                                    <span class="<?php echo $cita['id_servi'] === "1" ? "servicio-medico" : "servicio-estetico"; ?>">
+                                        <?php echo $cita['hora']?>
                                     </span>
                                 </p>
                             </div>
 
                             <div class="cita-mascota">
                                 <p>Mascota 
-                                    <span class="<?php echo $propiedad['id_servi'] === "1" ? "servicio-medico" : "servicio-estetico"; ?>">
-                                        <?php echo $propiedad['mascota']?>
+                                    <span class="<?php echo $cita['id_servi'] === "1" ? "servicio-medico" : "servicio-estetico"; ?>">
+                                        <?php echo $cita['mascota']?>
                                     </span>
                                 </p>
                             </div>
                         </div>
+
+                        <?php
+                        if(isset($cita['id_rol'])):
+                        ?>
+                        <div class="propietario__container">
+                            <p>Cita de <span style="font-weight:600;"><?php echo $cita['cliente'] ?></span></p>
+                        </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="cita__descripcion">
                         <label for="decripcion">Descripción</label>
                         <div class="descripcion">
                             <p name="Descripcion" id="cita__descripcion" cols="30" rows="10" maxlength="100">
-                                <?php echo $propiedad['descripcion'] ?>
+                                <?php echo $cita['descripcion'] ?>
                             </p>
                         </div>
                     </div>

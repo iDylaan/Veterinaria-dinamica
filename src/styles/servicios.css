@@ -1,0 +1,888 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  -grey-100: hsl(0, 0%, 90%);
+  -grey-150: hsl(0, 0%, 85%);
+  -grey-200: hsl(0, 0%, 80%);
+  -grey-250: hsl(0, 0%, 75%);
+  -grey-300: hsl(0, 0%, 70%);
+  -grey-350: hsl(0, 0%, 65%);
+  -grey-400: hsl(0, 0%, 60%);
+  -grey-450: hsl(0, 0%, 55%);
+  -grey-500: hsl(0, 0%, 50%);
+  -grey-550: hsl(0, 0%, 45%);
+  -grey-600: hsl(0, 0%, 40%);
+  -grey-650: hsl(0, 0%, 35%);
+  -grey-700: hsl(0, 0%, 30%);
+  -grey-750: hsl(0, 0%, 25%);
+  -grey-800: hsl(0, 0%, 20%);
+  -grey-850: hsl(0, 0%, 15%);
+  -grey-900: hsl(0, 0%, 10%);
+  --green-100: hsl(120, 100%, 90%);
+  --green-150: hsl(120, 100%, 85%);
+  --green-200: hsl(120, 100%, 80%);
+  --green-250: hsl(120, 100%, 75%);
+  --green-300: hsl(120, 100%, 70%);
+  --green-350: hsl(120, 100%, 65%);
+  --green-400: hsl(120, 100%, 60%);
+  --green-450: hsl(120, 100%, 55%);
+  --green-500: hsl(120, 100%, 50%);
+  --green-550: hsl(120, 100%, 45%);
+  --green-600: hsl(120, 100%, 40%);
+  --green-650: hsl(120, 100%, 35%);
+  --green-700: hsl(120, 100%, 30%);
+  --green-750: hsl(120, 100%, 25%);
+  --green-800: hsl(120, 100%, 20%);
+  --green-850: hsl(120, 100%, 15%);
+  --green-900: hsl(120, 100%, 10%);
+  --pastel-green-100: hsl(120, 30%, 90%);
+  --pastel-green-150: hsl(120, 30%, 85%);
+  --pastel-green-200: hsl(120, 30%, 80%);
+  --pastel-green-250: hsl(120, 30%, 75%);
+  --pastel-green-300: hsl(120, 30%, 70%);
+  --pastel-green-350: hsl(120, 30%, 65%);
+  --pastel-green-400: hsl(120, 30%, 60%);
+  --pastel-green-450: hsl(120, 30%, 55%);
+  --pastel-green-500: hsl(120, 30%, 50%);
+  --pastel-green-550: hsl(120, 30%, 45%);
+  --pastel-green-600: hsl(120, 30%, 40%);
+  --pastel-green-650: hsl(120, 30%, 35%);
+  --pastel-green-700: hsl(120, 30%, 30%);
+  --pastel-green-750: hsl(120, 30%, 25%);
+  --pastel-green-800: hsl(120, 30%, 20%);
+  --pastel-green-850: hsl(120, 30%, 15%);
+  --pastel-green-900: hsl(120, 30%, 10%);
+  --blue-100: hsl(192, 100%, 90%);
+  --blue-150: hsl(192, 100%, 85%);
+  --blue-200: hsl(192, 100%, 80%);
+  --blue-250: hsl(192, 100%, 75%);
+  --blue-300: hsl(192, 100%, 70%);
+  --blue-350: hsl(192, 100%, 65%);
+  --blue-400: hsl(192, 100%, 60%);
+  --blue-450: hsl(192, 100%, 55%);
+  --blue-500: hsl(192, 100%, 50%);
+  --blue-550: hsl(192, 100%, 45%);
+  --blue-600: hsl(192, 100%, 40%);
+  --blue-650: hsl(192, 100%, 35%);
+  --blue-700: hsl(192, 100%, 30%);
+  --blue-750: hsl(192, 100%, 25%);
+  --blue-800: hsl(192, 100%, 20%);
+  --blue-850: hsl(192, 100%, 15%);
+  --blue-900: hsl(192, 100%, 10%);
+  --pastel-blue-100: hsl(192, 30%, 90%);
+  --pastel-blue-150: hsl(192, 30%, 85%);
+  --pastel-blue-200: hsl(192, 30%, 80%);
+  --pastel-blue-250: hsl(192, 30%, 75%);
+  --pastel-blue-300: hsl(192, 30%, 70%);
+  --pastel-blue-350: hsl(192, 30%, 65%);
+  --pastel-blue-400: hsl(192, 30%, 60%);
+  --pastel-blue-450: hsl(192, 30%, 55%);
+  --pastel-blue-500: hsl(192, 30%, 50%);
+  --pastel-blue-550: hsl(192, 30%, 45%);
+  --pastel-blue-600: hsl(192, 30%, 40%);
+  --pastel-blue-650: hsl(192, 30%, 35%);
+  --pastel-blue-700: hsl(192, 30%, 30%);
+  --pastel-blue-750: hsl(192, 30%, 25%);
+  --pastel-blue-800: hsl(192, 29%, 20%);
+  --pastel-blue-850: hsl(192, 30%, 15%);
+  --pastel-blue-900: hsl(192, 30%, 10%);
+  --red-100: hsl(0, 100%, 90%);
+  --red-150: hsl(0, 100%, 85%);
+  --red-200: hsl(0, 100%, 80%);
+  --red-250: hsl(0, 100%, 75%);
+  --red-300: hsl(0, 100%, 70%);
+  --red-350: hsl(0, 100%, 65%);
+  --red-400: hsl(0, 100%, 60%);
+  --red-450: hsl(0, 100%, 55%);
+  --red-500: hsl(0, 100%, 50%);
+  --red-550: hsl(0, 100%, 45%);
+  --red-600: hsl(0, 100%, 40%);
+  --red-650: hsl(0, 100%, 35%);
+  --red-700: hsl(0, 100%, 30%);
+  --red-750: hsl(0, 100%, 25%);
+  --red-800: hsl(0, 100%, 20%);
+  --red-850: hsl(0, 100%, 15%);
+  --red-900: hsl(0, 100%, 10%);
+  --pastel-red-100: hsl(0, 30%, 90%);
+  --pastel-red-150: hsl(0, 30%, 85%);
+  --pastel-red-200: hsl(0, 30%, 80%);
+  --pastel-red-250: hsl(0, 30%, 75%);
+  --pastel-red-300: hsl(0, 30%, 70%);
+  --pastel-red-350: hsl(0, 30%, 65%);
+  --pastel-red-400: hsl(0, 30%, 60%);
+  --pastel-red-450: hsl(0, 30%, 55%);
+  --pastel-red-500: hsl(0, 30%, 50%);
+  --pastel-red-550: hsl(0, 30%, 45%);
+  --pastel-red-600: hsl(0, 30%, 40%);
+  --pastel-red-650: hsl(0, 30%, 35%);
+  --pastel-red-700: hsl(0, 30%, 30%);
+  --pastel-red-750: hsl(0, 30%, 25%);
+  --pastel-red-800: hsl(0, 30%, 20%);
+  --pastel-red-850: hsl(0, 30%, 15%);
+  --pastel-red-900: hsl(0, 30%, 10%);
+
+  /* VARIABLES DE DISEÑO EN EL DESARROLLO */
+
+  --atencion-medica-bg-categoria: var(--red-200);
+  --atencion-medica-letras-categoria: var(--pastel-red-700);
+
+  --productos-bg-categoria: var(--green-200);
+  --productos-letras-categoria: var(--pastel-green-800);
+
+  --estetica-bg-categoria: var(--blue-200);
+  --estetica-letras-categoria: var(--pastel-blue-800);
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-image: url("../imgs/petsbg.png");
+  background-repeat: repeat;
+  overflow-x: hidden;
+}
+
+html {
+  width: 100%;
+}
+
+/* --------- ------ HEADER ------ --------- */
+
+header {
+  position: relative;
+  background-image: url("../imgs/banners/banner-header__servicios.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: -400px;
+  padding-top: 20px;
+  margin: auto;
+  width: 100%;
+  height: 450px;
+}
+
+.header-nav-mobil {
+  visibility: hidden;
+}
+
+.header__container {
+  position: relative;
+  height: 500px;
+  margin: auto;
+}
+
+.header__nav-container {
+  transition: all 0.3s;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  height: 80px;
+}
+
+.header__nav {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__nav-desktop {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.abajo {
+  background-color: hsl(192, 100%, 10%);
+  width: 100%;
+  height: 50px;
+  /* offset-x | offset-y | blur-radius | color */
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.invisible {
+  position: absolute;
+  visibility: hidden;
+}
+
+.visible {
+  position: relative;
+  visibility: visible;
+}
+
+#logo {
+  width: 80%;
+  height: 35px;
+}
+
+.header__logo {
+  display: flex;
+  text-transform: uppercase;
+  float: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header__logo > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-transform: uppercase;
+  float: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header__logo > a > img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-transform: uppercase;
+  float: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header__logo > a > h1 {
+  display: flex;
+  text-transform: uppercase;
+  font-size: 1.6em;
+  font-family: "Josefin Sans", sans-serif;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.header__logo span {
+  font-size: 1.3em;
+  color: white;
+}
+
+.header__navegador-central {
+  text-align: center;
+}
+
+.navegeador-lateral {
+  text-align: right;
+}
+
+.header__nav-link {
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 5px 20px;
+  display: inline-block;
+  /* Otra forma de colocar elemntos uno al lado del otro */
+  opacity: 80%;
+  text-decoration: none;
+}
+
+.header__nav-link:hover {
+  color: white;
+  opacity: 100%;
+}
+
+.header__title {
+  font-size: 1.7rem;
+  color: white;
+  font-weight: 500;
+  /* border: 1px solid red; */
+  width: 700px;
+  height: 180px;
+  margin-left: 100px;
+  position: relative;
+}
+
+.header__title h1 {
+  position: absolute;
+  bottom: 0;
+  word-spacing: 10px;
+}
+
+.btn-agendar__container {
+  margin-left: 100px;
+  margin-top: 40px;
+  width: 300px;
+}
+
+.header__btn-agendar {
+  text-decoration: none;
+  color: white;
+  padding: 12px 50px;
+  outline: 3px solid white;
+  border-radius: 100px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.1s ease;
+}
+
+.header__btn-agendar:hover {
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: hsl(0, 100%, 97%);
+  background-color: hsl(0, 100%, 65%);
+  padding: 12px 50px;
+  outline: transparent;
+  border-radius: 100px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+#carouselExampleControls {
+  width: 75%;
+  margin: auto;
+  margin-bottom: 150px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow: hidden;
+}
+
+.back-menu {
+  visibility: hidden;
+  position: absolute;
+}
+
+@media (max-width: 1600px) {
+  .header__logo h1 {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .header__logo {
+    display: inline;
+    cursor: pointer;
+  }
+
+  #logo {
+    width: 50px;
+    height: auto;
+  }
+}
+
+@media (max-width: 1500px) {
+  .categorias__estetica,
+  .categorias__productos,
+  .categorias__atencion-medica {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 1450px) {
+  .categorias__estetica,
+  .categorias__productos,
+  .categorias__atencion-medica {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 1140px) {
+  .categorias__estetica,
+  .categorias__productos,
+  .categorias__atencion-medica {
+    font-size: 1.5em;
+    width: 80%;
+    text-align: center;
+    display: flex;
+  }
+
+  .categorias__estetica i,
+  .categorias__productos i,
+  .categorias__atencion-medica i {
+    margin-right: 50px;
+    margin-left: 30px;
+  }
+
+  .categorias__container {
+    margin: 80px 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  #carouselExampleControls {
+    width: 85%;
+  }
+}
+
+@media (max-width: 1400px) {
+  /* ESCONDER EL HEADER DE ESCRITORIO */
+  .header__nav-desktop {
+    display: none;
+  }
+
+  /* GENERACIÓN DEL BOTÓN */
+  .header__nav-mobile {
+    width: 0px;
+    margin-right: 0;
+  }
+
+  .bars__menu {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 20%;
+    left: 87%;
+    opacity: 80%;
+    cursor: pointer;
+    transition: 0.275s;
+  }
+
+  .active-bars__menu {
+    transition: 0.275s;
+    opacity: 100%;
+  }
+
+  .bars-abajo {
+    top: 0%;
+  }
+
+  .bars__menu span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    margin-top: 9px;
+  }
+
+  .line1__bars-menu {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+
+  .line3__bars-menu {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+
+  /* MENU DESPLEGABLE PARA MOBILES */
+  .header-nav-mobil {
+    visibility: visible;
+    position: relative;
+  }
+
+  .header-nav-mobil__container {
+    position: fixed;
+    top: 0;
+    right: -270px;
+    background-color: hsl(192, 100%, 10%);
+    width: 270px;
+    height: 100vh;
+    z-index: 2;
+    padding: 40px;
+  }
+
+  .nav-mobile__logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .nav-mobile__main-options {
+    margin-bottom: 30px;
+  }
+
+  #back-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.5;
+    z-index: 1;
+    background-color: #00161d;
+    display: none;
+  }
+
+  .header__title {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 500;
+    /* border: 1px solid red; */
+    width: 700px;
+    height: 280px;
+    margin-left: 60px;
+    position: relative;
+  }
+
+  .header__title h1 {
+    position: absolute;
+    bottom: 0;
+    word-spacing: 10px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .categorias__container {
+    margin: 100px 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 800px) {
+.header__container {
+  position: relative;
+  height: 300px;
+  margin: auto;
+}
+    
+  .categorias__estetica,
+  .categorias__productos,
+  .categorias__atencion-medica {
+    font-size: 1.2em;
+    margin: 0px auto 0px auto;
+    width: 80%;
+    text-align: center;
+    display: flex;
+  }
+
+  .categorias__estetica i,
+  .categorias__productos i,
+  .categorias__atencion-medica i {
+    margin-right: 50px;
+    margin-left: 30px;
+  }
+
+  .categorias__container {
+    width: 100%;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+  }
+
+  #carouselExampleControls {
+    width: 100%;
+  }
+
+  .header__title {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 500;
+    /* border: 1px solid red; */
+    width: 90%;
+    height: 230px;
+    margin-left: 50px;
+    position: relative;
+  }
+
+  .header__title h1 {
+    position: absolute;
+    bottom: 0;
+    word-spacing: 10px;
+  }
+
+  .btn-agendar__container {
+    margin-left: 50px;
+    margin-top: 40px;
+    width: 300px;
+  }
+
+  .header__btn-agendar {
+    text-decoration: none;
+    color: white;
+    padding: 12px 50px;
+    outline: 3px solid white;
+    border-radius: 100px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.1s ease;
+  }
+
+  .header__btn-agendar:hover {
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: hsl(0, 100%, 97%);
+    background-color: hsl(0, 100%, 65%);
+    padding: 12px 50px;
+    outline: transparent;
+    border-radius: 100px;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 670px) {
+  .categorias__estetica,
+  .categorias__productos,
+  .categorias__atencion-medica {
+    font-size: 1.2em;
+    margin: 10px auto 0px auto;
+    width: 80%;
+  }
+
+  .categorias__estetica i,
+  .categorias__productos i,
+  .categorias__atencion-medica i {
+    margin-right: 50px;
+    margin-left: 30px;
+  }
+
+  .categorias__container {
+    width: 100%;
+    margin: 70px auto 0 auto;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 550px) {
+    
+.header__container {
+  position: relative;
+  height: 300px;
+  margin: auto;
+}
+
+  .categorias__container {
+    width: 42%;
+    margin: 100px auto 0 auto;
+  }
+
+  .categorias__estetica,
+  .categorias__productos,
+  .categorias__atencion-medica {
+    font-size: 1.5em;
+    width: 100%;
+  }
+
+  .categorias__estetica i,
+  .categorias__productos i,
+  .categorias__atencion-medica i {
+    margin: auto;
+  }
+
+  .categorias__estetica p,
+  .categorias__productos p,
+  .categorias__atencion-medica p {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+/* --------- ------ FOOTER ------ --------- */
+footer {
+  display: flex;
+  background-color: #00161d;
+}
+
+.redes {
+  margin: auto;
+  color: white;
+  border: 1px;
+  padding: 2rem 0rem;
+  text-align: left;
+}
+
+.redes a {
+  text-decoration: none;
+  color: white;
+}
+
+.copy {
+  margin: auto;
+  color: white;
+  padding: 2rem 0rem;
+  text-align: center;
+}
+
+.politicas {
+  margin: auto;
+  color: white;
+  padding: 2rem 0rem;
+  text-align: right;
+}
+
+.politicas a {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* -------- ------- SERVICIOS ------- ------------ */
+
+.servicios__container {
+  display: flex;
+}
+
+.servicios__title-container {
+  /* border: 1px solid red; */
+  padding-left: 320px;
+  background-color: hsl(192, 30%, 90%);
+  padding-right: 80px;
+}
+
+.servicios__title-nuestros {
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.servicios__title-container h1 {
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 300;
+  margin-top: 170px;
+}
+
+.servicios__list-container {
+  display: flex;
+}
+
+.servicios__list-col1,
+.servicios__list-col2 {
+  /* margin: 50px; */
+  /* border: 1px solid red; */
+  width: 620px;
+}
+
+.servicio__card {
+  margin: 100px 80px;
+}
+
+.servicio__card h1 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.servicio__card p {
+  font-weight: 400;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+#btn__generar-expediente {
+  text-decoration: none;
+  color: #121212;
+  padding: 10px 15px;
+  outline: 1px solid #121212;
+  border-radius: 0px;
+  transition: all 0.2s ease;
+}
+#btn__generar-expediente:hover {
+  color: white;
+  padding: 10px 15px;
+  outline: 1px solid transparent;
+  background-color: #121212;
+  border-radius: 0px;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 1900px) {
+  .servicios__title-container {
+    padding-left: 120px;
+    background-color: hsl(192, 30%, 90%);
+    padding-right: 80px;
+  }
+}
+
+@media (max-width: 1700px) {
+  .servicios__title-container {
+    padding-left: 50px;
+    background-color: hsl(192, 30%, 90%);
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 1590px) {
+  .servicios__list-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 970px) {
+  .servicios__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .servicios__title-container h1 {
+    text-transform: uppercase;
+    font-size: 3rem;
+    font-weight: 300;
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 780px) {
+  .servicios__container {
+    display: flex;
+  }
+
+  .servicios__title-container {
+    background-color: hsl(192, 30%, 90%);
+    padding: 0;
+}
+
+.servicios__title-nuestros {
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.servicios__title-container h1 {
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-left: 20px;
+    text-align: center;
+  }
+
+  .servicios__list-container {
+    display: flex;
+  }
+
+  .servicios__list-col1,
+  .servicios__list-col2 {
+    /* margin: 50px; */
+    /* border: 1px solid red; */
+    width: 90%;
+    margin: auto;
+  }
+
+  .servicio__card {
+    margin: 20px 10px;
+  }
+
+  .servicio__card h1 {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .servicio__card p {
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
+}

@@ -55,7 +55,7 @@
             if($fecha_disponible) {
                 // * Insertar en la base de datos
                 $query = "INSERT INTO citas (mascota, fecha, hora, descripcion, id_servi, id_usr) VALUES 
-                ( '${mascota}', '${fecha}', '${hora}', '${descripcion}', '${servicio}', '${id_usr}' ); ";
+                ( '${mascota}', '${fecha}', '${hora}', '${descripcion}', '${servicio}', '${id_usr}' );";
 
                 $resultado = mysqli_query($db, $query);
                 $fecha_disponible = true;
@@ -110,7 +110,7 @@
                     
                     <div class="header__nav-desktop">
                         <div class="header__navegador-central">
-                            <a href="./index_sesion.php" class="header__nav-link" id="nav-home"><i class="fa-solid fa-house"></i> Home</a>
+                            <a href="./index.php" class="header__nav-link" id="nav-home"><i class="fa-solid fa-house"></i> Home</a>
                         </div>
 
                         <div class="navegeador-lateral">
@@ -126,7 +126,7 @@
                 <div class="header-nav-mobil__container">
                     <div class="nav-mobil__opciones" id="menu-responsive-lateral">
                         <div class="nav-mobile__logo">
-                            <a href="./index_sesion.php"><img id="logo" src="../src/imgs/logo.png" alt="Logo veterinaria"></a>
+                            <a href="./index.php"><img id="logo" src="../src/imgs/logo.png" alt="Logo veterinaria"></a>
                         </div>
 
                         <div class="nav-mobile__main-options">
@@ -135,7 +135,7 @@
                         </div>
 
                         <div class="nav-mobile__secondary-options">
-                            <a href="./index_sesion.php" class="header__nav-link" id="nav-home-mobile" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a> 
+                            <a href="./index.php" class="header__nav-link" id="nav-home-mobile" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home</a> 
                         </div>
                     </div>
                 </div>
@@ -169,14 +169,13 @@
                 <?php
                 }
             ?>
-            <form method="POST"> 
-                <!-- ../admin/propiedades/crear.php -->
+            <form method="POST">
                 <section class="form__section-container">
                     <div class="form__section">
                         <label for="">Mascota (nombre)</label>
                         <input type="text" id="mascota" name="mascota" placeholder="Ej.- " value="<?php echo $mascota ?>" required>
                     </div>
-                    
+
                     <div class="form__section">
                         <label for="">Tipo de servicio</label>
                         <select name="tipo_servicio" id="tipo_servicio" value="<?php echo $servicio ?>" required>
@@ -191,20 +190,20 @@
                 <section class="form__section-container">
                     <div class="form__section">
                         <label for="">Fecha</label>
-                        <input type="date" name="fecha" id="fecha" value="<?php echo $fecha ?>" required>
+                        <input type="date" name="fecha" id="fecha" value="<?php echo $fecha; ?>" required>
                     </div>
-                    
+
                     <div class="form__section">
                         <label for="">Hora</label>
-                        <input type="time" min="10:00:00" max="18:00:00" name="hora" id="hora" value="<?php echo $hora ?>" required>
+                        <input type="time" min="10:00:00" max="18:00:00" name="hora" id="hora" value="<?php echo $hora; ?>" required>
                     </div>
                 </section>
-                
+
                 <div class="form__section">
                     <label for="">Descripcion</label>
-                    <textarea rows="10" maxlength="100" name="descripcion" id="descripcion" required><?php echo $descripcion ?></textarea>
+                    <textarea rows="10" maxlength="100" name="descripcion" id="descripcion" required><?php echo $descripcion; ?></textarea>
                 </div>
-                
+
                 <div class="boton-submit">
                     <input type="submit" value="Agendar Cita"></input>
                 </div>

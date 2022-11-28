@@ -1,0 +1,143 @@
+.productos__container {
+    width: 80%;
+    margin: 0px auto 40px auto;
+    background-color: rgb(246, 246, 246);
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 20px;
+    align-items: center;
+    padding: 0px 0px 20px 0px;
+    overflow: hidden;
+    box-shadow: 0px 6px 68px -4px rgba(0, 0, 0, 0.15);
+}
+
+.title-container {
+    background: #EFEFEF;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+    padding: 20px 0px;
+    margin-bottom: 20px;
+}
+
+.producto__first-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 10px 0px;
+    padding-top: 10px;
+}
+
+.producto__container {
+    border-top: 1px solid rgb(212, 212, 212);
+}
+
+.producto__container:first-child {
+    border-top: none;
+}
+
+.producto__descripcion {
+    padding: 40px;
+    /* border: 1px solid red; */
+}
+
+.producto__descripcion label {
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+.producto__descripcion p {
+    border: 1px solid rgb(201, 201, 201);
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.producto__imagen,
+.producto__detalles,
+.producto__options {
+    /* border: 1px solid red; */
+    margin: auto;
+}
+
+.producto__imagen {
+    outline: 1px solid rgb(206, 206, 206);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+.producto__imagen img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.producto__options {
+    display: flex;
+    text-align: center;
+    gap: 10px;
+}
+.producto__options a {
+    text-decoration: none;
+    font-size: 1rem;
+}
+.producto__options button {
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.btn {
+    padding: 10px;
+    filter: brightness(0.9);
+    border-radius: 5px;
+    transition: all 0.15s ease;
+}
+.btn:hover {
+    filter: brightness(1);
+    transition: all 0.25s ease;
+}
+
+.btn-rojo {
+    background-color: rgb(191, 62, 62);
+    color: white;
+    border: none;
+}
+.btn-azul {
+    background-color: rgb(57, 98, 180);
+    color: white;
+    border: none;
+}
+
+.crear__container {
+    width: 78%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+#form-crear {
+    border: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgb(69, 207, 64);
+    color: white;
+    filter: brightness(0.9);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+#form-crear:hover {
+    transition: all 0.2s ease;
+    filter: brightness(1);
+}
+
+.description__price p {
+    font-size: 1.5rem;
+}
