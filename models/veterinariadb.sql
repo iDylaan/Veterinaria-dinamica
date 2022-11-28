@@ -126,6 +126,8 @@ CREATE TABLE productos (
     precio DECIMAL(10,2) NOT NULL ,
     imagen VARCHAR(200) NOT NULL ,
     id_cate TINYINT NOT NULL,
+    activo INT(3) ,
+    descuento TINYINT(2) ,
     CONSTRAINT idprod_prods_pk PRIMARY KEY (id),
     CONSTRAINT idcate_prods_fk FOREIGN KEY (id_cate)
     REFERENCES categorias (id_cate)

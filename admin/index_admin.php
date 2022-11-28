@@ -10,7 +10,7 @@
         </div>
         
         <div class="card">
-            <a href="">
+            <a href="e_veterinarios.php">
                 <div class="card__option">
                     <h2>Operadores</h2>
                 </div>
