@@ -37,6 +37,11 @@
     $id_raza = $expediente['id_raza'];
     $colores = $expediente['colores'];
 
+    $telefono = $expediente['telefono'];
+    $direccion = $expediente['direccion'];
+    $cp = $expediente['cp'];
+
+
     // ? Fecha actual local
     $today = date("Y-m-d");
 
@@ -47,26 +52,56 @@
         $colores = mysqli_real_escape_string($db, $_POST['colores']);
         $id_raza = mysqli_real_escape_string($db, $_POST['raza']);
 
+        $telefono = mysqli_real_escape_string($db, $_POST['telefono']);
+        $direccion = mysqli_real_escape_string($db, $_POST['direccion']);
+        $cp = mysqli_real_escape_string($db, $_POST['cp']);
+
+
+
         if (
            !$mascota 
         || !$fecha_nac_mascota 
         || !$id_sexo_mascota 
         || !$colores
         || !$id_raza
+
+        || !$telefono
+        || !$direccion
+        || !$cp
+
         ) { $error = 'Todos los campos son obligatorios.'; } 
         else if ( strlen($mascota) < 2)
         { $error = 'El nombre mínimo de una mascota puede ser de dos caracteres'; }
         else if ( $fecha_nac_mascota >  $today ) 
         { $error = 'Esa fecha no es válida'; }
 
+        else if ( strlen($telefono) !== 10 )
+        { $error = 'El teléfono debe ser de 10 dígitos'; }
+        else if ( strlen($cp) !== 5)
+        { $error = 'El código postal debe ser de 5 dígitos'; }
+
         if( !$error ) {
             // * Insertar a la base de datos
+            // * Insertar a la base de datos
             $query = "UPDATE expedientes SET 
+            fecha_nac_mascota = '${fecha_nac_mascota}', 
+            id_sexo_mascota = ${id_sexo_mascota},
+            colores = '${colores}',
+            id_raza = ${id_raza},
+            telefono = '${telefono}',
+            direccion = '${direccion}',
+            cp = '${cp}'
+
+
+        if( !$error ) {
+            // * Insertar a la base de datos
+            $query = 'UPDATE expedientes SET '
             mascota = '${mascota}',
             fecha_nac_mascota = '${fecha_nac_mascota}', 
             id_sexo_mascota = ${id_sexo_mascota},
             colores = '${colores}',
             id_raza = ${id_raza}
+
             WHERE cla_chip = '${id}'";
 
             $resultado = mysqli_query( $db, $query );
@@ -176,6 +211,42 @@
                     
                 </fieldset>
             </div>
+
+            
+            <div class="contacto__container">
+                <fieldset>
+                    <legend>Datos de Contacto</legend>
+
+                    <div class="input__text">
+                        <label for="telefono">Teléfono:</label>
+                        <input 
+                        type="text" 
+                        name="telefono"
+                        placeholder="XX-XXXX-XXXX (10 dígitos)"
+                        value="<?php echo $telefono; ?>" 
+                        required>
+                    </div>
+
+                    <div class="input__text">
+                        <label for="direccion">Dirección:</label>
+                        <input 
+                        type="text" 
+                        name="direccion" 
+                        value="<?php echo $direccion; ?>"
+                        required>
+                    </div>
+
+                    <div class="input__text">
+                        <label for="cp">Código Postal:</label>
+                        <input 
+                        type="text" 
+                        name="cp"
+                        value="<?php echo $cp; ?>"
+                        required>
+                    </div>
+                </fieldset>
+            </div>
+
             <div class="opciones__container">
                 <input type="submit" value="Registrar Expediente" id="btn__registrar">
                 <a href="./expedientes.php" id="btn__cancelar">Cancelar</a>

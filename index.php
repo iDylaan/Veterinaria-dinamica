@@ -58,10 +58,11 @@
             <section class="categorias-desktop">
                 <div class="categorias__container">
 
+
                     <a class="cate__nav-link" href="">
                         <div class="categorias__productos">
                             <i class="fa-solid fa-store"></i>
-                            <p>Productos</p>
+                            <a href="./pages/productos.php"><p>Productos</p> </a>
                         </div>
                     </a>
                     
@@ -71,6 +72,8 @@
                             <p>Servicios</p>
                         </div>
                     </a>
+
+
                 </div>
             </section>
 
@@ -226,7 +229,7 @@
         </section>
 
         <div class="productos-favoritos__boton-ver-todo">
-            <button id="btn-ver-todo">Ver todo</button>
+            <button link="" id="btn-ver-todo">  Ver todo</button>
         </div>
     </div>
 

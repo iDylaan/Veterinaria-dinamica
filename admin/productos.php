@@ -51,10 +51,12 @@
         <div class="crear__container">
             <a id="form-crear" href="./form_producto.php">Crear</a>
         </div>
+
+        <div class="serch__container">
+            
+        </div>
     </div>
-
     <div class="productos__container">
-
         <div class="title-container">
             <h1>Productos</h1>
         </div>

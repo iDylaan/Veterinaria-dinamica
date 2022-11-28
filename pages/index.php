@@ -76,7 +76,7 @@
                     <a class="cate__nav-link" href="">
                         <div class="categorias__productos">
                             <i class="fa-solid fa-store"></i>
-                            <p>Productos</p>
+                            <a href="../pages/productos.php"><p>Productos</p> </a>
                         </div>
                     </a>
                     
@@ -112,6 +112,10 @@
                             <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
                             <?php endif; ?>
                             <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+
+                            <a href="./carrito.php" class="header__nav-link" id="nav-carrito-mobile"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+
+
                         </div>
 
                         <div class="nav-mobile__secondary-options">
