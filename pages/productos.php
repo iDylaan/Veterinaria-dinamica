@@ -1,11 +1,7 @@
 <?php
     // Autentificar al usuario
    
-    session_start();
-    $auth = $_SESSION['login'] ?? false;
-    if(!$auth) {
-        header('Location: ../index.php');
-    }
+   session_start();
 
 
 require '../includes/config/config.php';
@@ -14,6 +10,7 @@ $db = new Database();
 $con = $db->conectar();
 $sql= $con->prepare("SELECT id, nombre_prod, descripcion, precio FROM productos where  activo=1");
 
+print_r($_SESSION);
 $sql->execute();
 $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -60,7 +57,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
             </li>
             <li class="nav-item">
                 
-                <a href="/" class="nav-link active"><?php echo $_SESSION['nombre'];?> <i  class="fa-solid fa-user"></i></a>
+                <a href="/" class="nav-link active"> <i  class="fa-solid fa-user"></i></a>
             </li>
             <li class="nav-item">
                 <a href="/" class="nav-link active">Cerrar sesion <i  class="fa-solid fa-right-from-bracket"></i></a>
@@ -73,7 +70,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
             </li>
 
         </ul>
-        <a href="checkout.php" class="btn btn-primary">Carrito <span id="num_cart" class="badge bg-secondary" > ?></span> <i class="fa-solid fa-cart-shopping"></i> </a>
+        <a href="checkout.php" class="btn btn-primary">Carrito <span id="num_cart" class="badge bg-secondary" > <?php  echo $num_cart; ?> </span> <i class="fa-solid fa-cart-shopping"></i> </a>
         
 
       </div>
@@ -88,8 +85,19 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
     <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
+     
         <h1 class="fw-light">Nuestros Productos</h1>
       
+        <div class="buscador__container">
+
+<form class="d-flex" method="GET">
+    <input name="busqueda1" class="form-control me-2" type="text" placeholder="Buscar producto" aria-label="Search">
+
+    <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+<!-- <input type="text" placeholder="Buscar producto"> -->
+</div>
+
         <p>
           
         </p>
@@ -103,8 +111,12 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
           <div class="card shadow-sm">
             <?php
             $id= $row['id'];
+
             $imagen="../src/imgs/productos". $id . "productos/pd-1.webp";
           
+
+            $imagen="../src/imgs/productos/". $id . "/pd-1.webp";
+
             if(!file_exists($imagen)){
                 $imagen="../src/imgs/no-photo.jpg";
             }
@@ -118,7 +130,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
                 <div class="btn-group">
                 <a href="detalles.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>" class="btn btn-primary"> Detalles </a>
                 </div>
-                <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $row['id']; ?>,'<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
+                <button class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>,'<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
               </div>
             </div>
           </div>

@@ -76,7 +76,7 @@
                     <a class="cate__nav-link" href="">
                         <div class="categorias__productos">
                             <i class="fa-solid fa-store"></i>
-                            <p>Productos</p>
+                            <a href="../pages/productos.php"><p>Productos</p> </a>
                         </div>
                     </a>
                     

@@ -7,7 +7,7 @@ function conectarDB() : mysqli {
     //     throw new Exception("NO without SSL at line b." . rand(100, 200));
     //     devolverError('-98001', 'NO sin certificado SSL:<br />'. 'Asegurece estar usando https://');
     //     exit;
-    // }
+    // } 
     // Ok, traemos los datos de conexion de la base:
 
     // Intentar la conexion:

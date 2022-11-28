@@ -1,11 +1,7 @@
 <?php
     // Autentificar al usuario
     session_start();
-    $auth = $_SESSION['login'] ?? false;
-    if(!$auth) {
-        header('Location: ../index.php');
-        
-    }
+   
 
 
 
@@ -17,7 +13,6 @@ $con = $db->conectar();
 
 $productos = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
 print_r($_SESSION);
-
 $lista_carrito= array();
     
 if($productos!= null){
@@ -113,13 +108,13 @@ if($productos!= null){
                     echo '<tr><td colspan="5" class="text-center"><b>Lista vacia</b></td></tr>';
                 } else {
                     $total=0;
-                    foreach($lista_carrito as $producto){
-                        $id= $producto[0]['id'];
-                        $nombre_prod= $producto[0]['nombre_prod'];
-                        $precio= $producto[0]['precio'];
-                        $descuento= $producto[0]['descuento'];
-                        $cantidad= $producto[0]['cantidad'];
-                        $precio_desc= $precio (($precio  * $descuento) / 100);
+                    foreach($lista_carrito as $productos){
+                        $_id= $productos['id'];
+                        $nombre_prod= $productos['nombre_prod'];
+                        $precio= $productos['precio'];
+                        $descuento= $productos['descuento'];
+                        $cantidad= $productos['cantidad'];
+                        $precio_desc= $precio -$precio/ 100;
                         $subtotal=$cantidad * $precio_desc;
                         $total+= $subtotal;
 
@@ -138,6 +133,10 @@ if($productos!= null){
                   </td>
                     <td> <a href="" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
                     <td> <?php echo $nombre_prod ?></td>
+
+                    <td> <a href="" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-tootle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
+                    <td></td>
+
                 </tr>
                 <?php }?>
                 <tr>
