@@ -7,8 +7,8 @@
     <title>Página Principal VETERINARIA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
     <link rel="stylesheet" href="./src/styles/index.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/4ad7b82c7d.js" crossorigin="anonymous" defer></script>
     <script src="./src/js/index.js" defer></script>

@@ -142,7 +142,7 @@
                     <th colspan="3">Opciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="form_body">
                 <?php 
                 if($_SERVER['REQUEST_METHOD'] === 'GET') {
                     if(isset($_GET['busqueda'])) {
@@ -156,10 +156,10 @@
                             es.nom_spcie as especie,
                             ra.nombre_raza as raza,
                             CONCAT(us.nombre, ' ', us.apellido_pa, ' ',us.apellido_ma) as propietario,
-                            ex.telefono,
+                            us.telefono,
                             us.correo,
-                            ex.direccion,
-                            ex.cp
+                            us.direccion,
+                            us.cp
                             FROM 
                             expedientes ex, 
                             sexos se, 
@@ -179,18 +179,14 @@
                         while($expediente = mysqli_fetch_assoc($res_busqueda)):
                             ?>
                             <tr>
-                                <!-- <td><?php //echo $expediente['chip']; ?></td> -->
                                 <td><?php echo $expediente['mascota']; ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($expediente['nacimiento'])); ?></td>
                                 <td><?php echo $expediente['sexo']; ?></td>
                                 <td><?php echo $expediente['especie']; ?></td>
                                 <td><?php echo $expediente['raza']; ?></td>
-                                <!-- <td><?php //echo $expediente['colores']; ?></td> -->
                                 <td><?php echo $expediente['propietario']; ?></td>
                                 <td><?php echo $expediente['telefono']; ?></td>
                                 <td><?php echo $expediente['correo']; ?></td>
-                                <!-- <td><?php //echo $expediente['direccion']; ?></td> -->
-                                <!-- <td><?php //echo $expediente['cp']; ?></td> -->
                                 <td class="table__option"><a href="./detalle_expediente.php?id=<?php echo $expediente['chip']; ?>" id="detalles"><i class="fa-solid fa-bars-staggered"></i> Detalles</a></td>
                                 <td class="table__option"><a href="./form_actualizar_expediente.php?id=<?php echo $expediente['chip']; ?>" id="editar"><i class="fa-solid fa-pen-to-square"></i> Editar</a></td>
                                 <td class="table__option">
@@ -217,10 +213,10 @@
                         es.nom_spcie as especie,
                         ra.nombre_raza as raza,
                         CONCAT(us.nombre, ' ', us.apellido_pa, ' ',us.apellido_ma) as propietario,
-                        ex.telefono,
+                        us.telefono,
                         us.correo,
-                        ex.direccion,
-                        ex.cp
+                        us.direccion,
+                        us.cp
                         FROM 
                         expedientes ex, 
                         sexos se, 
@@ -237,26 +233,17 @@
                         while($expediente = mysqli_fetch_assoc($expedientes)):
                         ?>
                         <tr>
-                            <!-- <td><?php //echo $expediente['chip']; ?></td> -->
                             <td><?php echo $expediente['mascota']; ?></td>
                             <td><?php echo date("d/m/Y", strtotime($expediente['nacimiento'])); ?></td>
                             <td><?php echo $expediente['sexo']; ?></td>
                             <td><?php echo $expediente['especie']; ?></td>
                             <td><?php echo $expediente['raza']; ?></td>
-                            <!-- <td><?php //echo $expediente['colores']; ?></td> -->
                             <td><?php echo $expediente['propietario']; ?></td>
                             <td><?php echo $expediente['telefono']; ?></td>
                             <td><?php echo $expediente['correo']; ?></td>
-                            <!-- <td><?php //echo $expediente['direccion']; ?></td> -->
-                            <!-- <td><?php //echo $expediente['cp']; ?></td> -->
                             <td class="table__option"><a href="./detalle_expediente.php?id=<?php echo $expediente['chip']; ?>" id="detalles"><i class="fa-solid fa-bars-staggered"></i> Detalles</a></td>
                             <td class="table__option"><a href="./form_actualizar_expediente.php?id=<?php echo $expediente['chip']; ?>" id="editar"><i class="fa-solid fa-pen-to-square"></i> Editar</a></td>
-                            <td class="table__option">
-                                <form method="POST">
-                                    <input type="hidden" name="id" value="<?php echo $expediente['chip']; ?>">
-                                    <button type="submit" id="eliminar"><i class="fa-solid fa-trash"></i> Eliminar</button>
-                                </form>
-                            </td>
+                            <td class="table__option"><a href="./eliminar_expediente.php?id=<?php echo $expediente['chip']; ?>" id="eliminar"><i class="fa-solid fa-trash"></i> Eliminar</a></td>
                         </tr>
                         <?php endwhile; 
                     }
