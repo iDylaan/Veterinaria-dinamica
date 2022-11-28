@@ -103,7 +103,8 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
           <div class="card shadow-sm">
             <?php
             $id= $row['id'];
-            $imagen="../src/imgs/productos/". $id . "productos/pd-1.webp";
+            $imagen="../src/imgs/productos". $id . "productos/pd-1.webp";
+          
             if(!file_exists($imagen)){
                 $imagen="../src/imgs/no-photo.jpg";
             }
