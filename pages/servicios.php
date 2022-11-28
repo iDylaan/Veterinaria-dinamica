@@ -138,11 +138,6 @@
                 </div>
             </section>
 
-            <div class="buscador__container">
-        <form class="d-flex" method="GET">
-            <input name="busqueda" class="form-control me-2" type="text" placeholder="Buscar por Servicio" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
 
             <div class="header__title">
                 <h1 id="header__title-h1">Servicios de estética <br /> y atención médica😽</h1>
@@ -165,12 +160,14 @@
             <div class="servicios__list-col1">
                 <div class="servicio__card">
                     <h1>EXÁMENES DE CONTROL</h1>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                    <p> Prestando especial interés a los ojos, oídos, boca, articulaciones, auscultación cardíaca y pulmonar, órganos reproductores, aspecto del pelaje … Nos van a proporcionar mucha información sobre el estado general de cada paciente.</p>
                 </div>
 
                 <div class="servicio__card">
                     <h1>MICRO CHIPS</h1>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                    <p>Estos microchips tienen una vida útil de 20 a 25 años, permitiendo que la mascota pueda ser recuperada incluso años después.
+
+Se aplican de manera rápida y fácil por tu veterinario de forma subcutánea igual que una inyección. Esto nos da la confianza de que nuestra mascota quedará identificada de por vida. Será su huella digital.</p>
                     <?php
                     if($auth && $_SESSION['id_rol'] === '2'):
                     ?>
@@ -180,24 +177,24 @@
 
                 <div class="servicio__card">
                     <h1>SERVICIO DE EMERGENCIA</h1>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                    <p>Muchos centros y hospitales veterinarios prestan asistencia en caso de emergencias. Para ello, cuentan con un teléfono específico que se atiende durante las 24 horas. «El veterinario está localizable y acude al centro veterinario tras valorar la urgencia por teléfono», señala José Luis Villaluenga, director de la editorial veterinaria Acalanthis, en su artículo ‘El servicio de urgencias en los centros veterinarios: una reflexión práctica’.</p>
                 </div>
             </div> <!-- Columna 1 Servicios -->
 
             <div class="servicios__list-col2">
                 <div class="servicio__card">
                     <h1>CIRUJÍA</h1>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                    <p>La cirugía general o de tejidos blandos es la medicina veterinaria que se ocupa del tratamiento quirúrgico de patologías que afectan a órganos internos, piel y musculatura de los animales. También se engloban aquí cirugías realizadas con fines preventivos, diagnósticos o paliativos.</p>
                 </div>
 
                 <div class="servicio__card">
                     <h1>ASEO</h1>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                    <p>La falta de higiene de animales de compañía genera padecimientos infecciosos y parasitarios a las personas por ingesta de agua, alimentos o al respirar polvo contaminado con heces o secreciones de gato, lo que causa problemas en distintos órganos y es peligrosa cuando la mujer embarazada la transmite a su hijo a través de la placenta, porque puede provocar pérdida de la visión.</p>
                 </div>
 
                 <div class="servicio__card">
                     <h1>ASISTENCIA DENTAL</h1>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eveniet magni iste architecto at perferendis laudantium iure recusandae saepe fuga facilis laboriosam ipsa minima, earum animi quae nobis id dolore et debitis! Dolorem consequatur doloremque ea ipsum distinctio asperiores nemo nisi veritatis accusamus a explicabo aperiam corrupti, hic laboriosam debitis?</p>
+                    <p>La odontología veterinaria de pequeños animales es la especialidad en la que más ha avanzado la medicina veterinaria en los últimos años tanto en lo que se refiere a materiales como a técnicas. Una de las razones de los continuos avances en este campo es la desidia que ha dominado esta especialidad durante muchos años. Los profesionales veterinarios y auxiliares deben seguir perfeccionando sus conocimientos para poder practicar endodoncias, ortodoncias y odontologías reconstructivas en los casos en que sea necesario, pero sin olvidar que ninguno de estos tratamientos será útil si la enfermedad periodontal está fuera de control.</p>
                 </div> 
             </div> <!-- Columna 2 Servicios -->
         </div> <!-- Lista de servicios -->
