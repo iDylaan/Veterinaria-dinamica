@@ -303,3 +303,10 @@ body {
 .label-error {
   color: hsl(0, 100%, 25%);
 }
+
+
+.form__contacto {
+  width: 75%;
+  margin: auto;
+  margin-top: 50px;
+}

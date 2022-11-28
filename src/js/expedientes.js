@@ -16,8 +16,10 @@ function eventListeners() {
   bars.addEventListener("click", mostrarMenuLateralMobile);
   backMenu.addEventListener("click", ocultarMenuLateralMobile);
 
+
   // Busqueda
   inputBusqueda.addEventListener('keyup', consultarExpedientes)
+
 }
 
 function adaptarHeader() {

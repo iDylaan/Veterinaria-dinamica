@@ -4,8 +4,13 @@
         session_start();
     }
 
+
     // Validar que la sesion sea del veterinario
     if( $_SESSION['id_rol'] !== "2" ) {
+
+    // Validar que la sesion sea del veterinario o administrador
+    if( $_SESSION['id_rol'] === "1" ) {
+
         header('Location: ./index.php');
     }
 
@@ -112,8 +117,13 @@
     </header> <!-- header -->
 
     <div class="buscador__container">
+
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Buscar por Nombre" aria-label="Search">
+
+        <form class="d-flex" method="GET">
+            <input name="busqueda" class="form-control me-2" type="text" placeholder="Buscar por Nombre" aria-label="Search">
+
             <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
         <!-- <input type="text" placeholder="Buscar por nombre"> -->
@@ -142,6 +152,7 @@
                     <th colspan="3">Opciones</th>
                 </tr>
             </thead>
+
             <tbody>
                 <?php 
                 $query_expedientes = "SELECT 
@@ -195,6 +206,114 @@
                     </td>
                 </tr>
                 <?php endwhile; ?>
+
+            <tbody id="form_body">
+                <?php 
+                if($_SERVER['REQUEST_METHOD'] === 'GET') {
+                    if(isset($_GET['busqueda'])) {
+                        $busqueda = $_GET['busqueda'];
+                        $query_busqeuda = "SELECT
+                            ex.cla_chip as chip,
+                            ex.mascota,
+                            ex.fecha_nac_mascota as nacimiento,
+                            ex.colores,
+                            se.sexo,
+                            es.nom_spcie as especie,
+                            ra.nombre_raza as raza,
+                            CONCAT(us.nombre, ' ', us.apellido_pa, ' ',us.apellido_ma) as propietario,
+                            us.telefono,
+                            us.correo,
+                            us.direccion,
+                            us.cp
+                            FROM 
+                            expedientes ex, 
+                            sexos se, 
+                            especies es, 
+                            razas ra,
+                            usuarios us
+                            WHERE ex.id_sexo_mascota = se.id
+                            AND ex.id_raza = ra.id
+                            AND ra.id_especie = es.id
+                            AND ex.id_usr = us.id
+                            AND (CONCAT(us.nombre, ' ', us.apellido_pa, ' ',us.apellido_ma) LIKE '%${busqueda}%'
+                            OR mascota LIKE '%${busqueda}%'
+                            OR correo LIKE '%${busqueda}%')";
+                        
+                        $res_busqueda = mysqli_query( $db, $query_busqeuda );
+                    
+                        while($expediente = mysqli_fetch_assoc($res_busqueda)):
+                            ?>
+                            <tr>
+                                <td><?php echo $expediente['mascota']; ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($expediente['nacimiento'])); ?></td>
+                                <td><?php echo $expediente['sexo']; ?></td>
+                                <td><?php echo $expediente['especie']; ?></td>
+                                <td><?php echo $expediente['raza']; ?></td>
+                                <td><?php echo $expediente['propietario']; ?></td>
+                                <td><?php echo $expediente['telefono']; ?></td>
+                                <td><?php echo $expediente['correo']; ?></td>
+                                <td class="table__option"><a href="./detalle_expediente.php?id=<?php echo $expediente['chip']; ?>" id="detalles"><i class="fa-solid fa-bars-staggered"></i> Detalles</a></td>
+                                <td class="table__option"><a href="./form_actualizar_expediente.php?id=<?php echo $expediente['chip']; ?>" id="editar"><i class="fa-solid fa-pen-to-square"></i> Editar</a></td>
+                                <td class="table__option">
+                                    <form method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $expediente['chip']; ?>">
+                                        <button type="submit" id="eliminar"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php 
+                        endwhile; 
+                        if( mysqli_num_rows($res_busqueda) === 0) {
+                            ?>
+                            <p style="text-align:center;font-size:2rem;">No se encontraron coincidencias... 😔</p>
+                            <?php
+                        }
+                    } else {
+                        $query_expedientes = "SELECT 
+                        ex.cla_chip as chip,
+                        ex.mascota,
+                        ex.fecha_nac_mascota as nacimiento,
+                        ex.colores,
+                        se.sexo,
+                        es.nom_spcie as especie,
+                        ra.nombre_raza as raza,
+                        CONCAT(us.nombre, ' ', us.apellido_pa, ' ',us.apellido_ma) as propietario,
+                        us.telefono,
+                        us.correo,
+                        us.direccion,
+                        us.cp
+                        FROM 
+                        expedientes ex, 
+                        sexos se, 
+                        especies es, 
+                        razas ra,
+                        usuarios us
+                        WHERE ex.id_sexo_mascota = se.id
+                        AND ex.id_raza = ra.id
+                        AND ra.id_especie = es.id
+                        AND ex.id_usr = us.id";
+
+                        $expedientes = mysqli_query($db, $query_expedientes);
+
+                        while($expediente = mysqli_fetch_assoc($expedientes)):
+                        ?>
+                        <tr>
+                            <td><?php echo $expediente['mascota']; ?></td>
+                            <td><?php echo date("d/m/Y", strtotime($expediente['nacimiento'])); ?></td>
+                            <td><?php echo $expediente['sexo']; ?></td>
+                            <td><?php echo $expediente['especie']; ?></td>
+                            <td><?php echo $expediente['raza']; ?></td>
+                            <td><?php echo $expediente['propietario']; ?></td>
+                            <td><?php echo $expediente['telefono']; ?></td>
+                            <td><?php echo $expediente['correo']; ?></td>
+                            <td class="table__option"><a href="./detalle_expediente.php?id=<?php echo $expediente['chip']; ?>" id="detalles"><i class="fa-solid fa-bars-staggered"></i> Detalles</a></td>
+                            <td class="table__option"><a href="./form_actualizar_expediente.php?id=<?php echo $expediente['chip']; ?>" id="editar"><i class="fa-solid fa-pen-to-square"></i> Editar</a></td>
+                            <td class="table__option"><a href="./eliminar_expediente.php?id=<?php echo $expediente['chip']; ?>" id="eliminar"><i class="fa-solid fa-trash"></i> Eliminar</a></td>
+                        </tr>
+                        <?php endwhile; 
+                    }
+                }?>
+
             </tbody>
         </table>
     </div>
