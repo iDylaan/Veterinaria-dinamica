@@ -5,7 +5,7 @@
 require '../includes/config/database.php';
 $db = conectarDB();
 
-/*if($_SERVER['REQUEST_METHOD'] === 'GET') {
+if($_SERVER['REQUEST_METHOD'] === 'GET') {
     if(isset($_GET['busqueda1'])) {
         $busqueda = $_GET['busqueda1'];
         $query_busqeuda1 = "SELECT
@@ -24,7 +24,7 @@ $db = conectarDB();
             OR nombre_prod LIKE '%${busqueda1}%'
             OR nom_cate LIKE '%${busqueda1}%')";
         
-        $res_busqueda = mysqli_query( $db, $query_busqeuda1 );
+        $res_busqueda1 = mysqli_query( $db, $query_busqeuda1 );
     
         while($productos = mysqli_fetch_assoc($res_busqueda1)):
             ?>
@@ -61,12 +61,11 @@ $db = conectarDB();
             OR nom_cate LIKE '%${busqueda1}%')";
 
         $productos = mysqli_query($db, $query_productos);
-
         while($productos = mysqli_fetch_assoc($productos)):
         ?>
         <?php endwhile; 
     }
-}*/
+}
 
 $where="";
 
@@ -82,7 +81,7 @@ if(isset($_GET['enviar'])){
   
 }
 
-$SQL="SELECT productos.id, productos.nombre_prod, productos.descripcion, productos.imagen, categorias.id_cate, productos.activo, productos.descuento,
+/*$SQL="SELECT productos.id, productos.nombre_prod, productos.descripcion, productos.imagen, categorias.id_cate, productos.activo, productos.descuento,
 FROM productos
 LEFT JOIN categorias ON productos.nom_cate = categorias.id_cate $where";
 $dato = mysqli_query($db, $SQL);
@@ -116,6 +115,6 @@ if($dato -> num_rows >0){
     <?php
     
 }
-
+*/
 ?>
 

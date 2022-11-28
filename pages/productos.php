@@ -90,7 +90,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
       
         <div class="buscador__container">
 
-<form class="d-flex" method="GET">
+<form action="./busqueda_producto.php" class="d-flex" method="GET">
     <input name="busqueda1" class="form-control me-2" type="text" placeholder="Buscar producto" aria-label="Search">
 
     <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
