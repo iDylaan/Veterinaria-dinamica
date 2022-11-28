@@ -74,7 +74,15 @@
                     </a>
 
                     <div class="categorias__productos"><i class="fa-solid fa-store"></i>
+
                       <a href="./pages/productos.php">Productos</a>
+
+
+                      <a href="./pages/productos.php">Productos</a>
+
+                        <p>Productos</p>
+ 
+
                     </div>
                     <div class="categorias__estetica"><i class="fa-solid fa-shield-dog"></i>
                         <p>Servicios</p>
