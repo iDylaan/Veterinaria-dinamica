@@ -114,11 +114,11 @@ if($productos!= null){
                 } else {
                     $total=0;
                     foreach($lista_carrito as $producto){
-                        $id= $producto['id'];
-                        $nombre_prod= $producto['nombre_prod'];
-                        $precio= $producto['precio'];
-                        $descuento= $producto['descuento'];
-                        $cantidad= $producto['cantidad'];
+                        $id= $producto[0]['id'];
+                        $nombre_prod= $producto[0]['nombre_prod'];
+                        $precio= $producto[0]['precio'];
+                        $descuento= $producto[0]['descuento'];
+                        $cantidad= $producto[0]['cantidad'];
                         $precio_desc= $precio (($precio  * $descuento) / 100);
                         $subtotal=$cantidad * $precio_desc;
                         $total+= $subtotal;
