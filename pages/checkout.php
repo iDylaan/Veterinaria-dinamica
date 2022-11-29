@@ -2,17 +2,16 @@
     // Autentificar al usuario
     session_start();
    
+?>
 
-
-
-
+<?php
 require '../includes/config/config.php';
 require '../includes/config/database.php';
 $db = new Database();
 $con = $db->conectar();
 
 $productos = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
-print_r($_SESSION);
+
 $lista_carrito= array();
     
 if($productos!= null){
@@ -109,11 +108,11 @@ if($productos!= null){
                 } else {
                     $total=0;
                     foreach($lista_carrito as $productos){
-                        $_id= $productos['id'];
-                        $nombre_prod= $productos['nombre_prod'];
-                        $precio= $productos['precio'];
-                        $descuento= $productos['descuento'];
-                        $cantidad= $productos['cantidad'];
+                        $_id= $productos[0]['id'];
+                        $nombre_prod= $productos[0]['nombre_prod'];
+                        $precio= $productos[0]['precio'];
+                        $descuento= $productos[0]['descuento'];
+                        $cantidad= $productos[0]['cantidad'];
                         $precio_desc= $precio -$precio/ 100;
                         $subtotal=$cantidad * $precio_desc;
                         $total+= $subtotal;
@@ -131,7 +130,7 @@ if($productos!= null){
                     <td>
                          <div id="subtotal_<?php echo $_id;  ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal,2,'.','.') ?></div> 
                   </td>
-                    <td> <a href="" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-tootle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
+                    <td> <a href="" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-toogle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
                     <td></td>
                 </tr>
                 <?php }?>
@@ -155,12 +154,99 @@ if($productos!= null){
 
     </div>
    
-   </div>
-        
+   
+   <div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="eliminaModalLabel">Alerta</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						¿Desea eliminar el producto de la lista?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+						<button id="btn-elimina" class="btn btn-danger" onclick="elimina()">Eliminar</button>
+					</div>
+				</div>
+			</div>
+		</div>
       
     </main>
     
-    
+    <script>
+      
+			let eliminaModal = document.getElementById('eliminaModal')
+			eliminaModal.addEventListener('show.bs.modal', function(event) {
+				// Button that triggered the modal
+				let button = event.relatedTarget
+                let id= button.getAtrribute('data-bs-id')
+				// Extract info from data-bs-* attributes
+				let recipient = button.getAttribute('data-bs-id')
+				let botonElimina = eliminaModal.querySelector('.modal-footer #btn-elimina')
+				botonElimina.value = recipient
+			})
+			
+			function actualizarCantidad(cantidad, id) {
+				
+				
+					
+					let url = '../pages/actualizarcarrito.php';
+					let formData = new FormData();
+					formData.append('action', 'agregar');
+					formData.append('id', id);
+					formData.append('cantidad', cantidad);
+					
+					fetch(url, {
+						method: 'POST',
+						body: formData,
+						mode: 'cors',
+					}).then(response => response.json())
+					.then(data => {
+						if (data.ok) {
+							let divSubtotal = document.getElementById('subtotal_' + id)
+							divSubtotal.innerHTML = data.sub
+							
+							let total = 0.00
+							let list = document.getElementsByName('subtotal[]')
+							
+							for (var i = 0; i < list.length; ++i) {
+								total += parseFloat(list[i].innerHTML.replace(/[$,]/g, ''))
+							}
+							
+							total = new Intl.NumberFormat('en-US', {
+								minimumFractionDigits: 2
+							}).format(total)
+							document.getElementById("total").innerHTML = '<?php echo MONEDA; ?>' + total
+						}
+					})
+				
+			}
+			
+			function elimina() {
+				let botonElimina = document.getElementById('btn-elimina')
+				let recipient = botonElimina.value
+				
+				let url = '../pages/actualizar_carrito.php';
+				let formData = new FormData();
+				formData.append('action', 'eliminar');
+				formData.append('id', recipient);
+				
+				fetch(url, {
+                    method: 'POST',
+					body: formData,
+					mode: 'cors',
+				}).then(response => response.json())
+				.then(data => {
+					if (data.ok) {
+						location.reload();
+					}
+				})
+				$('#eliminaModal').modal('hide')
+			}
+		
+    </script>
 <footer>
   <div class="bg-footer"></div>
         <div class="redes">
