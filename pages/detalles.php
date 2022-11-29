@@ -15,7 +15,7 @@ $con = $db->conectar();
 $id= isset($_GET['id']) ? $_GET['id'] : '';
 $token= isset($_GET['token']) ? $_GET['token'] : '';
 if($id == '' || $token == ''){
-    echo 'Errir al procesar la peticion';
+    echo 'Error al procesar la peticion';
     exit;
 } else {
     $token_tmp= hash_hmac('sha1', $id, KEY_TOKEN);
@@ -24,7 +24,7 @@ if($id == '' || $token == ''){
 $sql= $con->prepare("SELECT count(id) FROM productos where id=? and activo=1");
 $sql->execute([$id]);
 if($sql->fetchColumn()>0){
-    $sql= $con->prepare("SELECT nombre_prod, descripcion, precio, descuento FROM productos where id=? and activo=1 limit 1" );
+    $sql= $con->prepare("SELECT id, nombre_prod, descripcion, precio, descuento FROM productos where id=? and activo=1 limit 1" );
     $sql->execute([$id]);
     $row=$sql->fetch(PDO::FETCH_ASSOC);
     $nombre= $row['nombre_prod'];
@@ -80,7 +80,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
   <div class="navbar navbar-expand-lg navbar-dark  " style="background-color: #002933;" >
     <div class="container">
-      <a href="./productos.php" class="navbar-brand ">
+      <a href="productos.php" class="navbar-brand ">
         <strong>Productos</strong>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
