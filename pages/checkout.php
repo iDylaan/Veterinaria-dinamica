@@ -104,16 +104,16 @@ if($productos!= null){
                 </tr>
             </thead>
             <tbody>
-                <?php if($lista_carrito== 1){
+                <?php if($lista_carrito==1){
                     echo '<tr><td colspan="5" class="text-center"><b>Lista vacia</b></td></tr>';
                 } else {
                     $total=0;
                     foreach($lista_carrito as $productos){
-                        $_id= $productos['id'];
-                        $nombre_prod= $productos['nombre_prod'];
-                        $precio= $productos['precio'];
-                        $descuento= $productos['descuento'];
-                        $cantidad= $productos['cantidad'];
+                        $_id= $productos[0]['id'];
+                        $nombre_prod= $productos[0]['nombre_prod'];
+                        $precio= $productos[0]['precio'];
+                        $descuento= $productos[0]['descuento'];
+                        $cantidad= $productos[0]['cantidad'];
                         $precio_desc= $precio -$precio/ 100;
                         $subtotal=$cantidad * $precio_desc;
                         $total+= $subtotal;
@@ -131,9 +131,9 @@ if($productos!= null){
                   </td>
                     <td> <a href="actualizar_carrito.php" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
                     <td> <?php echo $nombre_prod ?></td>
+                    
 
-                    <td> <a href="actualizar_carrito.php" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-tootle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
-                    <td></td>
+                   
 
                 </tr>
                 <?php }?>
@@ -161,7 +161,7 @@ if($productos!= null){
 
 
     function actualizaCantidad(cantidad, id){
-        let url = 'actualizar_carrito.php'
+        let url = 'actualizarcarrito.php'
         let formData = new formData()
         formData.append('action', 'agregar')
         formData.append('id', id)
