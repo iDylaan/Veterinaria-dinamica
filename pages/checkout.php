@@ -31,7 +31,7 @@ if($productos!= null){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Productos</title>
     <link rel="stylesheet" href="../src/styles/productos.css">
     <script src="https://kit.fontawesome.com/4ad7b82c7d.js" crossorigin="anonymous" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -43,7 +43,7 @@ if($productos!= null){
 <header>
 <div class="navbar navbar-expand-lg navbar-dark  " style="background-color: #002933-100;" >
     <div class="container">
-      <a href="#" class="navbar-brand ">
+      <a href="productos.php" class="navbar-brand ">
         <strong>Productos</strong>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,7 +104,7 @@ if($productos!= null){
                 </tr>
             </thead>
             <tbody>
-                <?php if($lista_carrito== null){
+                <?php if($lista_carrito== 1){
                     echo '<tr><td colspan="5" class="text-center"><b>Lista vacia</b></td></tr>';
                 } else {
                     $total=0;
@@ -114,10 +114,6 @@ if($productos!= null){
                         $precio= $productos['precio'];
                         $descuento= $productos['descuento'];
                         $cantidad= $productos['cantidad'];
-                        $precio_desc= $precio -$precio/ 100;
-                        $subtotal=$cantidad * $precio_desc;
-                        $total+= $subtotal;
-
                       
 
                     ?>
@@ -126,13 +122,17 @@ if($productos!= null){
                     <td> <?php echo $nombre_prod;  ?></td>
                     <td> <?php echo MONEDA . number_format($precio_desc,2,'.','.')  ?></td>
                     <td> 
-                        <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad ?>" size="5" id="cantidad_<?php echo $_id; ?>" onchange="">
+                        <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad ?>" size="5" id="cantidad_<?php echo $_id; ?>" onchange="actualizaCantidad(this.value, <?php echo $_id; ?>)">
                     </td>
                     <td>
                          <div id="subtotal_<?php echo $_id;  ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal,2,'.','.') ?></div> 
                   </td>
-                    <td> <a href="" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-tootle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
+                    <td> <a href="actualizar_carrito.php" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
+                    <td> <?php echo $nombre_prod ?></td>
+
+                    <td> <a href="actualizar_carrito.php" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-tootle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
                     <td></td>
+
                 </tr>
                 <?php }?>
                 <tr>
@@ -146,19 +146,96 @@ if($productos!= null){
             <?php } ?>
 
         </table>
+<script>
 
-    </div>
-    <div class="row" >
-        <div class="col-md-5 offset-md-7 d-grid gap-2">
-            <button class="btn btn-primary btn-lg">Realizar pago</button>
-        </div>
+    let eliminaModal = document.getElementById('eliminaModal')
+    eliminaModal.addEventListener('show.bs.modal', function(event){
+        let button = event.relatedTarget
+        let id = button.getAtrribute('data-bs-id')
+        let buttonElimina = eliminaModal.querySelector('.modal-footer #btn-elimina')
+        buttonElimina.value=id
 
-    </div>
+    })
+
+
+    function actualizaCantidad(cantidad, id){
+        let url = 'actualizar_carrito.php'
+        let formData = new formData()
+        formData.append('action', 'agregar')
+        formData.append('id', id)
+        formData.append('cantidad', cantidad)
+
+        fetch (url, {
+            method: 'POST',
+            body: formData,
+            mode: 'cors'
+        }).then(Response => Response.json())
+        .then(data => {
+            if(data.ok){
+                let divsubtotal = document.getElementById('subtotal'_ + id)
+                divsubtotal.innerHTML = data.sub
+
+                let total = 0.00
+                let list = document.getElementsByName('subtotal[]')
+
+                for(let i = 0; < list.length; i++){
+                    total += parseFloat(list[i].innerHTML.replace(/[$,] /g, ''))
+                }
+
+                total = new Intl.NumberFormat('en-US',{
+                    minimumFractionDigits: 2
+                }).format(total)
+                document.getElementById('total').innerHTML = '<?php echo MONEDA; ?>' + total
+
+            }
+        })
+    }
+
+    function eliminar(){
+
+        let botonElimina = document.getElementById('btn-elimina')
+        let id = botonElimina.value
+
+        let url = 'actualizar_carrito.php'
+        let formData = new formData()
+        formData.append('action', 'eliminar')
+        formData.append('id', id)
+       
+
+        fetch (url, {
+            method: 'POST',
+            body: formData,
+            mode: 'cors'
+        }).then(Response => Response.json())
+        .then(data => {
+            if(data.ok){
+                location.reload()
+            }
+        })
+    }
+</script>
    
-   </div>
         
       
     </main>
+    <!-- Modal -->
+<div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModal" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="eliminaModal">Alerta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Desea eliminar el Producto? 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button id="btn-elimina" type="button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
     
     
 <footer>

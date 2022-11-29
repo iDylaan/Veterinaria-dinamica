@@ -62,7 +62,7 @@
                             <a href="./expedientes.php" class="header__nav-link"><i class="fa-solid fa-book-open"></i> Expedientes</a>
                             <?php 
                             else: ?>
-                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            <a href="./carrito.php" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
                             <?php endif; ?>
                             <a href="" class="header__nav-link" id="nav-login"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['nombre']; ?></a>
                             <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
@@ -109,7 +109,7 @@
                             <a href="expedientes.php" class="header__nav-link"><i class="fa-solid fa-book-open"></i> Expedientes</a>
                             <?php 
                             else: ?>
-                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            <a href="./carrito.php" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
                             <?php endif; ?>
                             <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
 

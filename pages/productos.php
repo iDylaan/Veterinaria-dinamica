@@ -22,7 +22,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Productos</title>
     <link rel="stylesheet" href="../src/styles/productos.css">
     <script src="https://kit.fontawesome.com/4ad7b82c7d.js" crossorigin="anonymous" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -34,7 +34,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 <header>
 <div class="navbar navbar-expand-lg navbar-dark  " style="background-color: #002933-100;" >
     <div class="container">
-      <a href="#" class="navbar-brand ">
+      <a href="productos.php" class="navbar-brand ">
         <strong>Productos</strong>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,13 +60,13 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
                 <a href="/" class="nav-link active"> <i  class="fa-solid fa-user"></i></a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link active">Cerrar sesion <i  class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="./cerrar_sesion.php" class="nav-link active">Cerrar sesión <i  class="fa-solid fa-right-from-bracket"></i></a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link active">¿Quienes Somos?</a>
+                <a href="./index.php" class="nav-link active">¿Quienes Somos?</a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link active">Ubicacion</a>
+                <a href="./index.php" class="nav-link active">Ubicación</a>
             </li>
 
         </ul>
@@ -111,7 +111,12 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
           <div class="card shadow-sm">
             <?php
             $id= $row['id'];
+
+            $imagen="../src/imgs/productos". $id . "productos/pd-1.webp";
+          
+
             $imagen="../src/imgs/productos/". $id . "/pd-1.webp";
+
             if(!file_exists($imagen)){
                 $imagen="../src/imgs/no-photo.jpg";
             }
@@ -140,7 +145,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
     
     <script>
         function addProducto(id,token){
-            let url= '../pages/carrito.php';
+            let url= 'carrito.php';
             let formData= new FormData();
             formData.append('id', id);
             formData.append('token', token);
