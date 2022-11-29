@@ -118,15 +118,10 @@
 
     <div class="buscador__container">
 
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar por Nombre" aria-label="Search">
-
         <form class="d-flex" method="GET">
-            <input name="busqueda" class="form-control me-2" type="text" placeholder="Buscar por Nombre" aria-label="Search">
-
+            <input name="busqueda" class="form-control me-2" type="text" placeholder="Buscar producto" aria-label="Search">
             <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-        <!-- <input type="text" placeholder="Buscar por nombre"> -->
     </div>
 
     <div class="nuevo-expediente__container">

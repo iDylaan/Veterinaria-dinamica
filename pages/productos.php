@@ -90,8 +90,19 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
     <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
+     
         <h1 class="fw-light">Nuestros Productos</h1>
       
+        <div class="buscador__container">
+
+<form class="d-flex" method="GET">
+    <input name="busqueda1" class="form-control me-2" type="text" placeholder="Buscar producto" aria-label="Search">
+
+    <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+<!-- <input type="text" placeholder="Buscar producto"> -->
+</div>
+
         <p>
           
         </p>
@@ -119,7 +130,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
                 <div class="btn-group">
                 <a href="detalles.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>" class="btn btn-primary"> Detalles </a>
                 </div>
-               <button  name="btnagregar" class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>,     '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
+               <button   class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>,     '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
               </div>
             </div>
           </div>
