@@ -114,7 +114,9 @@ if($productos!= null){
                         $precio= $productos['precio'];
                         $descuento= $productos['descuento'];
                         $cantidad= $productos['cantidad'];
-                      
+                        $precio_desc= $precio -$precio/ 100;
+                        $subtotal=$cantidad * $precio_desc;
+                        $total+= $subtotal;
 
                     ?>
                 

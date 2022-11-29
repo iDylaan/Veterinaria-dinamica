@@ -1,7 +1,12 @@
 <?php
     // Autentificar al usuario
-   
-   session_start();
+    session_start();
+    
+
+
+
+?>
+<?php
 
 
 require '../includes/config/config.php';
@@ -10,7 +15,7 @@ $db = new Database();
 $con = $db->conectar();
 $sql= $con->prepare("SELECT id, nombre_prod, descripcion, precio FROM productos where  activo=1");
 
-print_r($_SESSION);
+
 $sql->execute();
 $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -130,7 +135,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
                 <div class="btn-group">
                 <a href="detalles.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>" class="btn btn-primary"> Detalles </a>
                 </div>
-                <button class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>,'<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
+               <button   class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>,     '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
               </div>
             </div>
           </div>
@@ -183,8 +188,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
             <!-- POLITICAS DE PRIVACIDAD <br> -->
             <a href="https://espai.es/privacidad/">Políticas de Privacidad</a>
         </div>
-</footer>          
+</footer>         
 
- 
 </body>
 </html>
