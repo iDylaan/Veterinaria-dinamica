@@ -13,7 +13,7 @@ require '../includes/config/config.php';
 require '../includes/config/database.php';
 $db = new Database();
 $con = $db->conectar();
-$sql= $con->prepare("SELECT id, imagen as img_id, nombre_prod, descripcion, precio FROM productos where  activo=1");
+$sql= $con->prepare("SELECT id, imagen as img_id, nombre_prod, descripcion, precio FROM productos");
 
 
 $sql->execute();
@@ -130,7 +130,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
               <p class="card-text">$ <?php echo number_format($row['precio'], 2, '.', '.'); ?></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                <a href="detalles.php?id=<?php echo $row['img_id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>" class="btn btn-primary"> Detalles </a>
+                <a href="detalles.php?id=<?php echo $row['img_id']; ?>" class="btn btn-primary"> Detalles </a>
                 </div>
                <button   class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>,     '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
               </div>
