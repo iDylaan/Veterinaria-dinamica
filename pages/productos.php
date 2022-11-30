@@ -13,7 +13,7 @@ require '../includes/config/config.php';
 require '../includes/config/database.php';
 $db = new Database();
 $con = $db->conectar();
-$sql= $con->prepare("SELECT id, nombre_prod, descripcion, precio FROM productos where  activo=1");
+$sql= $con->prepare("SELECT imagen as id, nombre_prod, descripcion, precio FROM productos where  activo=1");
 
 
 $sql->execute();
