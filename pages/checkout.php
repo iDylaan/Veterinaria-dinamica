@@ -128,17 +128,11 @@ if($productos!= null){
                     <td>
                          <div id="subtotal_<?php echo $_id;  ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal,2,'.','.') ?></div> 
                   </td>
-<<<<<<< HEAD
+
                     <td> <a href="actualizarcarrito.php" id="buttonElimina" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
                     <td> <?php echo $nombre_prod ?></td>
-                    
+            
 
-                   
-
-=======
-                    <td> <a href="" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-toogle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
-                    <td></td>
->>>>>>> 4e03761cd7db1a74bf6ec55c8e4f7d377376a073
                 </tr>
                
                 
@@ -236,50 +230,28 @@ if($productos!= null){
     })
     function vaciar(){
 
-let botonVacia = document.getElementById('btn-vacia')
-let id = botonVacia.value
+    let botonVacia = document.getElementById('btn-vacia')
+    let id = botonVacia.value
 
-let url = 'actualizarcarrito.php'
-let formData = new formData()
-formData.append('action', 'vaciar')
-formData.append('id', id)
+    let url = 'actualizarcarrito.php'
+    let formData = new formData()
+    formData.append('action', 'vaciar')
+    formData.append('id', id)
 
 
-fetch (url, {
+    fetch (url, {
     method: 'POST',
     body: formData,
     mode: 'cors'
-}).then(Response => Response.json())
-.then(data => {
+    }).then(Response => Response.json())
+    .then(data => {
     if(data.ok){
         location.reload()
     }
 })
 }
-</script>
-   
-<<<<<<< HEAD
-=======
-   
-   <div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="eliminaModalLabel">Alerta</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						¿Desea eliminar el producto de la lista?
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-						<button id="btn-elimina" class="btn btn-danger" onclick="elimina()">Eliminar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-      
->>>>>>> 4e03761cd7db1a74bf6ec55c8e4f7d377376a073
+    </script>
+
     </main>
     <!-- Modal -->
 <div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModal" aria-hidden="true">
