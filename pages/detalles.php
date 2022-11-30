@@ -1,10 +1,7 @@
 <?php
     // * Autentificar al usuario
     session_start();
-    $auth = $_SESSION['login'] ?? false;
-    if(!$auth) {
-        header('Location: ../index.php');
-    }
+    
 
 
 
@@ -18,10 +15,10 @@ $con = $db->conectar();
 $id= isset($_GET['id']) ? $_GET['id'] : '';
 
 if($id){
-    $sql= $con->prepare("SELECT count(id) FROM productos where imagen=?");
+    $sql= $con->prepare("SELECT count(id) FROM productos where id=? and activo=1");
     $sql->execute([$id]);
     if($sql->fetchColumn()>0){
-        $sql= $con->prepare("SELECT id, imagen as img_id, nombre_prod, descripcion, precio, descuento FROM productos where imagen=? limit 1" );
+        $sql= $con->prepare("SELECT id, imagen as img_id, nombre_prod, descripcion,imagen, precio, descuento FROM productos where id=?  and activo=1 limit 1" );
         $sql->execute([$id]);
         $row=$sql->fetch(PDO::FETCH_ASSOC);
         $nombre= $row['nombre_prod'];
@@ -30,8 +27,9 @@ if($id){
         $descuento= $row['descuento'];
         $img_id = $row['img_id'];
         $precio_desc=$precio-(($precio*$descuento)/100);
-        $dir_imagen= '../src/imgs/productos/' . $img_id . '.jpg';
+        $dir_imagen= '../src/imgs/productos/' . $img_id . '7';
     
+        $rutaimg= $dir_imagen . $img_id;
         if(!file_exists($dir_imagen)){
             $rutaimg= 'imgs/no-photo.jpg';
         }
@@ -40,7 +38,7 @@ if($id){
         $dir = dir($dir_imagen);
         while(($archivo = $dir->read()) != false ){
             if(( strpos($archivo, 'jpg') )) {
-                $imagenes[]= $dir_imagen;
+                $imagenes[]= $dir_imagen . $archivo;
             }
         }
     

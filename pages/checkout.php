@@ -60,16 +60,7 @@ if($productos!= null){
                 <a href="../index.php" class="nav-link active">Inicio <i class="fa-solid fa-house"></i></a>
             </li>
 
-            <li class="nav-item">
-                <a href="./agenda_citas.php" class="nav-link active">Mis citas</a>
-            </li>
-            <li class="nav-item">
-                
-                <a href="/" class="nav-link active"><?php echo $_SESSION['nombre'];?> <i  class="fa-solid fa-user"></i></a>
-            </li>
-            <li class="nav-item">
-                <a href="/" class="nav-link active">Cerrar sesion <i  class="fa-solid fa-right-from-bracket"></i></a>
-            </li>
+           
             <li class="nav-item">
                 <a href="/" class="nav-link active">¿Quienes Somos?</a>
             </li>
@@ -130,7 +121,7 @@ if($productos!= null){
                   </td>
 
                     <td> <a href="actualizarcarrito.php" id="buttonElimina" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
-                    <td> <?php echo $nombre_prod ?></td>
+                   
             
 
                 </tr>
