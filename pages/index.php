@@ -62,7 +62,7 @@
                             <a href="./expedientes.php" class="header__nav-link"><i class="fa-solid fa-book-open"></i> Expedientes</a>
                             <?php 
                             else: ?>
-                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            <a href="./carrito.php" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
                             <?php endif; ?>
                             <a href="" class="header__nav-link" id="nav-login"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['nombre']; ?></a>
                             <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
@@ -76,7 +76,7 @@
                     <a class="cate__nav-link" href="">
                         <div class="categorias__productos">
                             <i class="fa-solid fa-store"></i>
-                            <p>Productos</p>
+                            <a href="../pages/productos.php"><p>Productos</p> </a>
                         </div>
                     </a>
                     
@@ -109,9 +109,13 @@
                             <a href="expedientes.php" class="header__nav-link"><i class="fa-solid fa-book-open"></i> Expedientes</a>
                             <?php 
                             else: ?>
-                            <a href="" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            <a href="./carrito.php" class="header__nav-link" id="nav-carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
                             <?php endif; ?>
                             <a href="./cerrar_sesion.php" class="header__nav-link" id="nav-login-mobile"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+
+                            <a href="./carrito.php" class="header__nav-link" id="nav-carrito-mobile"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+
+
                         </div>
 
                         <div class="nav-mobile__secondary-options">
@@ -250,6 +254,7 @@
 
         <div class="productos-favoritos__boton-ver-todo">
             <button id="btn-ver-todo">Ver todo</button>
+            
         </div>
     </div>
 

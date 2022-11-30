@@ -4,8 +4,10 @@
         session_start();
     }
 
+
     // Validar que la sesion sea del veterinario o administrador
-    if( $_SESSION['id_rol'] === "1" ) {
+    if( $_SESSION['id_rol'] !== "2" ) {
+
         header('Location: ./index.php');
     }
 
@@ -112,11 +114,11 @@
     </header> <!-- header -->
 
     <div class="buscador__container">
+
         <form class="d-flex" method="GET">
-            <input name="busqueda" class="form-control me-2" type="text" placeholder="Buscar por Nombre" aria-label="Search">
+            <input name="busqueda" class="form-control me-2" type="text" placeholder="Buscar producto" aria-label="Search">
             <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-        <!-- <input type="text" placeholder="Buscar por nombre"> -->
     </div>
 
     <div class="nuevo-expediente__container">
@@ -142,6 +144,61 @@
                     <th colspan="3">Opciones</th>
                 </tr>
             </thead>
+
+            <tbody>
+                <?php 
+                $query_expedientes = "SELECT 
+                ex.cla_chip as chip,
+                ex.mascota,
+                ex.fecha_nac_mascota as nacimiento,
+                ex.colores,
+                se.sexo,
+                es.nom_spcie as especie,
+                ra.nombre_raza as raza,
+                CONCAT(us.nombre, ' ', us.apellido_pa, ' ',us.apellido_ma) as propietario,
+                ex.telefono,
+                us.correo,
+                ex.direccion,
+                ex.cp
+                FROM 
+                expedientes ex, 
+                sexos se, 
+                especies es, 
+                razas ra,
+                usuarios us
+                WHERE ex.id_sexo_mascota = se.id
+                AND ex.id_raza = ra.id
+                AND ra.id_especie = es.id
+                AND ex.id_usr = us.id";
+
+                $expedientes = mysqli_query($db, $query_expedientes);
+
+                while($expediente = mysqli_fetch_assoc($expedientes)):
+                ?>
+                <tr>
+                    <!-- <td><?php //echo $expediente['chip']; ?></td> -->
+                    <td><?php echo $expediente['mascota']; ?></td>
+                    <td><?php echo date("d/m/Y", strtotime($expediente['nacimiento'])); ?></td>
+                    <td><?php echo $expediente['sexo']; ?></td>
+                    <td><?php echo $expediente['especie']; ?></td>
+                    <td><?php echo $expediente['raza']; ?></td>
+                    <!-- <td><?php //echo $expediente['colores']; ?></td> -->
+                    <td><?php echo $expediente['propietario']; ?></td>
+                    <td><?php echo $expediente['telefono']; ?></td>
+                    <td><?php echo $expediente['correo']; ?></td>
+                    <!-- <td><?php //echo $expediente['direccion']; ?></td> -->
+                    <!-- <td><?php //echo $expediente['cp']; ?></td> -->
+                    <td class="table__option"><a href="./detalle_expediente.php?id=<?php echo $expediente['chip']; ?>" id="detalles"><i class="fa-solid fa-bars-staggered"></i> Detalles</a></td>
+                    <td class="table__option"><a href="./form_actualizar_expediente.php?id=<?php echo $expediente['chip']; ?>" id="editar"><i class="fa-solid fa-pen-to-square"></i> Editar</a></td>
+                    <td class="table__option">
+                        <form method="POST">
+                            <input type="hidden" name="id" value="<?php echo $expediente['chip']; ?>">
+                            <button type="submit" id="eliminar"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+
             <tbody id="form_body">
                 <?php 
                 if($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -248,6 +305,7 @@
                         <?php endwhile; 
                     }
                 }?>
+
             </tbody>
         </table>
     </div>

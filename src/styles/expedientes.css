@@ -461,6 +461,16 @@ header {
     padding: 0px 5px;
 }
 
+
+.lista__expedientes tbody > tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.lista__expedientes tbody > tr:hover {
+    background-color: #ddd;
+}
+
+
 .lista__expedientes td a {
     text-decoration: none;
     font-size: 1rem;

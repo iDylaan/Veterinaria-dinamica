@@ -7,7 +7,7 @@ function conectarDB() : mysqli {
     //     throw new Exception("NO without SSL at line b." . rand(100, 200));
     //     devolverError('-98001', 'NO sin certificado SSL:<br />'. 'Asegurece estar usando https://');
     //     exit;
-    // }
+    // } 
     // Ok, traemos los datos de conexion de la base:
 
     // Intentar la conexion:
@@ -28,4 +28,37 @@ function conectarDB() : mysqli {
     }
     // Todo bien, tenemos la conexion creada en la variable $conexion
     return $conexion;
+}
+
+?>
+<?php
+
+class Database {
+
+    private $hostname="localhost";
+    private $database="veterinariadb";
+    private $username="root";
+    private $password="";
+    private $charset="utf8";
+
+    
+function conectar()
+{
+    try{
+    $conexion= "mysql:host=" . $this->hostname . "; dbname=" . $this->database ."; charset=" . $this->charset;
+
+    $options=[
+        PDO:: ATTR_ERRMODE => PDO:: ERRMODE_EXCEPTION,
+        PDO::ATTR_EMULATE_PREPARES => false
+
+    ];
+    $pdo = new PDO($conexion, $this->username, $this->password, $options);
+
+
+return $pdo;
+} catch(PDOException $e){
+    echo 'errir conexion' . $e->getMessage();
+    exit;
+}
+}
 }

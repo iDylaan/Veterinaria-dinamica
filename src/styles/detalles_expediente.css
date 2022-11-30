@@ -149,6 +149,9 @@ body {
   overflow-x: hidden;
 }
 
+
+/* DETALLES EXPEDIENTE */
+
 body h1{
   text-align: center;
   margin-top: 40px;
@@ -220,3 +223,4 @@ main {
   font-weight: 500;
   margin-top: 5px;
 }
+
