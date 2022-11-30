@@ -129,14 +129,21 @@ if($productos!= null){
                     <td>
                          <div id="subtotal_<?php echo $_id;  ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal,2,'.','.') ?></div> 
                   </td>
-                    <td> <a href="actualizar_carrito.php" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
+                    <td> <a href="actualizarcarrito.php" id="buttonElimina" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
                     <td> <?php echo $nombre_prod ?></td>
                     
 
                    
 
                 </tr>
+               
+                
                 <?php }?>
+                <td>
+                <a href="checkout.php" id="vaciar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#VaciaModal">Vaciar Carrito</a></td>
+                
+                </td>
+                
                 <tr>
                     <td colspan="3"></td>
                     <td colspan="2">
@@ -198,7 +205,7 @@ if($productos!= null){
         let botonElimina = document.getElementById('btn-elimina')
         let id = botonElimina.value
 
-        let url = 'actualizar_carrito.php'
+        let url = 'actualizarcarrito.php'
         let formData = new formData()
         formData.append('action', 'eliminar')
         formData.append('id', id)
@@ -215,10 +222,38 @@ if($productos!= null){
             }
         })
     }
+    let VaciaModal = document.getElementById('VaciaModal')
+    eliminaModal.addEventListener('show.bs.modal', function(event){
+        let button = event.relatedTarget
+        let id = button.getAtrribute('data-bs-id')
+        let buttonVacia= VaciaModal.querySelector('.modal-footer #btn-vacia')
+        buttonVacia.value=id
+
+    })
+    function vaciar(){
+
+let botonVacia = document.getElementById('btn-vacia')
+let id = botonVacia.value
+
+let url = 'actualizarcarrito.php'
+let formData = new formData()
+formData.append('action', 'vaciar')
+formData.append('id', id)
+
+
+fetch (url, {
+    method: 'POST',
+    body: formData,
+    mode: 'cors'
+}).then(Response => Response.json())
+.then(data => {
+    if(data.ok){
+        location.reload()
+    }
+})
+}
 </script>
    
-        
-      
     </main>
     <!-- Modal -->
 <div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModal" aria-hidden="true">
@@ -233,7 +268,26 @@ if($productos!= null){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button id="btn-elimina" type="button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
+        <button id="eliminar" type="button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+    <!-- Modal -->
+<div class="modal fade" id="VaciaModal" tabindex="-1" aria-labelledby="#VaciaModal" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="VaciaModal">Alerta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Desea vaciar el Carrito? 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button id="vaciar" type="button" class="btn btn-danger" onclick="vaciar()">Vaciar</button>
       </div>
     </div>
   </div>

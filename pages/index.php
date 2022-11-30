@@ -254,6 +254,7 @@
 
         <div class="productos-favoritos__boton-ver-todo">
             <button id="btn-ver-todo">Ver todo</button>
+            
         </div>
     </div>
 
