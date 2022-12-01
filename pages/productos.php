@@ -135,7 +135,11 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
                 <div class="btn-group">
                 <a href="detalles.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"> Detalles </a>
                 </div>
+
                <button   class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>,     '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button>
+
+                <a href="productos.php"><button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $row['id']; ?>,'<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN);?>')"  >Agregar al carrito</button></a>
+
               </div>
             </div>
           </div>
