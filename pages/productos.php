@@ -117,7 +117,10 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
             <?php
             $id= $row['id'];
 
-            $imagen="../src/imgs/productos/". $row['img_id'] . ".jpg";
+            $imagen="../src/imgs/productos". $id . "";
+          
+
+            $imagen="../src/imgs/productos/". $id . "/pd-1.webp";
 
             if(!file_exists($imagen)){
                 $imagen="../src/imgs/no-photo.jpg";

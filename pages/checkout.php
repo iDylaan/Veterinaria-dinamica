@@ -119,8 +119,10 @@ if($productos!= null){
                     <td>
                          <div id="subtotal_<?php echo $_id;  ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal,2,'.','.') ?></div> 
                   </td>
-
                     <td> <a href="actualizarcarrito.php" id="buttonElimina" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
+                    
+                    
+
                    
             
 
