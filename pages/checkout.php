@@ -128,17 +128,12 @@ if($productos!= null){
                     <td>
                          <div id="subtotal_<?php echo $_id;  ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal,2,'.','.') ?></div> 
                   </td>
-<<<<<<< HEAD
                     <td> <a href="actualizarcarrito.php" id="buttonElimina" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a></td>
-                    <td> <?php echo $nombre_prod ?></td>
+                    
                     
 
                    
 
-=======
-                    <td> <a href="" id="eliminar" class="btn btn-warning btn-sm " data-bs-id="<?php echo $_id;  ?>" data-ds-toogle="model" data-bs-tarjet="eliminaModal">Eliminar</a></td>
-                    <td></td>
->>>>>>> 4e03761cd7db1a74bf6ec55c8e4f7d377376a073
                 </tr>
                
                 

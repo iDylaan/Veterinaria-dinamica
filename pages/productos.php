@@ -117,7 +117,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
             <?php
             $id= $row['id'];
 
-            $imagen="../src/imgs/productos". $id . "productos/pd-1.webp";
+            $imagen="../src/imgs/productos". $id . "";
           
 
             $imagen="../src/imgs/productos/". $id . "/pd-1.webp";
