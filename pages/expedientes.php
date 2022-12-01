@@ -5,11 +5,8 @@
     }
 
 
-    // Validar que la sesion sea del veterinario
-    if( $_SESSION['id_rol'] !== "2" ) {
-
     // Validar que la sesion sea del veterinario o administrador
-    if( $_SESSION['id_rol'] === "1" ) {
+    if( $_SESSION['id_rol'] !== "2" ) {
 
         header('Location: ./index.php');
     }

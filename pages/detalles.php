@@ -1,5 +1,5 @@
 <?php
-    // Autentificar al usuario
+    // * Autentificar al usuario
     session_start();
     
 
@@ -13,52 +13,46 @@ $db = new Database();
 $con = $db->conectar();
 
 $id= isset($_GET['id']) ? $_GET['id'] : '';
-$token= isset($_GET['token']) ? $_GET['token'] : '';
-if($id == '' || $token == ''){
-    echo 'Error al procesar la peticion';
-    exit;
-} else {
-    $token_tmp= hash_hmac('sha1', $id, KEY_TOKEN);
 
-    if($token== $token_tmp){
-$sql= $con->prepare("SELECT count(id) FROM productos where id=? and activo=1");
-$sql->execute([$id]);
-if($sql->fetchColumn()>0){
-    $sql= $con->prepare("SELECT id, nombre_prod, descripcion, precio, descuento FROM productos where id=? and activo=1 limit 1" );
+if($id){
+    $sql= $con->prepare("SELECT count(id) FROM productos where id=? and activo=1");
     $sql->execute([$id]);
-    $row=$sql->fetch(PDO::FETCH_ASSOC);
-    $nombre= $row['nombre_prod'];
-    $descripcion= $row['descripcion'];
-    $precio= $row['precio'];
-    $descuento= $row['descuento'];
-    $precio_desc=$precio-(($precio*$descuento)/100);
-    $dir_images= '../src/imgs/productos/' . $id . '/';
-
-    $rutaimg= $dir_images . 'pd-1.webp';
-
-    if(!file_exists($rutaimg)){
-        $rutaimg= 'imgs/no-photo.jpg';
-    }
-
-    $images =array();
-    $dir= dir($dir_images);
-    while(($archivo = $dir->read()) != false ){
-        if($archivo != 'pd-1.webp' && (strpos($archivo, 'webp') || strpos($archivo, 'jpg') )) {
-            $imagenes[]= $dir_images . $archivo;
+    if($sql->fetchColumn()>0){
+        $sql= $con->prepare("SELECT id, imagen as img_id, nombre_prod, descripcion,imagen, precio, descuento FROM productos where id=?  and activo=1 limit 1" );
+        $sql->execute([$id]);
+        $row=$sql->fetch(PDO::FETCH_ASSOC);
+        $nombre= $row['nombre_prod'];
+        $descripcion= $row['descripcion'];
+        $precio= $row['precio'];
+        $descuento= $row['descuento'];
+        $img_id = $row['img_id'];
+        $precio_desc=$precio-(($precio*$descuento)/100);
+        $dir_imagen= '../src/imgs/productos/' . $img_id . '7';
+    
+        $rutaimg= $dir_imagen . $img_id;
+        if(!file_exists($dir_imagen)){
+            $rutaimg= 'imgs/no-photo.jpg';
         }
+    
+        $images = array();
+        $dir = dir($dir_imagen);
+        while(($archivo = $dir->read()) != false ){
+            if(( strpos($archivo, 'jpg') )) {
+                $imagenes[]= $dir_imagen . $archivo;
+            }
+        }
+    
+        $dir->close();
+    
+    
     }
+    $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
-    $dir->close();
-
-
+}else {
+    echo 'error al procesarlo';
+    exit;
 }
-$resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
-    }else {
-        echo 'error al procesarlo';
-        exit;
-    }
-}
 
 
 ?>
@@ -121,7 +115,7 @@ $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
     </header> <!-- header -->>
    
 
-    <!-contenido ->
+    <!-- <!-contenido -> -->
 
     <main>
         <div class="container">
