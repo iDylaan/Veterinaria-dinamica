@@ -1,7 +1,6 @@
 <?php
     // * Autentificar al usuario
-    session_start();
-    
+ 
 
 
 
@@ -15,10 +14,10 @@ $con = $db->conectar();
 $id= isset($_GET['id']) ? $_GET['id'] : '';
 
 if($id){
-    $sql= $con->prepare("SELECT count(id) FROM productos where id=? and activo=1");
+    $sql= $con->prepare("SELECT count(id) FROM productos where id=?");
     $sql->execute([$id]);
     if($sql->fetchColumn()>0){
-        $sql= $con->prepare("SELECT id, imagen as img_id, nombre_prod, descripcion,imagen, precio, descuento FROM productos where id=?  and activo=1 limit 1" );
+        $sql= $con->prepare("SELECT id, imagen as img_id, nombre_prod, descripcion, precio, descuento FROM productos where id=? limit 1" );
         $sql->execute([$id]);
         $row=$sql->fetch(PDO::FETCH_ASSOC);
         $nombre= $row['nombre_prod'];
@@ -27,9 +26,9 @@ if($id){
         $descuento= $row['descuento'];
         $img_id = $row['img_id'];
         $precio_desc=$precio-(($precio*$descuento)/100);
-        $dir_imagen= '../src/imgs/productos/' . $img_id . '7';
+        $dir_imagen= '../src/imgs/productos/';
+        $rutaimg=$dir_imagen . '7productos' . '.jpg';
     
-        $rutaimg= $dir_imagen . $img_id;
         if(!file_exists($dir_imagen)){
             $rutaimg= 'imgs/no-photo.jpg';
         }
@@ -91,7 +90,7 @@ if($id){
             </li>
             <li class="nav-item">
                 
-                <a href="/" class="nav-link active"><?php echo $_SESSION['nombre'];?> <i  class="fa-solid fa-user"></i></a>
+                <a href="/" class="nav-link active"> <i  class="fa-solid fa-user"></i></a>
             </li>
             <li class="nav-item">
                 <a href="/" class="nav-link active">Cerrar sesion <i  class="fa-solid fa-right-from-bracket"></i></a>
